@@ -5,7 +5,7 @@ function Login(){
 
   this.draw = function(){
     clear();
-    background(42, 42, 42);
+    background(bg);
     backButton.draw();
     rect(138, 388, 638, 70);
     rect(138, 267, 638, 70);
