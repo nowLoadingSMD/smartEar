@@ -13,7 +13,9 @@ function Button(x, y, img, texto = ''){
     image(this.image, this.x, this.y, this.width, this.height);
     fill(255);
     textSize(20);
-    text(this.texto, this.x + 80, this.y + 40);
+    textAlign(CENTER);
+    text(this.texto, this.x + this.width/2, this.y + this.height/2);
+    textAlign(LEFT);
   }
 
 }
