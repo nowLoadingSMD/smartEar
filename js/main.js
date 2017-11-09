@@ -2,7 +2,7 @@
 renderização do app */
 var telas = [];
 
-var state = new StateControl('treinarOuvido');
+var state = new StateControl('telaInicial');
 
 var la, fa;
 var iconSong, iconSound;
@@ -24,6 +24,8 @@ function setup(){
 	//Criar um array com as telas que serao usadas no app
 	telas['treinarOuvido'] = new TreinarOuvido();
 	telas['treinarOuvidoJogo'] = new TreinarOuvidoJogo();
+	telas['telaInicial'] = new TelaInicial();
+	telas['login'] = new Login();
 
 }
 
