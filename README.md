@@ -1,0 +1,2 @@
+# smartEar
+Repositório do app 
