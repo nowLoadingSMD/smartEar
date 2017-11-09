@@ -6,6 +6,7 @@ var state = new StateControl('telaInicial');
 
 var la, fa;
 var iconSong, iconSound;
+var bg;
 
 function preload() {
 
@@ -14,6 +15,8 @@ function preload() {
 
 	iconSong = loadImage('assets/icons/iconSong.png');
 	iconSound = loadImage('assets/icons/iconSound.png');
+
+	bg = loadImage('assets/background.png');
 
 }
 
