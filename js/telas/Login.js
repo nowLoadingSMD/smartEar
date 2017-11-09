@@ -1,5 +1,7 @@
 function Login(){
 
+  var esqueceuSenha = loadImage('assets/login/loginEsqueceuSenha.png');
+
   var backButton = new Button(38, 38, btnBack);
   var continuarButton = new Button(856, 328, btn, 'CONTINUAR');
 
@@ -10,7 +12,7 @@ function Login(){
     rect(138, 388, 638, 70);
     rect(138, 267, 638, 70);
     continuarButton.draw();
-    rect(892, 427, 208, 21);
+    image(esqueceuSenha, 892, 427, 208, 21);
 
     checkPress();
   };
