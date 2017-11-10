@@ -60,7 +60,7 @@ se o mouse clicou nesse componente */
 var buttonPressed = function(botao){
 
   if(mouseIsPressed && state.canPress){
-    console.log(botao.width);
+    //console.log(botao.width);
     if ((mouseX >= botao.x) && (mouseX <= (botao.x + botao.width))){
       if ((mouseY >= botao.y) && (mouseY <= (botao.y + botao.height))){
         state.canPress = false;
