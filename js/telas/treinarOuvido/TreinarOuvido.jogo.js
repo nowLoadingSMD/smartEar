@@ -1,5 +1,7 @@
 function TreinarOuvidoJogo(){
 
+  var noteChoosen;
+
   var soundButton = new Button(width/2-70, height/2-45, btnSound);
 
   var songButton = new Button(width/2-70, height/2+75, btnSong);
@@ -31,6 +33,10 @@ function TreinarOuvidoJogo(){
 
     checkPress();
 
+    if (check == true){
+      showFeedback('Fá#', noteChoosen);
+    }
+
   }
 
   var checkPress = function(){
@@ -49,6 +55,20 @@ function TreinarOuvidoJogo(){
 
     if (buttonPressed(faSusButton)){
       check = true;
+      noteChoosen = 'Fá#'
+
+    }
+
+    if (buttonPressed(doSusButton) || (buttonPressed(solSusButton))){
+      check = true;
+      noteChoosen = 'Nota errada';
+    }
+
+  };
+
+  var showFeedback = function(right, chose){
+
+    if (right == chose){
       background(35, 38, 37, 80);
       textSize(40);
       fill(111, 193, 62);
@@ -57,11 +77,8 @@ function TreinarOuvidoJogo(){
       fill(255);
       text("Parabéns! A nota correta era ", width/2-190, 200);
       fill(111, 193, 62);
-      text("Fá", width/2+205, 200);
-    }
-
-    if (buttonPressed(doSusButton) || (buttonPressed(solSusButton))){
-      check = true;
+      text(right, width/2+205, 200);
+    } else {
       background(35, 38, 37, 80);
       textSize(40);
       fill(255, 92, 92);
@@ -70,7 +87,7 @@ function TreinarOuvidoJogo(){
       fill(255);
       text("A nota correta era ", width/2-120, 200);
       fill(255, 92, 92);
-      text("Fá", width/2+130, 200);
+      text(right, width/2+130, 200);
     }
 
   };
