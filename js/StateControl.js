@@ -11,4 +11,6 @@ function StateControl(screen){
   o mouse ainda esteja apertado, os cliques não serão registrados pois esta variável
   estará como false. Ela apenas voltará para true quando o usuário soltar o botão do mouse */
   this.canPress = true;
+
+  this.animationPlaying = true;
 }

@@ -1,6 +1,8 @@
 /* Arquivo principal que será responsável por toda
 renderização do app */
 var telas = [];
+var x;
+var opacity;
 
 var state;
 var sound;
@@ -37,11 +39,33 @@ function setup(){
 	telas['cadastrar'] = new Cadastrar();
 	telas['menu'] = new Menu();
 
+	x = 0;
+	opacity = 300;
+
 }
 
 function draw(){
+	/*
+	if(state.animationPlaying){
+		background(150, 150, 150);
+		ellipseMode(CENTER);
+		fill(42, 42, 42);
+		noStroke();
+		ellipse(width/2, height/2, x, x);
+		x += 75;
 
-	telas[state.currentScreen].draw();
+		if(x > 1280){
+			state.animationPlaying = false;
+			x = 0;
+		}
+	} else */{
+		telas[state.currentScreen].draw();
+		fill(0, 0, 0, opacity);
+		rect(0, 0, 1280, 720);
+		if (opacity > 0){
+			opacity -= 2;
+		}
+	}
 
 }
 
