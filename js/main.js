@@ -2,21 +2,25 @@
 renderização do app */
 var telas = [];
 
-var state = new StateControl('telaInicial');
+var state;
+var sound;
 
-var la, fa;
+var exercicios;
+
 var iconSong, iconSound;
 var bg;
 
 function preload() {
 
-	la = loadSound('sounds/la.wav');
-	fa = loadSound('sounds/fa.wav');
-
 	iconSong = loadImage('assets/icons/iconSong.png');
 	iconSound = loadImage('assets/icons/iconSound.png');
 
 	bg = loadImage('assets/background.png');
+
+	state = new StateControl('telaInicial');
+	sound = new Sounds();
+
+	//exercicios = new Exercicios();
 
 }
 
@@ -27,6 +31,7 @@ function setup(){
 	//Criar um array com as telas que serao usadas no app
 	telas['treinarOuvido'] = new TreinarOuvido();
 	telas['treinarOuvidoJogo'] = new TreinarOuvidoJogo();
+	telas['treinarOuvidoResultado'] = new TreinarOuvidoResultado();
 	telas['telaInicial'] = new TelaInicial();
 	telas['login'] = new Login();
 	telas['cadastrar'] = new Cadastrar();

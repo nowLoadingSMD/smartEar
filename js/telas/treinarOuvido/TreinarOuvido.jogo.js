@@ -1,43 +1,63 @@
 function TreinarOuvidoJogo(){
 
+  var exercicios = new Exercicios();
+
+  var exerciciosList = [];
+
+  for(var i = 0; i < 5; i++){
+    exerciciosList.push(exercicios.getExercicio());
+  }
+
+  var exercicioAtual = 0;
   var noteChoosen;
-
-  var soundButton = new Button(width/2-70, height/2-45, btnSound);
-
-  var songButton = new Button(width/2-70, height/2+75, btnSong);
-
-  var backButton = new Button(50, 50, btnBack);
-
-  var doSusButton = new Button(width/2+255, height/2 - 75, btn, "DÓ#");
-  var faSusButton = new Button(width/2+255, height/2 + 45, btn, "FA#");
-  var solSusButton = new Button(width/2+255, height/2 + 165, btn, "SOL#");
-
   var check = false;
 
+  var soundButton = new Button(width/2-70, height/2-45, btnSound);
+  var songButton = new Button(width/2-70, height/2+75, btnSong);
+  var backButton = new Button(50, 50, btnBack);
+  var continuarButton = new Button(667, 585, btnGradient, 'CONTINUAR');
+
+  var opButton1 = new Button(width/2+255, height/2 - 75, btnGradient, exerciciosList[exercicioAtual].op1);
+  var opButton2 = new Button(width/2+255, height/2 + 45, btnGradient, exerciciosList[exercicioAtual].op2);
+  var opButton3 = new Button(width/2+255, height/2 + 165, btnGradient, exerciciosList[exercicioAtual].op3);
+
+
   this.draw = function(){
+
+    if (check == false){
+      clear();
+    }
+
+    opButton1.texto = exerciciosList[exercicioAtual].op1;
+    opButton2.texto= exerciciosList[exercicioAtual].op2;
+    opButton3.texto = exerciciosList[exercicioAtual].op3;
 
     background(35, 38, 37);
 
     backButton.draw();
 
     textSize(25);
-		text("Sm de referência: lá", width/7+40, height/2-12);
+		text("Sm de referência: ", width/7+40, height/2-12);
     soundButton.draw();
 
     text("Que nota é essa?", width/7+40, height/2+108);
     songButton.draw();
 
-    doSusButton.draw();
-    faSusButton.draw();
-    solSusButton.draw();
+    opButton1.draw();
+    opButton2.draw();
+    opButton3.draw();
 
     checkPress();
 
     if (check == true){
-      showFeedback('Fá#', noteChoosen);
+      showFeedback(exerciciosList[exercicioAtual].right, noteChoosen);
     }
 
-  }
+    if (exercicioAtual == 5){
+      state.currentScreen = 'treinarOuvidoResultado';
+    }
+
+  };
 
   var checkPress = function(){
 
@@ -46,22 +66,32 @@ function TreinarOuvidoJogo(){
     }
 
     if (buttonPressed(soundButton)){
-      la.play();
+      exerciciosList[exercicioAtual].notaReferencia.play();
     }
 
     if (buttonPressed(songButton)){
-      fa.play();
+      exerciciosList[exercicioAtual].notaObjetivo.play();
     }
 
-    if (buttonPressed(faSusButton)){
+    if (buttonPressed(opButton1)){
       check = true;
-      noteChoosen = 'Fá#'
+      noteChoosen = exerciciosList[exercicioAtual].op1;
 
     }
 
-    if (buttonPressed(doSusButton) || (buttonPressed(solSusButton))){
+    if (buttonPressed(opButton2)){
       check = true;
-      noteChoosen = 'Nota errada';
+      noteChoosen = exerciciosList[exercicioAtual].op2;
+    }
+
+    if (buttonPressed(opButton3)){
+      check = true;
+      noteChoosen = exerciciosList[exercicioAtual].op3;
+    }
+
+    if (buttonPressed(continuarButton)){
+      check = false;
+      exercicioAtual++;
     }
 
   };
@@ -78,6 +108,7 @@ function TreinarOuvidoJogo(){
       text("Parabéns! A nota correta era ", width/2-190, 200);
       fill(111, 193, 62);
       text(right, width/2+205, 200);
+      continuarButton.draw();
     } else {
       background(35, 38, 37, 80);
       textSize(40);
@@ -88,6 +119,7 @@ function TreinarOuvidoJogo(){
       text("A nota correta era ", width/2-120, 200);
       fill(255, 92, 92);
       text(right, width/2+130, 200);
+      continuarButton.draw();
     }
 
   };

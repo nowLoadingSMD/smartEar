@@ -3,7 +3,7 @@ function Login(){
   var esqueceuSenha = loadImage('assets/login/loginEsqueceuSenha.png');
 
   var backButton = new Button(38, 38, btnBack);
-  var continuarButton = new Button(856, 328, btn, 'CONTINUAR');
+  var continuarButton = new Button(856, 328, btnGradient, 'CONTINUAR');
 
   this.draw = function(){
     clear();

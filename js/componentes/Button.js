@@ -14,7 +14,7 @@ function Button(x, y, img, texto = ''){
     fill(255);
     textSize(20);
     textAlign(CENTER);
-    text(this.texto, this.x + this.width/2, this.y + this.height/2);
+    text(this.texto, this.x + this.width/2, this.y + this.height/2 + 5);
     textAlign(LEFT);
   }
 

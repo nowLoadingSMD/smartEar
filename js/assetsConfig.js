@@ -1,10 +1,16 @@
 /* Arquivo de configuração de assests e suas informações que serão
 usadas para renderizar os botões*/
 
-var btn = {
-	url: 'assets/btnBackground.png',
+var btnGradient = {
+	url: 'assets/btnGradient.png',
 	width: 284,
 	height: 71
+};
+
+var btnTransparent = {
+	url: 'assets/btnTransparent.png',
+	width: 286,
+	height: 70
 };
 
 var btnBack = {
