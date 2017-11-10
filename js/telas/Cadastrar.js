@@ -1,7 +1,7 @@
 function Cadastrar(){
 
   var backButton = new Button(38, 38, btnBack);
-  var continuarButton = new Button(856, 325, btn, 'CONTINUAR');
+  var continuarButton = new Button(856, 325, btnGradient, 'CONTINUAR');
 
   this.draw = function(){
     clear();
