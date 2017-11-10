@@ -61,6 +61,7 @@ function draw(){
 	} else */{
 		telas[state.currentScreen].draw();
 		fill(0, 0, 0, opacity);
+		console.log(opacity);
 		rect(0, 0, 1280, 720);
 		if (opacity > 0){
 			opacity -= 2;
