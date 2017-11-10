@@ -27,6 +27,8 @@ function TelaInicial(){
   var checkPress = function(){
 
     if (buttonPressed(loginButton)){
+      state.animationPlaying = true;
+      opacity = 150;
       state.currentScreen = 'login';
     }
 
