@@ -1,32 +1,28 @@
-function Login(){
-
-  var esqueceuSenha = loadImage('assets/login/loginEsqueceuSenha.png');
+function Cadastrar(){
 
   var backButton = new Button(38, 38, btnBack);
-  var continuarButton = new Button(856, 328, btn, 'CONTINUAR');
+  var continuarButton = new Button(856, 325, btn, 'CONTINUAR');
 
   this.draw = function(){
     clear();
     background(bg);
     backButton.draw();
-    rect(138, 388, 638, 70);
-    rect(138, 267, 638, 70);
+    rect(137, 205, 638, 70);
+    rect(137, 325, 638, 70);
+    rect(137, 445, 638, 70);
     continuarButton.draw();
-    image(esqueceuSenha, 892, 427, 208, 21);
 
     checkPress();
+
   };
 
   var checkPress = function(){
 
     if (buttonPressed(backButton)){
       state.currentScreen = 'telaInicial';
-    }
-
-    if (buttonPressed(continuarButton)){
+    } else if (buttonPressed(continuarButton)){
       state.currentScreen = 'menu';
     }
-  }
 
-
+  };
 };

@@ -48,3 +48,27 @@ var btnSound = {
 	width: 50,
 	height: 50
 };
+
+var btnPerfil = {
+	url: 'assets/menu/perfil.png',
+	width: 125,
+	height: 36
+};
+
+var btnEquipe = {
+	url: 'assets/menu/equipe.png',
+	width: 125,
+	height: 36
+};
+
+var btnConfig = {
+	url: 'assets/menu/config.png',
+	width: 125,
+	height: 36
+};
+
+var btnSobre = {
+	url: 'assets/menu/sobre.png',
+	width: 125,
+	height: 36
+};

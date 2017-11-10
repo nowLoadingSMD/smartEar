@@ -30,7 +30,7 @@ function TreinarOuvido(){
   var checkPress = function(){
 
     if (buttonPressed(backButton)){
-      state.currentScreen = 'loginScreen';
+      state.currentScreen = 'menu';
     }
 
     if (buttonPressed(continuarButton)){
