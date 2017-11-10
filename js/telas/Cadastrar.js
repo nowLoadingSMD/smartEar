@@ -20,7 +20,7 @@ function Cadastrar(){
 
     if (buttonPressed(backButton)){
       state.currentScreen = 'telaInicial';
-    } else {
+    } else if (buttonPressed(continuarButton)){
       state.currentScreen = 'menu';
     }
 

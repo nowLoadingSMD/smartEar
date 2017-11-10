@@ -30,6 +30,7 @@ function setup(){
 	telas['telaInicial'] = new TelaInicial();
 	telas['login'] = new Login();
 	telas['cadastrar'] = new Cadastrar();
+	telas['menu'] = new Menu();
 
 }
 

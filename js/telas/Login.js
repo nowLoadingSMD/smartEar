@@ -22,6 +22,10 @@ function Login(){
     if (buttonPressed(backButton)){
       state.currentScreen = 'telaInicial';
     }
+
+    if (buttonPressed(continuarButton)){
+      state.currentScreen = 'menu';
+    }
   }
 
 
