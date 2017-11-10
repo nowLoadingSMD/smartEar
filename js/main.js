@@ -29,6 +29,7 @@ function setup(){
 	telas['treinarOuvidoJogo'] = new TreinarOuvidoJogo();
 	telas['telaInicial'] = new TelaInicial();
 	telas['login'] = new Login();
+	telas['cadastrar'] = new Cadastrar();
 
 }
 
