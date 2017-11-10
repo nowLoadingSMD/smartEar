@@ -4,10 +4,6 @@ function TreinarOuvidoJogo(){
 
   var exerciciosList = [];
 
-  for(var i = 0; i < 5; i++){
-    exerciciosList.push(exercicios.getExercicio());
-  }
-
   var exercicioAtual = 0;
   var noteChoosen;
   var check = false;
@@ -17,12 +13,18 @@ function TreinarOuvidoJogo(){
   var backButton = new Button(50, 50, btnBack);
   var continuarButton = new Button(667, 585, btnGradient, 'CONTINUAR');
 
-  var opButton1 = new Button(width/2+255, height/2 - 75, btnGradient, exerciciosList[exercicioAtual].op1);
-  var opButton2 = new Button(width/2+255, height/2 + 45, btnGradient, exerciciosList[exercicioAtual].op2);
-  var opButton3 = new Button(width/2+255, height/2 + 165, btnGradient, exerciciosList[exercicioAtual].op3);
+  var opButton1 = new Button(width/2+255, height/2 - 75, btnGradient);
+  var opButton2 = new Button(width/2+255, height/2 + 45, btnGradient);
+  var opButton3 = new Button(width/2+255, height/2 + 165, btnGradient);
 
 
   this.draw = function(){
+
+    if (exercicioAtual == 0){
+      for(var i = 0; i < 5; i++){
+        exerciciosList.push(exercicios.getExercicio());
+      }
+    }
 
     if (check == false){
       clear();
@@ -54,6 +56,7 @@ function TreinarOuvidoJogo(){
     }
 
     if (exercicioAtual == 5){
+      exercicioAtual = 0;
       state.currentScreen = 'treinarOuvidoResultado';
     }
 
