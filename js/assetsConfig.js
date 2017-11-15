@@ -39,8 +39,8 @@ var btnPlay = {
 
 var btnSong = {
 	url: 'assets/buttons/btnSong.png',
-	width: 39,
-	height: 50
+	width: 80,
+	height: 80
 };
 
 var btnRestart = {
@@ -51,18 +51,18 @@ var btnRestart = {
 
 var btnSound = {
 	url: 'assets/buttons/btnSound.png',
-	width: 50,
-	height: 50
+	width: 80,
+	height: 80
 };
 
-var btnPerfil = {
-	url: 'assets/menu/perfil.png',
+var btnJogos = {
+	url: 'assets/menu/jogos.png',
 	width: 125,
 	height: 36
 };
 
-var btnEquipe = {
-	url: 'assets/menu/equipe.png',
+var btnPerfil = {
+	url: 'assets/menu/perfil.png',
 	width: 125,
 	height: 36
 };
@@ -78,3 +78,27 @@ var btnSobre = {
 	width: 125,
 	height: 36
 };
+
+var treinarOuvidIcon = {
+      url: 'assets/menu/treinarOuvidoIcon.png',
+      width: 197,
+      height: 197
+  };
+
+var intervalosIcon = {
+      url: 'assets/menu/intervalosIcon.png',
+      width: 197,
+      height: 197
+  };
+
+var ritmoIcon = {
+      url: 'assets/menu/ritmoIcon.png',
+      width: 197,
+      height: 197
+  };
+
+var timbreIcon = {
+      url: 'assets/menu/timbreIcon.png',
+      width: 197,
+      height: 197
+  };
