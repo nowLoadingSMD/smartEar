@@ -1,40 +1,42 @@
 function Menu(){
 
-  var treinarOuvidIcon = {
-      url: 'assets/menu/treinarOuvidoIcon.png',
-      width: 223,
-      height: 226
-  };
+  
+
 
   var header = loadImage('assets/menu/header.png');
   var header2 = loadImage('assets/menu/header2.png');
 
-  var perfilButton = new Button(618, 19, btnPerfil);
-  var configButton = new Button(769, 19, btnConfig);
-  var equipeButton = new Button(920, 19, btnEquipe);
+  var jogosButton = new Button(83, 19, btnJogos);
+  var perfilButton = new Button(769, 19, btnPerfil);
+  var configButton = new Button(920, 19, btnConfig);
   var sobreButton = new Button(1072, 19, btnSobre);
 
-  var treinarOuvidoButton = new Button(380, 297, treinarOuvidIcon);
-
+  var intervalosButton = new Button(93, 340, intervalosIcon);
+  var treinarOuvidoButton = new Button(394, 340, treinarOuvidIcon);
+  var ritmoButton = new Button(689, 340, ritmoIcon);
+  var timbreButton = new Button(984, 340, timbreIcon);
 
   this.draw = function(){
     clear();
-    background(35, 38, 37);
+    background(bgNoise);
 
-    fill(24, 24 ,24);
+    fill(0, 0 ,9);
     noStroke();
     rect(0, 0, 1280, 74);
 
     fill(255);
+    jogosButton.draw();
     perfilButton.draw();
     configButton.draw();
-    equipeButton.draw();
     sobreButton.draw();
 
     image(header, 420, 141);
     image(header2, 189, 206);
 
+    intervalosButton.draw();
     treinarOuvidoButton.draw();
+    ritmoButton.draw();
+    timbreButton.draw();
 
     checkPress();
 

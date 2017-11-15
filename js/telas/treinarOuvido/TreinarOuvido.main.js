@@ -6,7 +6,7 @@ function TreinarOuvido(){
   this.draw = function(){
 
     clear();
-    background(35, 38, 37);
+    background(bgNoise);
     fill(255);
 
     backButton.draw();

@@ -11,7 +11,7 @@ function TreinarOuvidoResultado(){
 
   this.draw = function(){
     clear();
-    background(42, 42 ,42 );
+    background(bgNoise);
     image(resultado, 512, 143);
     image(comment, 252, 233);
     image(acertos, 494, 347);

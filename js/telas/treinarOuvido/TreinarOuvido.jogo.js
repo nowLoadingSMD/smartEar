@@ -8,14 +8,16 @@ function TreinarOuvidoJogo(){
   var noteChoosen;
   var check = false;
 
-  var soundButton = new Button(width/2-70, height/2-45, btnSound);
-  var songButton = new Button(width/2-70, height/2+75, btnSong);
+  var soundButton = new Button(523, 385, btnSound);
+  var songButton = new Button(523, 255, btnSong);
   var backButton = new Button(50, 50, btnBack);
   var continuarButton = new Button(667, 585, btnGradient, 'CONTINUAR');
 
-  var opButton1 = new Button(width/2+255, height/2 - 75, btnGradient);
-  var opButton2 = new Button(width/2+255, height/2 + 45, btnGradient);
-  var opButton3 = new Button(width/2+255, height/2 + 165, btnGradient);
+  var opButton1 = new Button(832, 197, btnGradient);
+  var opButton2 = new Button(832, 327, btnGradient);
+  var opButton3 = new Button(832, 455, btnGradient);
+
+  var txtSom = loadImage('assets/treinarOuvido/som.png');
 
 
   this.draw = function(){
@@ -34,15 +36,13 @@ function TreinarOuvidoJogo(){
     opButton2.texto= exerciciosList[exercicioAtual].op2;
     opButton3.texto = exerciciosList[exercicioAtual].op3;
 
-    background(35, 38, 37);
+    background(bgNoise);
 
     backButton.draw();
 
-    textSize(25);
-		text("Sm de referência: ", width/7+40, height/2-12);
-    soundButton.draw();
+    image(txtSom, 162, 270);
 
-    text("Que nota é essa?", width/7+40, height/2+108);
+    soundButton.draw();
     songButton.draw();
 
     opButton1.draw();
@@ -105,23 +105,23 @@ function TreinarOuvidoJogo(){
       background(35, 38, 37, 80);
       textSize(40);
       fill(111, 193, 62);
-      text("VOCÊ ACERTOU!", width/2-140, 120);
+      text("VOCÊ ACERTOU!", 460, 90);
       textSize(30);
       fill(255);
-      text("Parabéns! A nota correta era ", width/2-190, 200);
+      text("Parabéns! A nota correta era ", 415, 154);
       fill(111, 193, 62);
-      text(right, width/2+205, 200);
+      text(right, 807, 155);
       continuarButton.draw();
     } else {
       background(35, 38, 37, 80);
       textSize(40);
       fill(255, 92, 92);
-      text("VOCÊ ERROU!", width/2-120, 120);
+      text("VOCÊ ERROU!", 488, 90);
       textSize(30);
       fill(255);
-      text("A nota correta era ", width/2-120, 200);
+      text("A nota correta era ", 490, 154);
       fill(255, 92, 92);
-      text(right, width/2+130, 200);
+      text(right, 737, 155);
       continuarButton.draw();
     }
 

@@ -18,6 +18,7 @@ function preload() {
 	iconSound = loadImage('assets/icons/iconSound.png');
 
 	bg = loadImage('assets/background.png');
+	bgNoise = loadImage('assets/bgNoise.png');
 
 	state = new StateControl('telaInicial');
 	sound = new Sounds();
@@ -61,7 +62,6 @@ function draw(){
 	} else */{
 		telas[state.currentScreen].draw();
 		fill(0, 0, 0, opacity);
-		console.log(opacity);
 		rect(0, 0, 1280, 720);
 		if (opacity > 0){
 			opacity -= 2;
