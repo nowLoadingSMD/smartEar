@@ -12,4 +12,5 @@ function Sounds(){
   this.la = loadSound('sounds/la.wav');
   this.laSus = loadSound('sounds/la-stretched.wav');
   this.si = loadSound('sounds/si.wav');
+  this.metronomo = loadSound('sounds/metronomo.wav');
 }

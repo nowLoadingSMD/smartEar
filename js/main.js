@@ -35,6 +35,8 @@ function setup(){
 	telas['treinarOuvido'] = new TreinarOuvido();
 	telas['treinarOuvidoJogo'] = new TreinarOuvidoJogo();
 	telas['treinarOuvidoResultado'] = new TreinarOuvidoResultado();
+	telas['ritmo'] = new Ritmo();
+	telas['ritmoJogo'] = new RitmoJogo();
 	telas['telaInicial'] = new TelaInicial();
 	telas['login'] = new Login();
 	telas['cadastrar'] = new Cadastrar();
@@ -68,6 +70,13 @@ function draw(){
 		}
 	}
 
+}
+
+function mousePressed(){
+	var date = new Date();
+	state.lastMousePressed = date.getTime();
+	//console.log(state.lastMousePressed);
+	state.mousePressed = true;
 }
 
 function mouseReleased(){
