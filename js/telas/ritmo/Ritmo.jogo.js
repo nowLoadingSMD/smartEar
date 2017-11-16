@@ -4,7 +4,6 @@ function RitmoJogo(){
   var isTime = false;
   var mostrarFeedback = false;
   var contagem = 0;
-  var clicks = [];
   var c = [];
   var startupTime = 0;
 
@@ -14,7 +13,6 @@ function RitmoJogo(){
 
   var comment = loadImage('assets/ritmo/jogo/comment.png');
   var line = loadImage('assets/ritmo/jogo/line.png');
-  //var linhaReferencia = loadImage('assets/ritmo/jogo/linhaReferencia.png');
   var seminima = loadImage('assets/ritmo/jogo/seminima.png');
   var contagemImagem = loadImage('assets/ritmo/jogo/contagem.png');
 
@@ -28,43 +26,18 @@ function RitmoJogo(){
   var tocarMetronomo = function(time, playBackRate){
     sound.metronomo.rate(playBackRate);
     sound.metronomo.play(time);
-    var date = new Date();
 
-    setTimeout(setIsTime, 100);
-    setTimeout(setIsTime, 900);
-    var playTime = date.getTime();
+    setTimeout(setFalse, 100);
+    setTimeout(setTrue, 900);
 
-    checkClick(playTime);
   };
 
-  var setIsTime = function(){
-    isTime = !isTime;
+  var setTrue = function(){
+    isTime = true;
   };
 
-  var checkClick = function(playTime){
-
-    var delay = Math.abs(playTime - state.lastMousePressed);
-    var tempo;
-
-    if (delay > 1000) {
-      tempo = playTime;
-    } else {
-      tempo = state.lastMousePressed
-    }
-
-    console.log(tempo - startupTime);
-
-    var click = {
-      tempo: tempo,
-      imagem: loadImage('assets/ritmo/jogo/feedbackErro.png')
-    };
-
-    if ((delay < 100) || ((delay > 900) && (delay < 1000))) {
-      click.imagem = loadImage('assets/ritmo/jogo/feedbackAcerto.png');
-    }
-
-    clicks.push(click);
-
+  var setFalse = function(){
+    isTime = false;
   };
 
   var metronomoPat = [2,0,1,0,2,0,1];
@@ -100,7 +73,6 @@ function RitmoJogo(){
 
     backButton.draw();
     image(line, 0, 348);
-    //image(linhaReferencia, 246, 525);
 
     if (contando == true){
       image(contagemImagem, 476, 108);
@@ -110,8 +82,23 @@ function RitmoJogo(){
       image(comment, 161, 141);
     }
 
+    if (mouseIsPressed && tocando && state.canPress) {
+      var d = new Date();
+      var click = {
+        tempo: d.getTime(),
+        imagem: loadImage('assets/ritmo/jogo/feedbackErro.png')
+      }
+
+      if (isTime) {
+        click.imagem = loadImage('assets/ritmo/jogo/feedbackAcerto.png');
+      }
+
+      c.push(click);
+    }
+
     if (tocando){
-      clicks.forEach(function(item){
+      c.forEach(function(item){
+        console.log(item);
         posX = 195 + ((784 + 130)  * ((item.tempo - startupTime) / 4000));
         posY = 229;
         image(item.imagem, posX, posY);
@@ -127,25 +114,9 @@ function RitmoJogo(){
       image(voceAcertou, 462, 62);
       image(feedbackComentarioPositivo, 387, 514);
       continuarButton.draw();
-
     }
 
     checkPress();
-
-    if (mouseIsPressed && tocando) {
-      console.log('ODAKd');
-      var d = new Date();
-      var click = {
-        tempo: d.getTime(),
-        image: ''
-      }
-      if (isTime) {
-        click.imagem = 'assets/ritmo/jogo/feedbackAcerto.png';
-      } else {
-        click.imagem = 'assets/ritmo/jogo/feedbackErro.png';
-      }
-      c.push(click);
-    }
 
   };
 
@@ -181,15 +152,15 @@ function RitmoJogo(){
     contando = false;
     var date = new Date();
     startupTime = date.getTime();
-    //console.log(startupTime);
-    clicks = [];
     tocando = true;
     myPart.start();
     isTime = true;
-    setTimeout(mostrarTelaFeedback, 4000);
+    setTimeout(mostrarTelaFeedback, 4100);
   };
 
   var mostrarTelaFeedback = function(){
+    tocando = false;
+    isTime = false;
     mostrarFeedback = true;
   };
 
@@ -202,7 +173,6 @@ function RitmoJogo(){
   };
 
 }
-
 
 function TimeLine(x, y, w, h, notas){
   this.x = x;
@@ -231,8 +201,4 @@ function TimeLine(x, y, w, h, notas){
     }
 
   };
-}
-
-function BarraDeReferencia(){
-
 }
