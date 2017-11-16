@@ -37,6 +37,7 @@ function setup(){
 	telas['treinarOuvidoResultado'] = new TreinarOuvidoResultado();
 	telas['ritmo'] = new Ritmo();
 	telas['ritmoJogo'] = new RitmoJogo();
+	telas['ritmoResultado'] = new RitmoResultado();
 	telas['telaInicial'] = new TelaInicial();
 	telas['login'] = new Login();
 	telas['cadastrar'] = new Cadastrar();

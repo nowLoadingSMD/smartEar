@@ -16,4 +16,5 @@ function StateControl(screen){
 
   this.mousePressed = false;
   this.lastMousePressed;
+  this.contando = false
 }
