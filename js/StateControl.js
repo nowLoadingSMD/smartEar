@@ -13,4 +13,8 @@ function StateControl(screen){
   this.canPress = true;
 
   this.animationPlaying = true;
+
+  this.mousePressed = false;
+  this.lastMousePressed;
+  this.contando = false
 }

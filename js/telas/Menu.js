@@ -52,6 +52,10 @@ function Menu(){
       state.currentScreen = 'cantar';
     }
 
+    if (buttonPressed(ritmoButton)){
+      state.currentScreen = 'ritmo';
+    }
+
   };
 
 
