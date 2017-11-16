@@ -127,10 +127,12 @@ function RitmoJogo(){
     }
 
     if (buttonPressed(backButton)){
+      mostrarFeedback = false;
       state.currentScreen = 'ritmo';
     }
 
     if (buttonPressed(continuarButton)){
+      mostrarFeedback = false
       state.currentScreen = 'ritmoResultado';
     }
 
