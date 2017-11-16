@@ -35,6 +35,9 @@ function setup(){
 	telas['treinarOuvido'] = new TreinarOuvido();
 	telas['treinarOuvidoJogo'] = new TreinarOuvidoJogo();
 	telas['treinarOuvidoResultado'] = new TreinarOuvidoResultado();
+	telas['cantar'] = new Cantar();
+	telas['cantarJogo'] = new CantarJogo();
+	telas['cantarResultado'] = new CantarResultado();
 	telas['telaInicial'] = new TelaInicial();
 	telas['login'] = new Login();
 	telas['cadastrar'] = new Cadastrar();

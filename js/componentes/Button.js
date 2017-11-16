@@ -12,6 +12,8 @@ function Button(x, y, img, texto = ''){
   this.tamanho2 = 230;
   this.opcd = 300;
 
+  //var font = loadFont('assets/fonts/watchwordDot-Bold.otf');
+
   this.draw = function(){
     if(this.width == 197 && this.height == 197){
       if ((mouseX >= this.x) && (mouseX <= this.x + this.width) && (mouseY >= this.y) && (mouseY <= this.y + this.height)){
@@ -66,12 +68,13 @@ function Button(x, y, img, texto = ''){
       }
       fill(255,255,255,0);
       ellipse(this.x+98.5, this.y+98.5, 266, 266);
-      ellipse(this.x+98.5, this.y+98.5, 230, 230); 
+      ellipse(this.x+98.5, this.y+98.5, 230, 230);
     }
-  } 
+  }
   image(this.image, this.x, this.y, this.width, this.height);
   noStroke();
   fill(255);
+  //textFont(font);
   textSize(20);
   textAlign(CENTER);
   text(this.texto, this.x + this.width/2, this.y + this.height/2 + 5);

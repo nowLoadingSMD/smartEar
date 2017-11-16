@@ -1,6 +1,6 @@
 function Menu(){
 
-  
+
 
 
   var header = loadImage('assets/menu/header.png');
@@ -14,7 +14,7 @@ function Menu(){
   var intervalosButton = new Button(93, 340, intervalosIcon);
   var treinarOuvidoButton = new Button(394, 340, treinarOuvidIcon);
   var ritmoButton = new Button(689, 340, ritmoIcon);
-  var timbreButton = new Button(984, 340, timbreIcon);
+  var cantarButton = new Button(984, 340, timbreIcon);
 
   this.draw = function(){
     clear();
@@ -36,7 +36,7 @@ function Menu(){
     intervalosButton.draw();
     treinarOuvidoButton.draw();
     ritmoButton.draw();
-    timbreButton.draw();
+    cantarButton.draw();
 
     checkPress();
 
@@ -46,6 +46,10 @@ function Menu(){
 
     if (buttonPressed(treinarOuvidoButton)){
       state.currentScreen = 'treinarOuvido';
+    }
+
+    if (buttonPressed(cantarButton)){
+      state.currentScreen = 'cantar';
     }
 
   };
