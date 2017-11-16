@@ -10,7 +10,7 @@ function TreinarOuvido(){
     fill(255);
 
     backButton.draw();
-
+    //textFont('assets/fonts/watchwordDot-Regular.otf');
     textSize(40);
 		text("TREINAR OUVIDO", width/7, height/4);
 		textSize(30);

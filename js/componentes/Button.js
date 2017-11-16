@@ -66,9 +66,9 @@ function Button(x, y, img, texto = ''){
       }
       fill(255,255,255,0);
       ellipse(this.x+98.5, this.y+98.5, 266, 266);
-      ellipse(this.x+98.5, this.y+98.5, 230, 230); 
+      ellipse(this.x+98.5, this.y+98.5, 230, 230);
     }
-  } 
+  }
   image(this.image, this.x, this.y, this.width, this.height);
   noStroke();
   fill(255);

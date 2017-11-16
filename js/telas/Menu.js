@@ -1,8 +1,5 @@
 function Menu(){
 
-
-
-
   var header = loadImage('assets/menu/header.png');
   var header2 = loadImage('assets/menu/header2.png');
 
@@ -55,4 +52,4 @@ function Menu(){
   };
 
 
-};
+}
