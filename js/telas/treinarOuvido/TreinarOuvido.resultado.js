@@ -18,7 +18,7 @@ function TreinarOuvidoResultado(){
     image(erros, 494, 412);
     image(total, 494, 477);
 
-    textFont('assets/fonts/watchwordDot-Regular.otf');
+    //textFont('assets/fonts/watchwordDot-Regular.otf');
     textSize(32);
     fill(111, 193, 62);
     text('2', 768, 347);
