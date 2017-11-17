@@ -1,4 +1,4 @@
-function Exercicios(){
+function TreinarOuvidoExercicios(){
 
   this.exerciciosList = [];
 

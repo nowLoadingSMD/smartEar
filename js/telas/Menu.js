@@ -1,6 +1,6 @@
 function Menu(){
 
-  
+
 
 
   var header = loadImage('assets/menu/header.png');
@@ -46,6 +46,10 @@ function Menu(){
 
     if (buttonPressed(treinarOuvidoButton)){
       state.currentScreen = 'treinarOuvido';
+    }
+
+    if (buttonPressed(intervalosButton)){
+      state.currentScreen = 'intervalos';
     }
 
   };
