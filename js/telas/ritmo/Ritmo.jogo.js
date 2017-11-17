@@ -1,9 +1,11 @@
 function RitmoJogo(){
   var contando = false;
   var tocando = false;
+  var framesTocando = 0;
+  var isTime = false;
   var mostrarFeedback = false;
   var contagem = 0;
-  var clicks = [];
+  var c = [];
   var startupTime = 0;
 
   var backButton = new Button(40, 40, btnBack);
@@ -12,7 +14,6 @@ function RitmoJogo(){
 
   var comment = loadImage('assets/ritmo/jogo/comment.png');
   var line = loadImage('assets/ritmo/jogo/line.png');
-  //var linhaReferencia = loadImage('assets/ritmo/jogo/linhaReferencia.png');
   var seminima = loadImage('assets/ritmo/jogo/seminima.png');
   var contagemImagem = loadImage('assets/ritmo/jogo/contagem.png');
 
@@ -26,27 +27,18 @@ function RitmoJogo(){
   var tocarMetronomo = function(time, playBackRate){
     sound.metronomo.rate(playBackRate);
     sound.metronomo.play(time);
-    var date = new Date();
-    var playTime = date.getTime();
 
-    checkClick(playTime);
+    setTimeout(setFalse, 100);
+    setTimeout(setTrue, 900);
+
   };
 
-  var checkClick = function(playTime){
+  var setTrue = function(){
+    isTime = true;
+  };
 
-    var delay = Math.abs(playTime - state.lastMousePressed);
-
-    var click = {
-      tempo: state.lastMousePressed,
-      imagem: loadImage('assets/ritmo/jogo/feedbackErro.png')
-    };
-
-    if ((delay < 100) || ((delay > 900) && (delay < 1000))) {
-      click.imagem = loadImage('assets/ritmo/jogo/feedbackAcerto.png');
-    }
-
-    clicks.push(click);
-
+  var setFalse = function(){
+    isTime = false;
   };
 
   var metronomoPat = [2,0,1,0,2,0,1];
@@ -74,7 +66,8 @@ function RitmoJogo(){
     }
   ];
 
-  var timeLine = new TimeLine(195, 283, 784, 116, notas);
+  var timeLine = new TimeLine(195, 283, 654, 116, notas);
+  var barraProgresso = new BarraProgresso(195, 500, 914, 25);
 
   this.draw = function(){
     clear();
@@ -82,7 +75,6 @@ function RitmoJogo(){
 
     backButton.draw();
     image(line, 0, 348);
-    //image(linhaReferencia, 246, 525);
 
     if (contando == true){
       image(contagemImagem, 476, 108);
@@ -92,15 +84,34 @@ function RitmoJogo(){
       image(comment, 161, 141);
     }
 
+    if (mouseIsPressed && tocando && state.canPress) {
+      var d = new Date();
+      var click = {
+        tempo: d.getTime(),
+        imagem: loadImage('assets/ritmo/jogo/feedbackErro.png')
+      }
+
+      if (isTime) {
+        click.imagem = loadImage('assets/ritmo/jogo/feedbackAcerto.png');
+      }
+
+      c.push(click);
+    }
+
     if (tocando){
-      clicks.forEach(function(item){
-        posX = 260 + (784 * ((item.tempo - startupTime) / 4000));
+      c.forEach(function(item){
+        console.log(item);
+        posX = timeLine.x + ((timeLine.w)  * ((item.tempo - startupTime) / 4000));
         posY = 229;
         image(item.imagem, posX, posY);
       });
+      framesTocando++;
     }
 
+    barraProgresso.progresso = (framesTocando/240);
+
     timeLine.draw();
+    barraProgresso.draw();
     playButton.draw();
 
     if (mostrarFeedback){
@@ -109,7 +120,6 @@ function RitmoJogo(){
       image(voceAcertou, 462, 62);
       image(feedbackComentarioPositivo, 387, 514);
       continuarButton.draw();
-
     }
 
     checkPress();
@@ -118,7 +128,7 @@ function RitmoJogo(){
 
   var checkPress = function(){
 
-    if (buttonPressed(playButton)){
+    if (buttonPressed(playButton) && !tocando && !contando ) {
       contando = true;
       contagem = 3;
       sound.metronomo.play();
@@ -128,11 +138,19 @@ function RitmoJogo(){
 
     if (buttonPressed(backButton)){
       mostrarFeedback = false;
+      tocando = false;
+      clicks = [];
+      myPart.stop();
+      barraProgresso.progresso = 0;
       state.currentScreen = 'ritmo';
     }
 
     if (buttonPressed(continuarButton)){
-      mostrarFeedback = false
+      mostrarFeedback = false;
+      tocando = false;
+      clicks = [];
+      myPart.stop();
+      barraProgresso.progresso = 0;
       state.currentScreen = 'ritmoResultado';
     }
 
@@ -142,13 +160,15 @@ function RitmoJogo(){
     contando = false;
     var date = new Date();
     startupTime = date.getTime();
-    clicks = [];
     tocando = true;
     myPart.start();
-    setTimeout(mostrarTelaFeedback, 4000);
+    isTime = true;
+    setTimeout(mostrarTelaFeedback, 4100);
   };
 
   var mostrarTelaFeedback = function(){
+    tocando = false;
+    isTime = false;
     mostrarFeedback = true;
   };
 
@@ -162,7 +182,6 @@ function RitmoJogo(){
 
 }
 
-
 function TimeLine(x, y, w, h, notas){
   this.x = x;
   this.y = y;
@@ -172,7 +191,7 @@ function TimeLine(x, y, w, h, notas){
 
   this.draw = function(){
 
-    var nextPos = this.x;
+    var nextPos = this.x - 65;
 
     for(var i = 0; i < notas.length; i++){
       image(notas[i].imagem, nextPos, this.y);
@@ -190,6 +209,17 @@ function TimeLine(x, y, w, h, notas){
   };
 }
 
-function BarraDeReferencia(){
+function BarraProgresso(x, y, w, h){
+  this.x = x;
+  this.y = y;
+  this.w = w;
+  this.h = h;
+  this.progresso = 0;
 
+  this.draw = function(){
+    fill(240);
+    rect(this.x, this.y, this.w, this.h);
+    fill(0, 255, 0);
+    rect(this.x, this.y, this.progresso * this.w, this.h);
+  };
 }
