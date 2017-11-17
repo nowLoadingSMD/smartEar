@@ -1,6 +1,7 @@
 function RitmoJogo(){
   var contando = false;
   var tocando = false;
+  var framesTocando = 0;
   var isTime = false;
   var mostrarFeedback = false;
   var contagem = 0;
@@ -65,7 +66,8 @@ function RitmoJogo(){
     }
   ];
 
-  var timeLine = new TimeLine(195, 283, 784, 116, notas);
+  var timeLine = new TimeLine(195, 283, 654, 116, notas);
+  var barraProgresso = new BarraProgresso(195, 500, 914, 25);
 
   this.draw = function(){
     clear();
@@ -99,13 +101,17 @@ function RitmoJogo(){
     if (tocando){
       c.forEach(function(item){
         console.log(item);
-        posX = 195 + ((784 + 130)  * ((item.tempo - startupTime) / 4000));
+        posX = timeLine.x + ((timeLine.w)  * ((item.tempo - startupTime) / 4000));
         posY = 229;
         image(item.imagem, posX, posY);
       });
+      framesTocando++;
     }
 
+    barraProgresso.progresso = (framesTocando/240);
+
     timeLine.draw();
+    barraProgresso.draw();
     playButton.draw();
 
     if (mostrarFeedback){
@@ -135,6 +141,7 @@ function RitmoJogo(){
       tocando = false;
       clicks = [];
       myPart.stop();
+      barraProgresso.progresso = 0;
       state.currentScreen = 'ritmo';
     }
 
@@ -143,6 +150,7 @@ function RitmoJogo(){
       tocando = false;
       clicks = [];
       myPart.stop();
+      barraProgresso.progresso = 0;
       state.currentScreen = 'ritmoResultado';
     }
 
@@ -182,10 +190,8 @@ function TimeLine(x, y, w, h, notas){
   this.notas = notas;
 
   this.draw = function(){
-    fill(200);
-    rect(this.x, this.y, this.w, this.h);
 
-    var nextPos = this.x;
+    var nextPos = this.x - 65;
 
     for(var i = 0; i < notas.length; i++){
       image(notas[i].imagem, nextPos, this.y);
@@ -200,5 +206,20 @@ function TimeLine(x, y, w, h, notas){
 
     }
 
+  };
+}
+
+function BarraProgresso(x, y, w, h){
+  this.x = x;
+  this.y = y;
+  this.w = w;
+  this.h = h;
+  this.progresso = 0;
+
+  this.draw = function(){
+    fill(240);
+    rect(this.x, this.y, this.w, this.h);
+    fill(0, 255, 0);
+    rect(this.x, this.y, this.progresso * this.w, this.h);
   };
 }
