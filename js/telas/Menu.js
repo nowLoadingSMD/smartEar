@@ -48,12 +48,16 @@ function Menu(){
       state.currentScreen = 'treinarOuvido';
     }
 
+    if (buttonPressed(intervalosButton)){
+      state.currentScreen = 'intervalos';
+
     if (buttonPressed(cantarButton)){
       state.currentScreen = 'cantar';
     }
 
     if (buttonPressed(ritmoButton)){
       state.currentScreen = 'ritmo';
+
     }
 
   };
