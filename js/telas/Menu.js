@@ -51,6 +51,8 @@ function Menu(){
     if (buttonPressed(intervalosButton)){
       state.currentScreen = 'intervalos';
 
+    }
+
     if (buttonPressed(cantarButton)){
       state.currentScreen = 'cantar';
     }
