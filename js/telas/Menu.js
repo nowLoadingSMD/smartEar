@@ -11,10 +11,10 @@ function Menu(){
   var configButton = new Button(920, 19, btnConfig);
   var sobreButton = new Button(1072, 19, btnSobre);
 
-  var intervalosButton = new Button(93, 340, intervalosIcon);
-  var treinarOuvidoButton = new Button(394, 340, treinarOuvidIcon);
-  var ritmoButton = new Button(689, 340, ritmoIcon);
-  var cantarButton = new Button(984, 340, timbreIcon);
+  var intervalosButton = new Button(166, 351, intervalosIcon);
+  var treinarOuvidoButton = new Button(425, 351, treinarOuvidIcon);
+  var ritmoButton = new Button(684, 351, ritmoIcon);
+  var cantarButton = new Button(943, 351, timbreIcon);
 
   this.draw = function(){
     clear();
