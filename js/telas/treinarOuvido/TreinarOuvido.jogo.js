@@ -1,6 +1,6 @@
 function TreinarOuvidoJogo(){
 
-  var exercicios = new Exercicios();
+  var exercicios = new TreinarOuvidoExercicios();
 
   var exerciciosList = [];
 
@@ -11,7 +11,7 @@ function TreinarOuvidoJogo(){
   var soundButton = new Button(523, 385, btnSound);
   var songButton = new Button(523, 255, btnSong);
   var backButton = new Button(50, 50, btnBack);
-  var continuarButton = new Button(667, 585, btnGradient, 'CONTINUAR');
+  var continuarButton = new Button(width/2-286/2, height-height/7, btnGradient, 'CONTINUAR');
 
   var opButton1 = new Button(832, 197, btnGradient);
   var opButton2 = new Button(832, 327, btnGradient);

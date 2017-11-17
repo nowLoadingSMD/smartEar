@@ -1,4 +1,4 @@
-function RitmoResultado(){
+function CantarResultado(){
 
   var resultado = loadImage('assets/treinarOuvido/resultado/resultado.png');
   var comment = loadImage('assets/treinarOuvido/resultado/comment.png');
@@ -36,7 +36,7 @@ function RitmoResultado(){
   var checkPress = function(){
 
     if (buttonPressed(novamenteButton)){
-      state.currentScreen = 'ritmo';
+      state.currentScreen = 'cantar';
     }
 
     if (buttonPressed(menuButton)){

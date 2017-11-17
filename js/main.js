@@ -11,6 +11,7 @@ var exercicios;
 
 var iconSong, iconSound;
 var bg;
+var regularFont, boldFont;
 
 function preload() {
 
@@ -22,6 +23,9 @@ function preload() {
 
 	state = new StateControl('telaInicial');
 	sound = new Sounds();
+
+	regularFont = loadFont('assets/fonts/Watchword_regular_demo.otf');
+	boldFont = loadFont('assets/fonts/WatchwordDot-Bold.otf');
 
 	//exercicios = new Exercicios();
 
@@ -35,6 +39,12 @@ function setup(){
 	telas['treinarOuvido'] = new TreinarOuvido();
 	telas['treinarOuvidoJogo'] = new TreinarOuvidoJogo();
 	telas['treinarOuvidoResultado'] = new TreinarOuvidoResultado();
+	telas['intervalos'] = new Intervalos();
+	telas['intervalosJogo'] = new IntervalosJogo();
+	telas['intervalosResultado'] = new IntervalosResultado();
+	telas['cantar'] = new Cantar();
+	telas['cantarJogo'] = new CantarJogo();
+	telas['cantarResultado'] = new CantarResultado();
 	telas['ritmo'] = new Ritmo();
 	telas['ritmoJogo'] = new RitmoJogo();
 	telas['ritmoResultado'] = new RitmoResultado();
