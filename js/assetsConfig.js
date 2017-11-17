@@ -81,24 +81,24 @@ var btnSobre = {
 
 var treinarOuvidIcon = {
       url: 'assets/menu/treinarOuvidoIcon.png',
-      width: 197,
-      height: 197
+      width: 171,
+      height: 171
   };
 
 var intervalosIcon = {
       url: 'assets/menu/intervalosIcon.png',
-      width: 197,
-      height: 197
+      width: 171,
+      height: 171
   };
 
 var ritmoIcon = {
       url: 'assets/menu/ritmoIcon.png',
-      width: 197,
-      height: 197
+      width: 171,
+      height: 171
   };
 
 var timbreIcon = {
       url: 'assets/menu/timbreIcon.png',
-      width: 197,
-      height: 197
+      width: 171,
+      height: 171
   };

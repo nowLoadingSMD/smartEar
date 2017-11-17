@@ -40,7 +40,11 @@ function TreinarOuvidoJogo(){
 
     backButton.draw();
 
-    image(txtSom, 162, 270);
+    // image(txtSom, 162, 270);
+    textSize(32);
+    textFont(regularFont);
+    text("Que nota é esta?", width/7, 300);
+    text("Som de referência: ", width/7, 430);
 
     soundButton.draw();
     songButton.draw();
@@ -105,25 +109,29 @@ function TreinarOuvidoJogo(){
       background(35, 38, 37, 80);
       textSize(40);
       fill(111, 193, 62);
-      text("VOCÊ ACERTOU!", 460, 90);
+      textAlign(CENTER);
+      text("VOCÊ ACERTOU!", width/2, 90);
       textSize(30);
       fill(255);
-      text("Parabéns! A nota correta era ", 415, 154);
+      text("Parabéns! A nota correta era ", width/2, 154);
       fill(111, 193, 62);
-      text(right, 807, 155);
+      text(right, width/2+230, 155);
       continuarButton.draw();
     } else {
       background(35, 38, 37, 80);
       textSize(40);
       fill(255, 92, 92);
-      text("VOCÊ ERROU!", 488, 90);
+      textAlign(CENTER);
+      text("VOCÊ ERROU!", width/2, 90);
       textSize(30);
       fill(255);
-      text("A nota correta era ", 490, 154);
+      text("A nota correta era ", width/2, 154);
       fill(255, 92, 92);
-      text(right, 737, 155);
+      text(right, width/2+170, 155);
       continuarButton.draw();
     }
+
+    textAlign(LEFT);
 
   };
 

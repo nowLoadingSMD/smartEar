@@ -1,4 +1,4 @@
-function TreinarOuvidoResultado(){
+function RitmoResultado(){
 
   var resultado = loadImage('assets/treinarOuvido/resultado/resultado.png');
   var comment = loadImage('assets/treinarOuvido/resultado/comment.png');
@@ -18,7 +18,7 @@ function TreinarOuvidoResultado(){
     image(erros, 494, 412);
     image(total, 494, 477);
 
-    //textFont('assets/fonts/watchwordDot-Regular.otf');
+    textFont('assets/fonts/watchwordDot-Regular.otf');
     textSize(32);
     fill(111, 193, 62);
     text('2', 768, 347);
@@ -36,7 +36,7 @@ function TreinarOuvidoResultado(){
   var checkPress = function(){
 
     if (buttonPressed(novamenteButton)){
-      state.currentScreen = 'treinarOuvido';
+      state.currentScreen = 'ritmo';
     }
 
     if (buttonPressed(menuButton)){

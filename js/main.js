@@ -24,8 +24,8 @@ function preload() {
 	state = new StateControl('telaInicial');
 	sound = new Sounds();
 
-	regularFont = loadFont('assets/fonts/Watchword_regular_demo.otf');
-	boldFont = loadFont('assets/fonts/WatchwordDot-Bold.otf');
+	regularFont = loadFont('assets/fonts/Watchword-Normal.otf');
+	boldFont = loadFont('assets/fonts/Watchword-Bold.otf');
 
 	//exercicios = new Exercicios();
 
@@ -42,6 +42,12 @@ function setup(){
 	telas['intervalos'] = new Intervalos();
 	telas['intervalosJogo'] = new IntervalosJogo();
 	telas['intervalosResultado'] = new IntervalosResultado();
+	telas['cantar'] = new Cantar();
+	telas['cantarJogo'] = new CantarJogo();
+	telas['cantarResultado'] = new CantarResultado();
+	telas['ritmo'] = new Ritmo();
+	telas['ritmoJogo'] = new RitmoJogo();
+	telas['ritmoResultado'] = new RitmoResultado();
 	telas['telaInicial'] = new TelaInicial();
 	telas['login'] = new Login();
 	telas['cadastrar'] = new Cadastrar();
@@ -50,6 +56,7 @@ function setup(){
 	x = 0;
 	opacity = 300;
 
+	textFont(regularFont);
 }
 
 function draw(){
@@ -75,6 +82,13 @@ function draw(){
 		}
 	}
 
+}
+
+function mousePressed(){
+	var date = new Date();
+	state.lastMousePressed = date.getTime();
+	//console.log(state.lastMousePressed);
+	state.mousePressed = true;
 }
 
 function mouseReleased(){
