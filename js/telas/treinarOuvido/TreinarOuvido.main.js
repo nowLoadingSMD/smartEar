@@ -1,7 +1,7 @@
 function TreinarOuvido(){
 
   var backButton = new Button(50, 50, btnBack);
-  var continuarButton = new Button(width/2-142, height-150, btnGradient, "CONTINUAR");
+  var continuarButton = new Button(width/2-142, height-height/7, btnGradient, "CONTINUAR");
 
   this.draw = function(){
 
