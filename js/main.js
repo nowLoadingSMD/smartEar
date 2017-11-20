@@ -13,6 +13,8 @@ var iconSong, iconSound;
 var bg;
 var regularFont, boldFont, logoFont;
 
+var framesAfterMousePressed = 0;
+
 function preload() {
 
 	iconSong = loadImage('assets/icons/iconSong.png');
@@ -61,27 +63,25 @@ function setup(){
 }
 
 function draw(){
-	/*
-	if(state.animationPlaying){
-		background(150, 150, 150);
-		ellipseMode(CENTER);
-		fill(42, 42, 42);
-		noStroke();
-		ellipse(width/2, height/2, x, x);
-		x += 75;
 
-		if(x > 1280){
-			state.animationPlaying = false;
-			x = 0;
-		}
-	} else */{
 		telas[state.currentScreen].draw();
 		fill(0, 0, 0, opacity);
 		rect(0, 0, 1280, 720);
 		if (opacity > 0){
 			opacity -= 2;
 		}
-	}
+
+		if (mouseIsPressed){
+			framesAfterMousePressed++;
+		}
+
+		if (framesAfterMousePressed > 1){
+			state.canPress = false;
+		}
+
+		console.log(state.canPress);
+
+	//	console.log('Qual foi');
 
 }
 
@@ -100,6 +100,7 @@ function mouseReleased(){
   os cliques não serão registrados pois esta variável estará como false. Ela apenas voltará para
   true quando o usuário soltar o botão do mouse */
   state.canPress = true;
+	framesAfterMousePressed = 0;
 }
 
 /* Essa função recebe um componente(objeto) como paramentro e verifica
@@ -116,4 +117,9 @@ var buttonPressed = function(botao){
     }
   }
 
+};
+
+var checkMouseReleased = function(){
+	console.log(state.canPress);
+	return mouseIsPressed && state.canPress;
 };

@@ -1,12 +1,36 @@
 function RitmoJogo(){
-  var contando = false;
-  var tocando = false;
-  var framesTocando = 0;
+
+  var isPlaying = false;
+  var timesPlayed = 0;
+  var isCounting = false;
+  var counter = 0;
+  var frameCounter = 0;
   var isTime = false;
-  var mostrarFeedback = false;
-  var contagem = 0;
-  var c = [];
+  var showFeedback = false;
+
   var startupTime = 0;
+
+  var clicks = [];
+
+
+  var notas = [
+    {
+      nome: 'seminima',
+      imagem: loadImage('assets/ritmo/jogo/seminima.png')
+    },
+    {
+      nome: 'seminima',
+      imagem: loadImage('assets/ritmo/jogo/seminima.png')
+    },
+    {
+      nome: 'seminima',
+      imagem: loadImage('assets/ritmo/jogo/seminima.png')
+    },
+    {
+      nome: 'seminima',
+      imagem: loadImage('assets/ritmo/jogo/seminima.png')
+    }
+  ];
 
   var backButton = new Button(40, 40, btnBack);
   var playButton = new Button(610, 597, btnPlay);
@@ -14,7 +38,6 @@ function RitmoJogo(){
 
   var comment = loadImage('assets/ritmo/jogo/comment.png');
   var line = loadImage('assets/ritmo/jogo/line.png');
-  var seminima = loadImage('assets/ritmo/jogo/seminima.png');
   var contagemImagem = loadImage('assets/ritmo/jogo/contagem.png');
 
   var feedbackErro = loadImage('assets/ritmo/jogo/feedbackErro.png');
@@ -23,48 +46,6 @@ function RitmoJogo(){
   var voceErrou = loadImage('assets/ritmo/jogo/voceErrou.png');
   var feedbackComentarioNegativo = loadImage('assets/ritmo/jogo/feedbackComentarioNegativo.png');
   var feedbackComentarioPositivo = loadImage('assets/ritmo/jogo/feedbackComentarioPositivo.png');
-
-  var tocarMetronomo = function(time, playBackRate){
-    sound.metronomo.rate(playBackRate);
-    sound.metronomo.play(time);
-
-    setTimeout(setFalse, 100);
-    setTimeout(setTrue, 900);
-
-  };
-
-  var setTrue = function(){
-    isTime = true;
-  };
-
-  var setFalse = function(){
-    isTime = false;
-  };
-
-  var metronomoPat = [2,0,1,0,2,0,1];
-  var phrase = new p5.Phrase('metronomo', tocarMetronomo, metronomoPat);
-  var myPart = new p5.Part();
-  myPart.addPhrase(phrase);
-  myPart.setBPM(30);
-
-  var notas = [
-    {
-      nome: 'seminima',
-      imagem: seminima
-    },
-    {
-      nome: 'seminima',
-      imagem: seminima
-    },
-    {
-      nome: 'seminima',
-      imagem: seminima
-    },
-    {
-      nome: 'seminima',
-      imagem: seminima
-    }
-  ];
 
   var timeLine = new TimeLine(195, 283, 654, 116, notas);
   var barraProgresso = new BarraProgresso(195, 500, 914, 25);
@@ -76,12 +57,12 @@ function RitmoJogo(){
     backButton.draw();
     image(line, 0, 348);
 
-    if (contando == true){
+    if (isCounting == true){
       // image(contagemImagem, 476, 108);
       textSize(42);
       textFont(boldFont);
       text("COMEÇAR EM ", width/7, height/5);
-      text(contagem, width/7+300, height/5);
+      text(counter, width/7+300, height/5);
     } else {
       // image(comment, 161, 141);
       textSize(32);
@@ -90,37 +71,50 @@ function RitmoJogo(){
       text("Aperte o play para tocar o metrônomo.", width/7, height/5);
     }
 
-    if (mouseIsPressed && tocando && state.canPress) {
+    checkMouseReleased();
+    //console.log(state.canPress);
+    //console.log(isTime);
+
+    var c = checkMouseReleased();
+
+    //console.log(c);
+
+    if (isPlaying && c) {
       var d = new Date();
-      var click = {
-        tempo: d.getTime(),
-        imagem: loadImage('assets/ritmo/jogo/feedbackErro.png')
-      }
+      var click;
 
       if (isTime) {
-        click.imagem = loadImage('assets/ritmo/jogo/feedbackAcerto.png');
+        click = {
+          tempo: d.getTime(),
+          imagem: loadImage('assets/ritmo/jogo/feedbackAcerto.png')
+        };
+      } else {
+        click = {
+          tempo: d.getTime(),
+          imagem: loadImage('assets/ritmo/jogo/feedbackErro.png')
+        };
       }
 
-      c.push(click);
+      clicks.push(click);
     }
 
-    if (tocando){
-      c.forEach(function(item){
-        console.log(item);
+    if (isPlaying){
+      clicks.forEach(function(item){
+        //console.log(item);
         posX = timeLine.x + ((timeLine.w)  * ((item.tempo - startupTime) / 4000));
         posY = 229;
         image(item.imagem, posX, posY);
       });
-      framesTocando++;
+      frameCounter++;
     }
 
-    barraProgresso.progresso = (framesTocando/240);
+    barraProgresso.progresso = (frameCounter/240);
 
     timeLine.draw();
     barraProgresso.draw();
     playButton.draw();
 
-    if (mostrarFeedback){
+    if (showFeedback){
       fill(0, 0, 0, 100);
       rect(0,0,1280, 720);
       image(voceAcertou, 462, 62);
@@ -132,58 +126,84 @@ function RitmoJogo(){
 
   };
 
+  var resetVariables = function(){
+    isPlaying = false;
+    timesPlayed = 0;
+    isCounting = false;
+    counter = 3;
+    frameCounter = 0;
+    isTime = false;
+    showFeedback = false;
+
+    clicks = [];
+  };
+
   var checkPress = function(){
 
-    if (buttonPressed(playButton) && !tocando && !contando ) {
-      contando = true;
-      contagem = 3;
-      sound.metronomo.play();
-      setTimeout(contar, 1000);
-      setTimeout(onPartStart, 3000);
+    if (buttonPressed(playButton)) {
+      resetVariables();
+      startCounter();
     }
 
-    if (buttonPressed(backButton)){
-      mostrarFeedback = false;
-      tocando = false;
-      clicks = [];
-      myPart.stop();
-      barraProgresso.progresso = 0;
+    if (buttonPressed(backButton)) {
       state.currentScreen = 'ritmo';
+      resetVariables();
     }
 
-    if (buttonPressed(continuarButton)){
-      mostrarFeedback = false;
-      tocando = false;
-      clicks = [];
-      myPart.stop();
-      barraProgresso.progresso = 0;
+    if (buttonPressed(continuarButton)) {
       state.currentScreen = 'ritmoResultado';
+      resetVariables();
     }
 
-  }
+  };
 
-  var onPartStart = function(){
-    contando = false;
-    var date = new Date();
-    startupTime = date.getTime();
-    tocando = true;
-    myPart.start();
+  var startCounter = function(){
+    isCounting = true;
+    counter = 3;
+    sound.metronomo.play();
+    setTimeout(setCounter, 1000);
+  };
+
+  var setCounter = function(){
+    counter--;
+    sound.metronomo.play();
+    if (counter > 0){
+      setTimeout(setCounter, 1000);
+    } else {
+      isCounting = false;
+      counter = 0;
+      isPlaying = true;
+      isTime = true;
+      frameCounter = 0;
+      var d = new Date();
+      startupTime = d.getTime();
+      playMetronomo();
+    }
+  };
+
+  var playMetronomo = function(){
+    timesPlayed++;
+    sound.metronomo.play();
+
+    if (timesPlayed < 4) {
+      setTimeout(playMetronomo, 1000);
+      setTimeout(setIsTimeToFalse, 100);
+      setTimeout(setIsTimeToTrue, 900);
+    } else {
+      setTimeout(function(){
+        showFeedback = true;
+      }, 500);
+      setTimeout(setIsTimeToFalse, 100);
+      isPlaying = false
+    }
+  };
+
+  var setIsTimeToTrue = function(){
     isTime = true;
-    setTimeout(mostrarTelaFeedback, 4100);
   };
 
-  var mostrarTelaFeedback = function(){
-    tocando = false;
+  var setIsTimeToFalse = function(){
     isTime = false;
-    mostrarFeedback = true;
-  };
-
-  var contar = function(){
-    if (contagem > 1){
-      sound.metronomo.play();
-      contagem--;
-      setTimeout(contar, 1000);
-    }
   };
 
 }
