@@ -1,62 +1,48 @@
 function IntervalosJogo(){
 
-  var notas = [];
   var box = [];
 
-  var exercicios = new IntervalosExercicios();
-  var exerciciosList = [];
-
-  var exercicioAtual = 0;
-  var check = false;
-
-  var backButton = new Button(50, 50, btnBack);
-  var continuarButton = new Button(width/2-286/2, height-height/6, btnGradient, 'CONTINUAR');
-
-  var voceAcertou = loadImage('assets/intervalos/voceAcertou.png');
-
   box[0] = {
-    centerX: ((width/5) + (175-175/5)/2),
-    centerY: ((height/2.9 + 70) + (175-175/5)/2),
+    centerX: width/5,
+    centerY: height/2.9 + 70
   };
 
   box[1] = {
-    centerX: (width/2) + (175-175/5)/2,
-    centerY: (height/2.9 + 70) + (175-175/5)/2,
+    centerX: width/2,
+    centerY: height/2.9 + 70
   };
 
   box[2] = {
-    centerX: (width - width/5) + (175-175/5)/2,
-    centerY: (height/2.9 + 70) + (175-175/5)/2,
+    centerX: width - width/5,
+    centerY: height/2.9 + 70
   };
 
-  //console.log(box[1]);
+  var firstDraw = true;
 
-  notas[0] = new Nota(width/2-100, height-height/5, btnSong, box[0], sound.fa);
-  notas[1] = new Nota(width/2, height-height/5, btnSong, box[1], sound.fa);
-  notas[2] = new Nota(width/2+100, height-height/5, btnSong, box[2], sound.fa);
+  var note = [];
 
-  //console.log(notas);
+  var exercise = new IntervalosExercicios();
+  var exerciseList = [];
 
-  //console.log(sound);
+  var currentExercise = 0;
 
+  var check = false;
+
+  var backButton = new Button(50, 50, btnBack);
+  var continueButton = new Button(width/2-286/2, height-height/6, btnGradient, 'CONTINUAR');
+  var voceAcertou = loadImage('assets/intervalos/voceAcertou.png');
 
   this.draw = function(){
 
-    if (exercicioAtual == 0){
+    if (firstDraw){
       for(var i = 0; i < 5; i++){
-         exerciciosList.push(exercicios.getExercicio());
+         exerciseList.push(exercise.getExercicio());
        }
-       notas.forEach(function(item, index){
-         item.nota = exerciciosList[exercicioAtual].notas[index];
-       });
-       exercicioAtual++;
-      console.log(notas);
-     }
-
-    if (check == false){
-      clear();
+       setNewExercise();
+       firstDraw = false;
     }
 
+    clear();
     background(bgNoise);
     backButton.draw();
 
@@ -70,27 +56,25 @@ function IntervalosJogo(){
     stroke(240);
     drawBoard(2, 35, 175);
 
-    notas.forEach(function(item){
+    note.forEach(function(item){
       item.draw();
-      item.ajustPosition(box);
+    });
+
+    note.forEach(function(item){
+      item.adjustPosition(box);
     });
 
     checkPress();
 
-    var result = notas.reduce(function(res, item){
+    var check = note.reduce(function(res, item){
       return item.inCorretPos && res;
     }, true);
 
-    if (result) {
-      check = true;
-      image(voceAcertou,  462, 62);
-      continuarButton.draw();
+    if (check) {
+      drawFeedback();
     }
 
-    fill(150);
-    ellipse(box[0].centerX, box[0].centerY, 10, 10);
-
-  };
+  }; // End of this.draw();
 
   var drawBoard = function(lineWeight, spacing, ellipseSize) {
     drawStrings(lineWeight, spacing);
@@ -119,22 +103,40 @@ function IntervalosJogo(){
     stroke(255);
   }
 
-  var checkPress = function(){
+  var drawFeedback = function(){
+    fill(0, 100);
+    rect(0, 0, 1280, 720);
+    image(voceAcertou, 462, 62);
+    continueButton.draw();
 
-    if (buttonPressed(backButton)){
+    if (buttonPressed(continueButton)){
+      check = false;
+      currentExercise++;
+      console.log(currentExercise);
+
+      if (currentExercise > 4) {
+        state.currentScreen = 'intervalosResultado';
+        firstDraw = true;
+        currentExercise = 0;
+        note = [];
+      } else {
+        setNewExercise();
+      }
+    }
+  }
+
+  var checkPress = function(){
+    if (buttonPressed(backButton)) {
       state.currentScreen = 'intervalos';
+      check = false;
+      firstDraw = true;
+      currentExercise = 0;
+      note = [];
     }
 
-    // if (buttonPressed(continuarButton)){
-    //   check = false;
-    //   exercicioAtual++;
-    // }
-
-    //console.log(notas);
-
     if(mouseIsPressed){
-      notas.forEach(function(item){
-        var d = dist(mouseX, mouseY, item.x, item.y);
+      note.forEach(function(item){
+        var d = dist(mouseX, mouseY, item.x + item.imagemW/2, item.y + item.imagemH/2);
         if (d < 50) {
           if (!item.draggable){
             item.playNota();
@@ -142,73 +144,17 @@ function IntervalosJogo(){
           item.draggable = true;
         }
     });
-  } else {
-    notas.forEach(function(item){
-      item.draggable = false;
-    });
-  }
-
-};
-
-}
-
-function Nota(x, y, imagem, box, nota){
-  this.x = x;
-  this.y = y;
-  this.imagem = loadImage(imagem.url);
-  this.nota = nota;
-  this.corretPosX = box.centerX;
-  this.corretPosY = box.centerY;
-  this.inCorretPos = false;
-  this.draggable = false;
-
-  this.draw = function(){
-
-    if (this.draggable) {
-      this.x = mouseX;
-      this.y = mouseY;
-    }
-    fill(200);
-    ellipse(this.x, this.y, 10, 10);
-    image(this.imagem, this.x, this.y);
-
-    if ((this.x == this.corretPosX) && (this.y == this.corretPosY)){
-      this.inCorretPos = true;
     } else {
-      this.inCorretPos = false;
-    }
-
-  };
-
-  this.playNota = function(){
-    this.nota.play();
-  }
-
-  this.ajustPosition = function(arr){
-
-    var x = this.x;
-    var y = this.y;
-
-    if (this.draggable == false) {
-      arr.forEach(function(item, index){
-        //console.log(this.x);
-        //console.log(this.y);
-        var d = dist(x, y, item.centerX, item.centerY);
-
-        if(index == 0){
-          //console.log(d);
-        }
-
-        if (d < item.w){
-          x = item.centerX;
-          y = item.centerY;
-        }
-
+      note.forEach(function(item){
+        item.draggable = false;
       });
     }
+};
 
-    this.x = x;
-    this.y = y;
-
+  var setNewExercise = function(){
+    note[0] = new Note(width/2-100, height-height/4, btnSong, box[0], exerciseList[currentExercise].nota[0]);
+    note[1] = new Note(width/2, height-height/4, btnSong, box[1], exerciseList[currentExercise].nota[1]);
+    note[2] = new Note(width/2+100, height-height/4, btnSong, box[2], exerciseList[currentExercise].nota[2]);
   };
+
 }
