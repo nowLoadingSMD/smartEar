@@ -11,7 +11,7 @@ var exercicios;
 
 var iconSong, iconSound;
 var bg;
-var regularFont, boldFont;
+var regularFont, boldFont, logoFont;
 
 function preload() {
 
@@ -26,6 +26,7 @@ function preload() {
 
 	regularFont = loadFont('assets/fonts/Watchword-Normal.otf');
 	boldFont = loadFont('assets/fonts/Watchword-Bold.otf');
+	logoFont = loadFont('assets/fonts/Rounded_Elegance.ttf');
 
 	//exercicios = new Exercicios();
 
