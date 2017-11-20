@@ -2,7 +2,7 @@ function Intervalos(){
 
   var backButton = new Button(50, 50, btnBack);
   var continuarButton = new Button(width/2-142, height-height/6, btnGradient, "CONTINUAR");
-  var myText = "Nesse exercício você terá que colocar a nota na ordem certa da escala. Arraste a nota do botão     e coloque dentro dos círculos brancos."
+  var myText = "Nesse exercício você terá que colocar a nota na ordem certa da escala. Arraste a nota do botão         e coloque dentro dos círculos brancos."
 
   this.draw = function(){
 
@@ -13,10 +13,11 @@ function Intervalos(){
     backButton.draw();
 
     textSize(40);
-		text("INTERVALOS", width/7, height/4);
+    textFont(boldFont);
+    text("INTERVALOS", width/7, height/4);
     textFont(regularFont);
     textSize(30);
-    image(iconSound, width/2-50, height/3+30);
+    image(iconSound, width/2, height/3+35);
     drawText(myText);
 
     continuarButton.draw();

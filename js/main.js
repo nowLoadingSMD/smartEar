@@ -11,7 +11,7 @@ var exercicios;
 
 var iconSong, iconSound;
 var bg;
-var regularFont, boldFont;
+var regularFont, boldFont, logoFont;
 
 var framesAfterMousePressed = 0;
 
@@ -26,8 +26,9 @@ function preload() {
 	state = new StateControl('telaInicial');
 	sound = new Sounds();
 
-	regularFont = loadFont('assets/fonts/Watchword_regular_demo.otf');
-	boldFont = loadFont('assets/fonts/WatchwordDot-Bold.otf');
+	regularFont = loadFont('assets/fonts/Watchword-Normal.otf');
+	boldFont = loadFont('assets/fonts/Watchword-Bold.otf');
+	logoFont = loadFont('assets/fonts/Rounded_Elegance.ttf');
 
 	//exercicios = new Exercicios();
 
@@ -58,6 +59,7 @@ function setup(){
 	x = 0;
 	opacity = 300;
 
+	textFont(regularFont);
 }
 
 function draw(){

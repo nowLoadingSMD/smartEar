@@ -58,11 +58,17 @@ function RitmoJogo(){
     image(line, 0, 348);
 
     if (isCounting == true){
-      image(contagemImagem, 476, 108);
+      // image(contagemImagem, 476, 108);
       textSize(42);
-      text(counter, 790, 139);
+      textFont(boldFont);
+      text("COMEÇAR EM ", width/7, height/5);
+      text(counter, width/7+300, height/5);
     } else {
-      image(comment, 161, 141);
+      // image(comment, 161, 141);
+      textSize(32);
+      textFont(regularFont);
+      textAlign(LEFT);
+      text("Aperte o play para tocar o metrônomo.", width/7, height/5);
     }
 
     checkMouseReleased();
