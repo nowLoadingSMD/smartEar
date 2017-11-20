@@ -6,11 +6,11 @@ function Button(x, y, img, texto = ''){
   this.y = y;
   this.width = img.width;
   this.height = img.height;
-  this.image = loadImage(img.url);  
+  this.image = loadImage(img.url);
   this.texto = texto;
   this.tamanho = 171;
   this.tamanho2 = 171;
-  this.opcd = 150;    
+  this.opcd = 150;
   this.gradIntervalo = loadImage('assets/menu/gradIntervalo.png');
   this.gradOuvido = loadImage('assets/menu/gradOuvido.png');
   this.gradRitmo = loadImage('assets/menu/gradRitmo.png');
@@ -85,6 +85,25 @@ function Button(x, y, img, texto = ''){
       this.tamanho = 58;
       this.tamanho2 = 58;
       this.opcd = 300;
+
+      switch(this.x){
+              case 93:
+                stroke(82,255,255, this.opcd);
+              break;
+              case 394:
+                stroke(255,82,200, this.opcd);
+              break;
+              case 689:
+                stroke(255,206,82, this.opcd);
+              break;
+              case 984:
+                stroke(177,255,82, this.opcd);
+              break;
+      }
+      fill(255,255,255,0);
+      ellipse(this.x+98.5, this.y+98.5, 266, 266);
+      ellipse(this.x+98.5, this.y+98.5, 230, 230);
+
     }
   }
   image(this.image, this.x, this.y, this.width, this.height);

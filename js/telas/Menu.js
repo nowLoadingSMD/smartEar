@@ -1,8 +1,5 @@
 function Menu(){
 
-
-
-
   var header = loadImage('assets/menu/header.png');
   var header2 = loadImage('assets/menu/header2.png');
 
@@ -30,13 +27,28 @@ function Menu(){
     configButton.draw();
     sobreButton.draw();
 
-    image(header, 420, 141);
-    image(header2, 189, 206);
+    // image(header, 420, 141);
+    // image(header2, 189, 206);
+
+    textSize(42);
+    textFont(boldFont);
+    textAlign(CENTER);
+    text("Escolha um dos jogos", width/2, height/4.5);
+    textFont(regularFont);
+    textSize(32);
+    text("Quanto mais você jogar, melhor compreenderá a teoria musical", width/2, height/3);
 
     intervalosButton.draw();
     treinarOuvidoButton.draw();
     ritmoButton.draw();
     cantarButton.draw();
+
+    textSize(20);
+    textAlign(CENTER);
+    text("INTERVALOS", 166+171/2, 351+230);
+    text("TREINAR OUVIDO", 425+171/2, 351+230);
+    text("RITMO", 684+171/2, 351+230);
+    text("TIMBRE", 943+171/2, 351+230);
 
     checkPress();
 
@@ -50,6 +62,7 @@ function Menu(){
 
     if (buttonPressed(intervalosButton)){
       state.currentScreen = 'intervalos';
+    }
 
     if (buttonPressed(cantarButton)){
       state.currentScreen = 'cantar';
@@ -63,4 +76,4 @@ function Menu(){
   };
 
 
-};
+}
