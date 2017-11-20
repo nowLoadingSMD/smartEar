@@ -79,10 +79,6 @@ function draw(){
 			state.canPress = false;
 		}
 
-		console.log(state.canPress);
-
-	//	console.log('Qual foi');
-
 }
 
 function mousePressed(){
