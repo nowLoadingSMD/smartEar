@@ -20,6 +20,7 @@ function IntervalosJogo(){
   var firstDraw = true;
 
   var note = [];
+  var notesGap = '';
 
   var exercise = new IntervalosExercicios();
   var exerciseList = [];
@@ -59,7 +60,7 @@ function IntervalosJogo(){
     textSize(30);
     text("Intervalo:", 10+width/5-175/2, height/4.5); //175/2 é o raio da primeira elipse
     fill(111, 193, 62);
-    text("Dó# - Mi#", 150+10+width/5-175/2, height/4.5);
+    text(notesGap, 150+10+width/5-175/2, height/4.5);
     fill(255);
     textAlign(CENTER);
     text("Escolha uma das notas abaixo", width/2, height-height/3);
@@ -188,6 +189,7 @@ function IntervalosJogo(){
     note[0] = new Note(width/2-100, height-height/4, btnSong, box[0], exerciseList[currentExercise].nota[0]);
     note[1] = new Note(width/2, height-height/4, btnSong, box[1], exerciseList[currentExercise].nota[1]);
     note[2] = new Note(width/2+100, height-height/4, btnSong, box[2], exerciseList[currentExercise].nota[2]);
+    notesGap = exerciseList[currentExercise].notesGap[0] + ' - ' + exerciseList[currentExercise].notesGap[2];
   };
 
   var showPause = function(){
@@ -197,7 +199,7 @@ function IntervalosJogo(){
       rect(0, 0, posPause, 720);
       textFont(regularFont);
       fill(255);
-      
+
       if(posPause<128){
         image(imgContinuar, posPause-105, 125);
         image(imgReiniciar, posPause-105, 294);
@@ -223,7 +225,7 @@ function IntervalosJogo(){
         estadoPause = false;
         pause = false;
       }
-      
+
       checkPress();
   };
 
