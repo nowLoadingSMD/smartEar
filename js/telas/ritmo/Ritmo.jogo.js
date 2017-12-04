@@ -57,8 +57,8 @@ function RitmoJogo(){
   var feedbackComentarioNegativo = loadImage('assets/ritmo/jogo/feedbackComentarioNegativo.png');
   var feedbackComentarioPositivo = loadImage('assets/ritmo/jogo/feedbackComentarioPositivo.png');
 
-  var timeLine = new TimeLine(195, 283, 654, 116, notas);
-  var barraProgresso = new BarraProgresso(195, 500, 914, 25);
+  var timeLine = new TimeLine(340, 283, 600, 116, notas);
+  var barraProgresso = new BarraProgresso(340, 500, 600, 15);
 
   this.draw = function(){
     clear();
@@ -85,12 +85,8 @@ function RitmoJogo(){
     }
 
     checkMouseReleased();
-    //console.log(state.canPress);
-    //console.log(isTime);
 
     var c = checkMouseReleased();
-
-    //console.log(c);
 
     if (isPlaying && c) {
       var d = new Date();
@@ -111,17 +107,17 @@ function RitmoJogo(){
       clicks.push(click);
     }
 
+    clicks.forEach(function(item){
+      posX = timeLine.x + ((timeLine.w)  * ((item.tempo - startupTime) / 3000));
+      posY = 229;
+      image(item.imagem, posX, posY);
+    });
+
     if (isPlaying){
-      clicks.forEach(function(item){
-        //console.log(item);
-        posX = timeLine.x + ((timeLine.w)  * ((item.tempo - startupTime) / 4000));
-        posY = 229;
-        image(item.imagem, posX, posY);
-      });
       frameCounter++;
     }
 
-    barraProgresso.progresso = (frameCounter/240);
+    barraProgresso.progresso = (frameCounter/179);
 
     timeLine.draw();
     barraProgresso.draw();
@@ -196,7 +192,7 @@ function RitmoJogo(){
       rect(0, 0, posPause, 720);
       textFont(regularFont);
       fill(255);
-      
+
       if(posPause<128){
         image(imgContinuar, posPause-105, 125);
         image(imgReiniciar, posPause-105, 294);
@@ -222,7 +218,7 @@ function RitmoJogo(){
         estadoPause = false;
         pause = false;
       }
-      
+
       checkPress();
   };
 
@@ -257,7 +253,7 @@ function RitmoJogo(){
     if (timesPlayed < 4) {
       setTimeout(playMetronomo, 1000);
       setTimeout(setIsTimeToFalse, 100);
-      setTimeout(setIsTimeToTrue, 900);
+      setTimeout(setIsTimeToTrue, 950);
     } else {
       setTimeout(function(){
         showFeedback = true;

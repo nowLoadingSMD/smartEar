@@ -68,7 +68,7 @@ function setup(){
 	textFont(regularFont);
 
 	if(localStorage.vec){
-		usuarios = JSON.parse(localStorage.vec);	
+		usuarios = JSON.parse(localStorage.vec);
 	}
 }
 
@@ -89,6 +89,12 @@ function draw(){
 			state.canPress = false;
 		}
 
+}
+
+function keyPressed(){
+	if (keyCode === ENTER) {
+		state.currentScreen = 'ritmo';
+	}
 }
 
 function mousePressed(){
@@ -126,6 +132,5 @@ var buttonPressed = function(botao){
 };
 
 var checkMouseReleased = function(){
-	console.log(state.canPress);
 	return mouseIsPressed && state.canPress;
 };
