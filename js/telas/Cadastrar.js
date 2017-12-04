@@ -49,11 +49,12 @@ function Cadastrar(){
       				exist = true;
       		if(!exist){
 		      	var pessoa = {nome:inputNome.value(), senha: inputSenha.value(), email: inputEmail.value()};
-				usuarios.push(pessoa);
-				localStorage.vec = JSON.stringify(usuarios);
-				firstTime = true;
-			    state.currentScreen = 'menu';
-			    removeElements();
+    				usuarios.push(pessoa);
+    				localStorage.vec = JSON.stringify(usuarios);
+    				firstTime = true;
+            idUsuario = usuarios.length-1;
+  			    state.currentScreen = 'menu';
+  			    removeElements();
 			}else
 				alert("Email já existente!");
 		}
