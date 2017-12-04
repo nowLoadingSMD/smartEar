@@ -3,27 +3,33 @@ function IntervalosExercicios(){
   this.exerciciosList = [];
 
   this.exerciciosList[0] = {
-    nota: [sound.do_, sound.re, sound.mi]
+    nota: [sound.do_, sound.re, sound.mi],
+    notesGap: ['Dó', 'Ré', 'Mi']
   };
 
   this.exerciciosList[1] = {
-    nota: [sound.la, sound.laSus, sound.si]
+    nota: [sound.la, sound.sol, sound.si],
+    notesGap: ['Lá', 'Sol', 'Si']
   };
 
   this.exerciciosList[2] = {
-    nota: [sound.fa, sound.sol, sound.la]
+    nota: [sound.fa, sound.sol, sound.la],
+    notesGap: ['Fá', 'Sol', 'Lá']
   };
 
   this.exerciciosList[3] = {
-    nota: [sound.faSus, sound.sol, sound.la]
+    nota: [sound.fa, sound.sol, sound.la],
+    notesGap: ['Fá', 'Sol', 'Lá']
   };
 
   this.exerciciosList[4] = {
-    nota: [sound.mi, sound.fa, sound.sol]
+    nota: [sound.mi, sound.fa, sound.sol],
+    notesGap: ['Mi', 'Fá', 'Sol']
   };
 
   this.exerciciosList[5] = {
-    nota: [sound.do_, sound.doSus, sound.re]
+    nota: [sound.do_, sound.re, sound.mi],
+    notesGap: ['Dó', 'Ré', 'Mi']
   };
 
   this.getExercicio = function(){
