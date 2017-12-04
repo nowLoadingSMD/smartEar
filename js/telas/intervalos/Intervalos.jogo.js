@@ -20,7 +20,6 @@ function IntervalosJogo(){
   var firstDraw = true;
 
   var note = [];
-  var notesGap = '';
 
   var exercise = new IntervalosExercicios();
   var exerciseList = [];
@@ -28,6 +27,16 @@ function IntervalosJogo(){
   var currentExercise = 0;
 
   var check = false;
+
+  var pause = false;
+  var posPause = 0;
+  var estadoPause = false;
+  var continuar = new Button(23, 125, pauseContinuar);
+  var reiniciar = new Button(23, 294, pauseReiniciar);
+  var sair = new Button(23, 463, pauseSair);
+  var imgContinuar = loadImage('assets/pause/continuar.png');
+  var imgReiniciar = loadImage('assets/pause/reiniciar.png');
+  var imgSair = loadImage('assets/pause/sair.png');
 
   var backButton = new Button(50, 50, btnBack);
   var continueButton = new Button(width/2-286/2, height-height/6, btnGradient, 'CONTINUAR');
@@ -50,12 +59,15 @@ function IntervalosJogo(){
     textSize(30);
     text("Intervalo:", 10+width/5-175/2, height/4.5); //175/2 é o raio da primeira elipse
     fill(111, 193, 62);
-    text(notesGap, 150+10+width/5-175/2, height/4.5);
+    text("Dó# - Mi#", 150+10+width/5-175/2, height/4.5);
     fill(255);
     textAlign(CENTER);
-    text("Organize as notas em ordem crescente", width/2, height-height/3);
+    text("Escolha uma das notas abaixo", width/2, height-height/3);
     stroke(240);
     drawBoard(2, 35, 175);
+
+    if(pause)
+      showPause();
 
     note.forEach(function(item){
       item.draw();
@@ -127,6 +139,26 @@ function IntervalosJogo(){
   }
 
   var checkPress = function(){
+    if (buttonPressed(backButton)){
+      pause = true;
+    }
+
+    if (buttonPressed(sair)){
+      state.currentScreen = 'menu';
+      pause = false;
+      estadoPause = false;
+      posPause = 0;
+    }
+
+    if (buttonPressed(reiniciar)){
+      state.currentScreen = 'intervalos';
+      pause = false;
+      estadoPause = false;
+      posPause = 0;
+    }
+    if (buttonPressed(continuar)){
+      estadoPause = true;
+    }
     if (buttonPressed(backButton)) {
       state.currentScreen = 'intervalos';
       check = false;
@@ -156,7 +188,43 @@ function IntervalosJogo(){
     note[0] = new Note(width/2-100, height-height/4, btnSong, box[0], exerciseList[currentExercise].nota[0]);
     note[1] = new Note(width/2, height-height/4, btnSong, box[1], exerciseList[currentExercise].nota[1]);
     note[2] = new Note(width/2+100, height-height/4, btnSong, box[2], exerciseList[currentExercise].nota[2]);
-    notesGap = exerciseList[currentExercise].notesGap[0] + ' - ' + exerciseList[currentExercise].notesGap[2];
+  };
+
+  var showPause = function(){
+      background(35, 38, 37, 70);
+      fill(68, 72, 71);
+      noStroke();
+      rect(0, 0, posPause, 720);
+      textFont(regularFont);
+      fill(255);
+      
+      if(posPause<128){
+        image(imgContinuar, posPause-105, 125);
+        image(imgReiniciar, posPause-105, 294);
+        image(imgSair, posPause-105, 463);
+        text("CONTINUAR", posPause-120, 235);
+        text("REINICIAR", posPause-108, 403);
+        text("SAIR", posPause-85, 570);
+        if(!estadoPause)
+          posPause+=10;
+      }
+      if(estadoPause)
+        posPause-=10;
+      if(posPause>=128 && !estadoPause){
+        continuar.draw();
+        text("CONTINUAR", 8, 235);
+        reiniciar.draw();
+        text("REINICIAR", 20, 403);
+        sair.draw();
+        text("SAIR", 43, 570);
+      }
+
+      if(estadoPause && posPause<=0){
+        estadoPause = false;
+        pause = false;
+      }
+      
+      checkPress();
   };
 
 }

@@ -7,6 +7,9 @@ function TreinarOuvidoJogo(){
   var exercicioAtual = 0;
   var noteChoosen;
   var check = false;
+  var pause = false;
+  var posPause = 0;
+  var estadoPause = false;
 
   var soundButton = new Button(523, 385, btnSound);
   var songButton = new Button(523, 255, btnSong);
@@ -17,7 +20,14 @@ function TreinarOuvidoJogo(){
   var opButton2 = new Button(832, 327, btnGradient);
   var opButton3 = new Button(832, 455, btnGradient);
 
+  var continuar = new Button(23, 125, pauseContinuar);
+  var reiniciar = new Button(23, 294, pauseReiniciar);
+  var sair = new Button(23, 463, pauseSair);
+
   var txtSom = loadImage('assets/treinarOuvido/som.png');
+  var imgContinuar = loadImage('assets/pause/continuar.png');
+  var imgReiniciar = loadImage('assets/pause/reiniciar.png');
+  var imgSair = loadImage('assets/pause/sair.png');
 
 
   this.draw = function(){
@@ -28,7 +38,7 @@ function TreinarOuvidoJogo(){
       }
     }
 
-    if (check == false){
+    if (check == false || pause == false){
       clear();
     }
 
@@ -59,6 +69,9 @@ function TreinarOuvidoJogo(){
       showFeedback(exerciciosList[exercicioAtual].right, noteChoosen);
     }
 
+    if(pause)
+      showPause();
+
     if (exercicioAtual == 5){
       exercicioAtual = 0;
       state.currentScreen = 'treinarOuvidoResultado';
@@ -69,7 +82,25 @@ function TreinarOuvidoJogo(){
   var checkPress = function(){
 
     if (buttonPressed(backButton)){
+      pause = true;
+    }
+
+    if (buttonPressed(sair)){
+      state.currentScreen = 'menu';
+      pause = false;
+      estadoPause = false;
+      posPause = 0;
+    }
+
+    if (buttonPressed(reiniciar)){
       state.currentScreen = 'treinarOuvido';
+      pause = false;
+      estadoPause = false;
+      posPause = 0;
+    }
+
+    if (buttonPressed(continuar)){
+      estadoPause = true;
     }
 
     if (buttonPressed(soundButton)){
@@ -133,6 +164,43 @@ function TreinarOuvidoJogo(){
 
     textAlign(LEFT);
 
+  };
+
+  var showPause = function(){
+      background(35, 38, 37, 70);
+      fill(68, 72, 71);
+      noStroke();
+      rect(0, 0, posPause, 720);
+      textFont(regularFont);
+      fill(255);
+      
+      if(posPause<128){
+        image(imgContinuar, posPause-105, 125);
+        image(imgReiniciar, posPause-105, 294);
+        image(imgSair, posPause-105, 463);
+        text("CONTINUAR", posPause-120, 235);
+        text("REINICIAR", posPause-108, 403);
+        text("SAIR", posPause-85, 570);
+        if(!estadoPause)
+          posPause+=10;
+      }
+      if(estadoPause)
+        posPause-=10;
+      if(posPause>=128 && !estadoPause){
+        continuar.draw();
+        text("CONTINUAR", 8, 235);
+        reiniciar.draw();
+        text("REINICIAR", 20, 403);
+        sair.draw();
+        text("SAIR", 43, 570);
+      }
+
+      if(estadoPause && posPause<=0){
+        estadoPause = false;
+        pause = false;
+      }
+      
+      checkPress();
   };
 
 

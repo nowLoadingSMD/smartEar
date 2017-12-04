@@ -15,6 +15,9 @@ var regularFont, boldFont, logoFont;
 
 var framesAfterMousePressed = 0;
 
+var usuarios = [];
+var idUsuario = "";
+
 function preload() {
 
 	iconSong = loadImage('assets/icons/iconSong.png');
@@ -55,11 +58,18 @@ function setup(){
 	telas['login'] = new Login();
 	telas['cadastrar'] = new Cadastrar();
 	telas['menu'] = new Menu();
+	telas['sobre'] = new Sobre();
+	telas['perfil'] = new Perfil();
+	telas['editarPerfil'] = new EditarPerfil();
 
 	x = 0;
 	opacity = 300;
 
 	textFont(regularFont);
+
+	if(localStorage.vec){
+		usuarios = JSON.parse(localStorage.vec);	
+	}
 }
 
 function draw(){

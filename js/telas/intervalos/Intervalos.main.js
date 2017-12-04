@@ -17,7 +17,7 @@ function Intervalos(){
     text("INTERVALOS", width/7, height/4);
     textFont(regularFont);
     textSize(30);
-    image(iconSound, width/2, height/3+35);
+    image(iconSound, width/2-5, height/3+40);
     drawText(myText);
 
     continuarButton.draw();

@@ -15,16 +15,16 @@ function TreinarOuvido(){
     //textFont('assets/fonts/watchwordDot-Regular.otf');
     textSize(40);
     textFont(boldFont);
-		text("TREINAR OUVIDO", width/7, height/4);
-		textSize(30);
+    text("TREINAR OUVIDO", width/7, height/4);
+    textSize(30);
     textFont(regularFont);
     drawText(myText);
     image(iconSound, width/2+82, height/3);
     // text("Clique no botão de som de referência        e com base nele,", width/7, height/3);
     image(iconSong, width/1.5+50, height/3+35);
     // text("tente acertar qual nota é reproduzida ao clicar no botão      .", width/7, height/3+40);
-		// text("Em seguida clique em uma das notas ao lado que pareça ser", width/7, height/3+80);
-		// text("a opção correta.", width/7, height/3+120);
+    // text("Em seguida clique em uma das notas ao lado que pareça ser", width/7, height/3+80);
+    // text("a opção correta.", width/7, height/3+120);
 
     continuarButton.draw();
 
