@@ -2,10 +2,10 @@ function Menu(){
 
   var header = loadImage('assets/menu/header.png');
   var header2 = loadImage('assets/menu/header2.png');
+  var logo = loadImage('assets/menu/logo_menu.png');
 
-  var jogosButton = new Button(83, 19, btnJogos);
-  var perfilButton = new Button(769, 19, btnPerfil);
-  var configButton = new Button(920, 19, btnConfig);
+  var jogosButton = new Button(770, 19, btnJogosPress);
+  var perfilButton = new Button(921, 19, btnPerfil);
   var sobreButton = new Button(1072, 19, btnSobre);
 
   var intervalosButton = new Button(166, 351, intervalosIcon);
@@ -17,16 +17,16 @@ function Menu(){
     clear();
     background(bgNoise);
 
-    fill(0, 0 ,9);
+    fill(24, 24 ,24);
     noStroke();
     rect(0, 0, 1280, 74);
 
     fill(255);
     jogosButton.draw();
     perfilButton.draw();
-    configButton.draw();
     sobreButton.draw();
 
+    image(logo, 82, 14);
     // image(header, 420, 141);
     // image(header2, 189, 206);
 
@@ -70,7 +70,14 @@ function Menu(){
 
     if (buttonPressed(ritmoButton)){
       state.currentScreen = 'ritmo';
+    }
 
+    if (buttonPressed(sobreButton)){
+      state.currentScreen = 'sobre';
+    }
+
+    if (buttonPressed(perfilButton)){
+      state.currentScreen = 'perfil';
     }
 
   };

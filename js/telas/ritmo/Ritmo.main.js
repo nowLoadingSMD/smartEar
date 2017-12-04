@@ -3,6 +3,7 @@ function Ritmo(){
   var backButton = new Button(40, 40, btnBack);
   var ritmo = loadImage('assets/ritmo/ritmo.png');
   var comment = loadImage('assets/ritmo/comment.png');
+  var iconNota = loadImage("assets/icons/icon_nota.png");
 
   var continuarButton = new Button(498, 587, btnGradient, 'CONTINUAR');
 
@@ -15,7 +16,7 @@ function Ritmo(){
     backButton.draw();
     // image(ritmo, 161, 143);
     // image(comment, 161, 233);
-
+    image(iconNota, 415, 233);
     textSize(40);
     textFont(boldFont);
     text("RITMO", width/7, height/4);

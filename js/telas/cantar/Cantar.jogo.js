@@ -17,6 +17,16 @@ function CantarJogo(){
 
   // var comment = loadImage('assets/cantar/jogo/comment.png');
   //var notaButton = loadImage('assets/cantar/jogo/botaoNota.png');
+  var pause = false;
+  var posPause = 0;
+  var estadoPause = false;
+  var continuar = new Button(23, 125, pauseContinuar);
+  var reiniciar = new Button(23, 294, pauseReiniciar);
+  var sair = new Button(23, 463, pauseSair);
+  var imgContinuar = loadImage('assets/pause/continuar.png');
+  var imgReiniciar = loadImage('assets/pause/reiniciar.png');
+  var imgSair = loadImage('assets/pause/sair.png');
+
   var onda = loadImage('assets/cantar/jogo/onda.png');
   var voceAcertou = loadImage('assets/cantar/jogo/voceAcertou.png');
 
@@ -64,6 +74,9 @@ function CantarJogo(){
       showFeedback = true;
     }
 
+    if(pause)
+      showPause();
+
     if (showFeedback){
       fill(0, 0, 0, 100);
       rect(0, 0, 1280, 720);
@@ -75,6 +88,27 @@ function CantarJogo(){
   };
 
   var checkPress = function(){
+    if (buttonPressed(backButton)){
+      pause = true;
+    }
+
+    if (buttonPressed(sair)){
+      state.currentScreen = 'menu';
+      pause = false;
+      estadoPause = false;
+      posPause = 0;
+    }
+
+    if (buttonPressed(reiniciar)){
+      state.currentScreen = 'cantar';
+      pause = false;
+      estadoPause = false;
+      posPause = 0;
+    }
+
+    if (buttonPressed(continuar)){
+      estadoPause = true;
+    }
 
     if (buttonPressed(backButton)){
       showFeedback = false;
@@ -94,5 +128,42 @@ function CantarJogo(){
 
   var checkPitch = function(){
 
+  };
+
+  var showPause = function(){
+      background(35, 38, 37, 70);
+      fill(68, 72, 71);
+      noStroke();
+      rect(0, 0, posPause, 720);
+      textFont(regularFont);
+      fill(255);
+      
+      if(posPause<128){
+        image(imgContinuar, posPause-105, 125);
+        image(imgReiniciar, posPause-105, 294);
+        image(imgSair, posPause-105, 463);
+        text("CONTINUAR", posPause-120, 235);
+        text("REINICIAR", posPause-108, 403);
+        text("SAIR", posPause-85, 570);
+        if(!estadoPause)
+          posPause+=10;
+      }
+      if(estadoPause)
+        posPause-=10;
+      if(posPause>=128 && !estadoPause){
+        continuar.draw();
+        text("CONTINUAR", 8, 235);
+        reiniciar.draw();
+        text("REINICIAR", 20, 403);
+        sair.draw();
+        text("SAIR", 43, 570);
+      }
+
+      if(estadoPause && posPause<=0){
+        estadoPause = false;
+        pause = false;
+      }
+      
+      checkPress();
   };
 }

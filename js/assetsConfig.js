@@ -61,14 +61,20 @@ var btnJogos = {
 	height: 36
 };
 
+var btnJogosPress = {
+	url: 'assets/menu/jogos_press.png',
+	width: 125,
+	height: 36
+};
+
 var btnPerfil = {
 	url: 'assets/menu/perfil.png',
 	width: 125,
 	height: 36
 };
 
-var btnConfig = {
-	url: 'assets/menu/config.png',
+var btnPerfilPress = {
+	url: 'assets/menu/perfil_press.png',
 	width: 125,
 	height: 36
 };
@@ -78,6 +84,13 @@ var btnSobre = {
 	width: 125,
 	height: 36
 };
+
+var btnSobrePress = {
+	url: 'assets/menu/sobre_press.png',
+	width: 125,
+	height: 36
+};
+
 
 var treinarOuvidIcon = {
       url: 'assets/menu/treinarOuvidoIcon.png',
@@ -102,3 +115,21 @@ var timbreIcon = {
       width: 171,
       height: 171
   };
+
+var pauseContinuar = {
+	url: 'assets/pause/continuar.png',
+    width: 83,
+    height: 83
+};
+
+var pauseSair = {
+	url: 'assets/pause/sair.png',
+    width: 83,
+    height: 83
+};
+
+var pauseReiniciar = {
+	url: 'assets/pause/reiniciar.png',
+    width: 83,
+    height: 83
+};

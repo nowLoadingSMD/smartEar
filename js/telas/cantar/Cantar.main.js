@@ -14,7 +14,7 @@ function Cantar(){
     backButton.draw();
     // image(timbre, 160, 143);
     // image(comment, 160, 233);
-
+    image(iconSound, width/2+30, height/3+40);
     textFont(boldFont);
     textSize(40);
     text("TIMBRE", width/7, height/4);

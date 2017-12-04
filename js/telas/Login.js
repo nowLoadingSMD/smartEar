@@ -7,8 +7,10 @@ function Login(){
   var backButton = new Button(38, 38, btnBack);
   var continuarButton = new Button(856, 328, btnGradient, 'CONTINUAR');
 
-  var loginNome = new Input(138, 267, 'Nome ou Email');
+  var loginEmail = new Input(138, 267, 'Email');
   var loginSenha = new Input(138, 388, 'Senha');
+
+  var inputNome, inputSenha, inputEmail;
 
   this.draw = function(){
     clear();
@@ -16,8 +18,11 @@ function Login(){
     backButton.draw();
 
     if (firstTime){ //Gambiarra pra evitar que se crie varios elementos HTML
-      loginNome.draw();
-      loginSenha.draw();
+      //loginNome.draw();
+      //loginSenha.draw();
+      inputs();
+      inputSenha.show();
+      inputEmail.show();
       firstTime = false;
     }
 
@@ -36,10 +41,40 @@ function Login(){
     }
 
     if (buttonPressed(continuarButton)){
-      firstTime = true;
-      removeElements();
-      state.currentScreen = 'menu';
+      var exist = false;
+        if(inputSenha.value() != "" && inputEmail.value() != ""){
+          for(let i = 0; i < usuarios.length; i++)
+            if(usuarios[i].email == inputEmail.value()){
+              if(usuarios[i].senha == inputSenha.value()){
+                exist = true;
+                idUsuario = i;
+              }
+            }
+          if(exist){
+            console.log("entrou");
+            firstTime = true;
+            state.currentScreen = 'menu';
+            removeElements();
+          }else
+            alert("Dados inválidos!");
+      }
+      else
+        alert("Preencha todos os campos!");
     }
+  }
+
+  var inputs = function(){
+    inputSenha = createInput();
+    inputSenha.position(loginSenha.x, loginSenha.y);
+    inputSenha.attribute("type", "text");
+    inputSenha.attribute("placeholder", loginSenha.texto);
+    inputSenha.hide();
+
+    inputEmail = createInput();
+    inputEmail.position(loginEmail.x, loginEmail.y);
+    inputEmail.attribute("type", "text");
+    inputEmail.attribute("placeholder", loginEmail.texto);
+    inputEmail.hide();
   }
 
 

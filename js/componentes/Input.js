@@ -5,12 +5,11 @@ function Input(x, y, texto = ''){
   this.x = x;
   this.y = y;
   this.texto = texto;
-  this.campo;
-  this.draw = function(){
+  //this.campo;
+  /*this.draw = function(){
     campo = createInput();
     campo.position(x,y);
     campo.attribute("type", "text");
     campo.attribute("placeholder", texto);
-  }
-
+  }*/
 }
