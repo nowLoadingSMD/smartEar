@@ -1,11 +1,5 @@
 function TreinarOuvidoResultado(){
 
-  var resultadoImage = loadImage('assets/treinarOuvido/resultado/resultado.png');
-  var commentImage = loadImage('assets/treinarOuvido/resultado/comment.png');
-  var acertosImage = loadImage('assets/treinarOuvido/resultado/acertos.png');
-  var errosImage = loadImage('assets/treinarOuvido/resultado/erros.png');
-  //var total = loadImage('assets/treinarOuvido/resultado/total.png');
-
   var novamenteButton = new Button(327, 586, btnTransparent, 'NOVAMENTE');
   var menuButton = new Button(667, 586, btnGradient, 'MENU');
 
