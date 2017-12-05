@@ -191,6 +191,10 @@ function IntervalosJogo(){
       pause = false;
       estadoPause = false;
       posPause = 0;
+      check = false;
+      firstDraw = true;
+      currentExercise = 0;
+      note = [];
     }
     if (buttonPressed(continuar)){
       estadoPause = true;
