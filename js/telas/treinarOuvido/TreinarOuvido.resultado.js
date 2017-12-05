@@ -15,27 +15,25 @@ function TreinarOuvidoResultado(){
     textFont(boldFont);
     textSize(42);
     textAlign(CENTER);
-    text('RESULTADO', 512, 143);
+    text('RESULTADO', width/2, 143);
 
     textFont(regularFont);
     textSize(32);
 
     if (acertos >= 3) {
-      text('Parace que você se saiu muito bem. Parabéns!', 304, 233);
+      text('Parace que você se saiu muito bem. Parabéns!', width/2, 233);
     } else {
-      text('Parece que você não foi muito bem. Tente novamente.', 252, 233);
+      text('Parece que você não foi muito bem. Tente novamente.', width/2, 233);
     }
 
-    text('Acertos', 494, 347);
-    text('Erros', 494, 412);
+    text('Acertos', 548, 347);
+    text('Erros', 548, 412);
 
     textSize(32);
     fill(111, 193, 62);
-    text(acertos, 768, 375);
+    text(acertos, 777, 347);
     fill(255, 92, 92);
-    text(erros, 768, 435);
-    //fill(255, 92, 92);
-    //text('3', 768, 412);
+    text(erros, 777, 412);
 
     novamenteButton.draw();
     menuButton.draw();
