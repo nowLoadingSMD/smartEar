@@ -97,24 +97,12 @@ function TreinarOuvidoJogo(){
 
     if (buttonPressed(sair)){
       state.currentScreen = 'menu';
-      pause = false;
-      estadoPause = false;
-      posPause = 0;
-      pontos = {
-        acertos: 0,
-        erros: 0
-      };
+      resetVariables();
     }
 
     if (buttonPressed(reiniciar)){
       state.currentScreen = 'treinarOuvido';
-      pause = false;
-      estadoPause = false;
-      posPause = 0;
-      pontos = {
-        acertos: 0,
-        erros: 0
-      };
+      resetVariables();
     }
 
     if (buttonPressed(continuar)){
@@ -238,6 +226,24 @@ function TreinarOuvidoJogo(){
       }
 
       checkPress();
+  };
+
+  var resetVariables = function(){
+    exercicios = new TreinarOuvidoExercicios();
+    exerciciosList = [];
+    exercicioAtual = 0;
+
+    noteChoosen = '';
+
+    pontos = {
+      acertos: 0,
+      erros: 0
+    };
+
+    check = false;
+    pause = false;
+    posPause = 0;
+    estadoPause = false;
   };
 
 
