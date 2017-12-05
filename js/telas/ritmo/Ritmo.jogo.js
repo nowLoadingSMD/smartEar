@@ -12,7 +12,7 @@ function RitmoJogo(){
   var startupTime = 0;
 
   var clicks = [];
-  var notas = [
+  var notes = [
   ];
 
   var points = {
@@ -41,19 +41,9 @@ function RitmoJogo(){
   var playButton = new Button(610, 597, btnPlay);
   var continuarButton = new Button(width/2-286/2, height-height/6, btnGradient, 'CONTINUAR');
 
-  var comment = loadImage('assets/ritmo/jogo/comment.png');
   var line = loadImage('assets/ritmo/jogo/line.png');
-  var contagemImagem = loadImage('assets/ritmo/jogo/contagem.png');
-
-  var feedbackErro = loadImage('assets/ritmo/jogo/feedbackErro.png');
-  var feedbackAcerto = loadImage('assets/ritmo/jogo/feedbackAcerto.png');
-  var voceAcertou = loadImage('assets/ritmo/jogo/voceAcertou.png');
-  var voceErrou = loadImage('assets/ritmo/jogo/voceErrou.png');
-  var feedbackComentarioNegativo = loadImage('assets/ritmo/jogo/feedbackComentarioNegativo.png');
-  var feedbackComentarioPositivo = loadImage('assets/ritmo/jogo/feedbackComentarioPositivo.png');
-
-  var timeLine = new TimeLine(340, 283, 600, 116, notas);
-  var barraProgresso = new BarraProgresso(340, 450, 600, 15);
+  var timeLine = new TimeLine(340, 283, 600, 116, notes);
+  var progessBar = new ProgessBar(340, 450, 600, 15);
 
   this.draw = function(){
 
@@ -69,70 +59,7 @@ function RitmoJogo(){
       frameCounter++;
     }
 
-    barraProgresso.progresso = (frameCounter/179);
-
-    clear();
-    background(bgNoise);
-
-    backButton.draw();
-    image(line, 0, 348);
-
-    timeLine.draw();
-    barraProgresso.draw();
-
-    if (!isPlaying && !isCounting && !showFeedback){
-      playButton.draw();
-    }
-
-    if(pause)
-      showPause();
-
-    if (isCounting == true){
-      fill(255);
-      textSize(42);
-      textFont(boldFont);
-      text("COMEÇAR EM ", width/7, height/5);
-      text(counter, width/7+300, height/5);
-    } else {
-      fill(255);
-      textSize(32);
-      textFont(regularFont);
-      textAlign(LEFT);
-      text("Aperte o play para tocar o metrônomo.", width/7, height/5);
-    }
-
-    if (showFeedback){
-      fill(0, 0, 0, 100);
-      rect(0,0,1280, 720);
-
-      if (mistakes >=1 ) {
-        fill(255, 92, 92);
-        textFont(boldFont);
-        textAlign(CENTER);
-        textSize(42);
-        text('VOCÊ ERROU', 462, 62);
-
-        fill(255);
-        textFont(regularFont);
-        textAlign(CENTER);
-        textSize(32);
-        text('Parece que você está fora do ritmo', 387, 514);
-      } else {
-        fill(111, 193, 62);
-        textFont(boldFont);
-        textAlign(CENTER);
-        textSize(42);
-        text('VOCÊ ACERTOU!', 462, 62);
-
-        fill(255);
-        textFont(regularFont);
-        textSize(32);
-        textAlign(CENTER);
-        text('Parabéns! O seu ritmo está correto.', 387, 514);
-      }
-
-      continuarButton.draw();
-    }
+    progessBar.progress = (frameCounter/179);
 
     if (isPlaying && checkMouseReleased()) {
       var d = new Date();
@@ -151,6 +78,41 @@ function RitmoJogo(){
         mistakes++;
       }
       clicks.push(click);
+    }
+
+    clear();
+    background(bgNoise);
+
+    backButton.draw();
+    image(line, 0, 348);
+    timeLine.draw();
+    progessBar.draw();
+
+    if (!isPlaying && !isCounting && !showFeedback){
+      playButton.draw();
+    }
+
+    if(pause)
+      drawPause();
+
+    fill(255);
+    textSize(32);
+    textFont(regularFont);
+    textAlign(LEFT);
+    if (isCounting == true){
+      fill(255);
+      textSize(42);
+      textFont(boldFont);
+      text("COMEÇAR EM ", width/7, height/5);
+      text(counter, width/7+300, height/5);
+    } else if (isPlaying) {
+      text("Clique no mouse de acordo com as notas apresentadas.", width/7, height/5);
+    } else {
+      text("Aperte o play para tocar o metrônomo.", width/7, height/5);
+    }
+
+    if (showFeedback){
+      drawFeedback(mistakes);
     }
 
     clicks.forEach(function(item){
@@ -193,29 +155,9 @@ function RitmoJogo(){
       startCounter();
     }
 
-    if (buttonPressed(continuarButton) && showFeedback) {
-      currentExercise++;
-
-      if (mistakes >= 1) {
-        points.wrong++;
-      } else {
-        points.right++;
-      }
-
-      if (currentExercise > 4) {
-        usuarios[idUsuario].pontos.ritmo.push(points);
-        localStorage.vec = JSON.stringify(usuarios);
-        state.currentScreen = 'ritmoResultado';
-        resetVariables();
-      } else {
-        setNewExercise();
-      }
-
-    }
-
 }; // End of checkPress()
 
-  var showPause = function(){
+  var drawPause = function(){
       background(35, 38, 37, 70);
       fill(68, 72, 71);
       noStroke();
@@ -252,6 +194,61 @@ function RitmoJogo(){
       checkPress();
   };
 
+  var drawFeedback = function(mistakes) {
+
+    fill(0, 0, 0, 100);
+    rect(0,0,1280, 720);
+
+    if (mistakes >=1 ) {
+      fill(255, 92, 92);
+      textFont(boldFont);
+      textAlign(CENTER);
+      textSize(42);
+      text('VOCÊ ERROU', width/2, 88);
+
+      fill(255);
+      textFont(regularFont);
+      textAlign(CENTER);
+      textSize(32);
+      text('Parece que você está fora do ritmo', width/2, 514);
+    } else {
+      fill(111, 193, 62);
+      textFont(boldFont);
+      textAlign(CENTER);
+      textSize(42);
+      text('VOCÊ ACERTOU!', width/2, 88);
+
+      fill(255);
+      textFont(regularFont);
+      textSize(32);
+      textAlign(CENTER);
+      text('Parabéns! O seu ritmo está correto.', width/2, 514);
+    }
+
+    continuarButton.draw();
+
+    if (buttonPressed(continuarButton)) {
+      currentExercise++;
+
+      if (mistakes >= 1) {
+        points.wrong++;
+      } else {
+        points.right++;
+      }
+
+      if (currentExercise > 4) {
+        usuarios[idUsuario].pontos.ritmo.push(points);
+        localStorage.vec = JSON.stringify(usuarios);
+        state.currentScreen = 'ritmoResultado';
+        resetVariables();
+      } else {
+        setNewExercise();
+      }
+
+    }
+
+  } // End of drawFeedback()
+
   var resetVariables = function(){
     isPlaying = false;
     timesPlayed = 0;
@@ -261,7 +258,7 @@ function RitmoJogo(){
     isTime = false;
     showFeedback = false;
     startupTime = 0;
-    notas = [
+    notes = [
     ];
     firstDraw = true;
     currentExercise = 0;
@@ -285,12 +282,11 @@ function RitmoJogo(){
     startupTime = 0;
     clicks = [];
     mistakes = 0;
-    notas = exerciseList[currentExercise];
-    timeLine = new TimeLine(340, 283, 600, 116, notas);
+    notes = exerciseList[currentExercise];
+    timeLine = new TimeLine(340, 283, 600, 116, notes);
   }; // End of setNewExercise()
 
   // Game Related functions
-
   var startCounter = function(){
     isCounting = true;
     counter = 3;
@@ -343,21 +339,21 @@ function RitmoJogo(){
 
 } // End of Ritmo class
 
-function TimeLine(x, y, w, h, notas){
+function TimeLine(x, y, w, h, notes){
   this.x = x;
   this.y = y;
   this.w = w;
   this.h = h;
-  this.notas = notas;
+  this.notes = notes;
 
   this.draw = function(){
 
     var nextPos = this.x - 65;
 
-    for(var i = 0; i < notas.length; i++){
-      image(notas[i].imagem, nextPos, this.y);
+    for(var i = 0; i < notes.length; i++){
+      image(notes[i].imagem, nextPos, this.y);
 
-      switch (notas[i].nome) {
+      switch (notes[i].nome) {
         case 'seminima':
           nextPos += this.w/3;
           break;
@@ -370,17 +366,17 @@ function TimeLine(x, y, w, h, notas){
   };
 }
 
-function BarraProgresso(x, y, w, h){
+function ProgessBar(x, y, w, h){
   this.x = x;
   this.y = y;
   this.w = w;
   this.h = h;
-  this.progresso = 0;
+  this.progress = 0;
 
   this.draw = function(){
     fill(240);
     rect(this.x, this.y, this.w, this.h);
     fill(0, 255, 0);
-    rect(this.x, this.y, this.progresso * this.w, this.h);
+    rect(this.x, this.y, this.progress * this.w, this.h);
   };
 }

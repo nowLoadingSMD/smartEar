@@ -63,7 +63,7 @@ function IntervalosJogo(){
     text(notesGap, 150+10+width/5-175/2, height/4.5);
     fill(255);
     textAlign(CENTER);
-    text("Escolha uma das notas abaixo", width/2, height-height/3);
+    text("Ordene as notas em ordem crescente", width/2, height-height/3);
     stroke(240);
     drawBoard(2, 35, 175);
 
@@ -80,12 +80,18 @@ function IntervalosJogo(){
 
     checkPress();
 
-    var check = note.reduce(function(res, item){
-      return item.inCorretPos && res;
+    var checkInsideBox = note.reduce(function(res, item){
+      return item.insideBox && res;
     }, true);
 
-    if (check) {
-      drawFeedback();
+    console.log(checkInsideBox);
+
+    if (checkInsideBox) {
+      var checkInsideCorretBox = note.reduce(function(res, item){
+        return item.insideCorrectBox && res;
+      }, true);
+
+      drawFeedback(checkInsideCorretBox);
     }
 
   }; // End of this.draw();
@@ -117,10 +123,39 @@ function IntervalosJogo(){
     stroke(255);
   }
 
-  var drawFeedback = function(){
-    fill(0, 100);
-    rect(0, 0, 1280, 720);
-    image(voceAcertou, 462, 62);
+  var drawFeedback = function(correct){
+
+    fill(0, 0, 0, 100);
+    rect(0,0,1280, 720);
+
+    if (correct) {
+      noStroke();
+      fill(111, 193, 62);
+      textFont(boldFont);
+      textAlign(CENTER);
+      textSize(42);
+      text('VOCÊ ACERTOU!', width/2, 88);
+
+      fill(255);
+      textFont(regularFont);
+      textSize(32);
+      textAlign(CENTER);
+      text('Parabéns! As notas estão ordenadas corretamente.', width/2, 514);
+    } else {
+      noStroke();
+      fill(255, 92, 92);
+      textFont(boldFont);
+      textAlign(CENTER);
+      textSize(42);
+      text('VOCÊ ERROU', width/2, 88);
+
+      fill(255);
+      textFont(regularFont);
+      textAlign(CENTER);
+      textSize(32);
+      text('Parece que você ordenou as notas de forma errada.', width/2, 514);
+    }
+
     continueButton.draw();
 
     if (buttonPressed(continueButton)){
@@ -186,9 +221,9 @@ function IntervalosJogo(){
 };
 
   var setNewExercise = function(){
-    note[0] = new Note(width/2-100, height-height/4, btnSong, box[0], exerciseList[currentExercise].nota[0]);
-    note[1] = new Note(width/2, height-height/4, btnSong, box[1], exerciseList[currentExercise].nota[1]);
-    note[2] = new Note(width/2+100, height-height/4, btnSong, box[2], exerciseList[currentExercise].nota[2]);
+    note[0] = new Note(width/2-100, height-height/4, btnSong, box[0], box, exerciseList[currentExercise].nota[0]);
+    note[1] = new Note(width/2, height-height/4, btnSong, box[1], box, exerciseList[currentExercise].nota[1]);
+    note[2] = new Note(width/2+100, height-height/4, btnSong, box[2], box, exerciseList[currentExercise].nota[2]);
     notesGap = exerciseList[currentExercise].notesGap[0] + ' - ' + exerciseList[currentExercise].notesGap[2];
   };
 

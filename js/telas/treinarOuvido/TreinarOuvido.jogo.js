@@ -164,27 +164,37 @@ function TreinarOuvidoJogo(){
     if (right == chose){
       background(35, 38, 37, 80);
       textSize(40);
+
       fill(111, 193, 62);
       textAlign(CENTER);
+      textFont(boldFont);
+      textSize(42);
       text("VOCÊ ACERTOU!", width/2, 90);
-      textSize(30);
+
+      textSize(32);
+      textFont(regularFont);
+      textAlign(CENTER);
       fill(255);
       text("Parabéns! A nota correta era ", width/2, 154);
       fill(111, 193, 62);
-      text(right, width/2+230, 155);
+      text(right, width/2+240, 155);
 
       continuarButton.draw();
+
     } else {
       background(35, 38, 37, 80);
-      textSize(40);
       fill(255, 92, 92);
+      textSize(42);
+      textFont(boldFont);
       textAlign(CENTER);
       text("VOCÊ ERROU!", width/2, 90);
-      textSize(30);
+
       fill(255);
+      textSize(32);
+      textFont(regularFont);
       text("A nota correta era ", width/2, 154);
       fill(255, 92, 92);
-      text(right, width/2+170, 155);
+      text(right, width/2+165, 155);
 
       continuarButton.draw();
     }
