@@ -48,7 +48,17 @@ function Cadastrar(){
       			if(usuarios[i].email == inputEmail.value())
       				exist = true;
       		if(!exist){
-		      	var pessoa = {nome:inputNome.value(), senha: inputSenha.value(), email: inputEmail.value()};
+		      	var pessoa = {
+                          nome:inputNome.value(),
+                          senha: inputSenha.value(),
+                          email: inputEmail.value(),
+                          pontos: {
+                            intervalo: [],
+                            treinarOuvido: [],
+                            ritmo: [],
+                            cantar: []
+                          }
+            };
     				usuarios.push(pessoa);
     				localStorage.vec = JSON.stringify(usuarios);
     				firstTime = true;

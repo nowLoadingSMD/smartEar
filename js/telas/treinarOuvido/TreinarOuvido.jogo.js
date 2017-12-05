@@ -1,11 +1,16 @@
 function TreinarOuvidoJogo(){
 
   var exercicios = new TreinarOuvidoExercicios();
-
   var exerciciosList = [];
-
   var exercicioAtual = 0;
+
   var noteChoosen;
+
+  var pontos = {
+    acertos: 0,
+    erros: 0
+  };
+
   var check = false;
   var pause = false;
   var posPause = 0;
@@ -50,7 +55,6 @@ function TreinarOuvidoJogo(){
 
     backButton.draw();
 
-    // image(txtSom, 162, 270);
     textSize(32);
     textFont(regularFont);
     text("Que nota é esta?", width/7, 300);
@@ -73,8 +77,14 @@ function TreinarOuvidoJogo(){
       showPause();
 
     if (exercicioAtual == 5){
-      exercicioAtual = 0;
+      usuarios[idUsuario].pontos.treinarOuvido.push(pontos);
+      localStorage.vec = JSON.stringify(usuarios);
       state.currentScreen = 'treinarOuvidoResultado';
+      exercicioAtual = 0;
+      pontos = {
+        acertos: 0,
+        erros: 0
+      };
     }
 
   };
@@ -90,6 +100,10 @@ function TreinarOuvidoJogo(){
       pause = false;
       estadoPause = false;
       posPause = 0;
+      pontos = {
+        acertos: 0,
+        erros: 0
+      };
     }
 
     if (buttonPressed(reiniciar)){
@@ -97,6 +111,10 @@ function TreinarOuvidoJogo(){
       pause = false;
       estadoPause = false;
       posPause = 0;
+      pontos = {
+        acertos: 0,
+        erros: 0
+      };
     }
 
     if (buttonPressed(continuar)){
@@ -128,6 +146,13 @@ function TreinarOuvidoJogo(){
     }
 
     if (buttonPressed(continuarButton)){
+
+      if (exerciciosList[exercicioAtual].right === noteChoosen) {
+        pontos.acertos++;
+      } else {
+        pontos.erros++;
+      }
+
       check = false;
       exercicioAtual++;
     }
@@ -147,6 +172,7 @@ function TreinarOuvidoJogo(){
       text("Parabéns! A nota correta era ", width/2, 154);
       fill(111, 193, 62);
       text(right, width/2+230, 155);
+
       continuarButton.draw();
     } else {
       background(35, 38, 37, 80);
@@ -159,6 +185,7 @@ function TreinarOuvidoJogo(){
       text("A nota correta era ", width/2, 154);
       fill(255, 92, 92);
       text(right, width/2+170, 155);
+
       continuarButton.draw();
     }
 
@@ -173,7 +200,7 @@ function TreinarOuvidoJogo(){
       rect(0, 0, posPause, 720);
       textFont(regularFont);
       fill(255);
-      
+
       if(posPause<128){
         image(imgContinuar, posPause-105, 125);
         image(imgReiniciar, posPause-105, 294);
@@ -199,7 +226,7 @@ function TreinarOuvidoJogo(){
         estadoPause = false;
         pause = false;
       }
-      
+
       checkPress();
   };
 

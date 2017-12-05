@@ -1,10 +1,10 @@
 function TreinarOuvidoResultado(){
 
-  var resultado = loadImage('assets/treinarOuvido/resultado/resultado.png');
-  var comment = loadImage('assets/treinarOuvido/resultado/comment.png');
-  var acertos = loadImage('assets/treinarOuvido/resultado/acertos.png');
-  var erros = loadImage('assets/treinarOuvido/resultado/erros.png');
-  var total = loadImage('assets/treinarOuvido/resultado/total.png');
+  var resultadoImage = loadImage('assets/treinarOuvido/resultado/resultado.png');
+  var commentImage = loadImage('assets/treinarOuvido/resultado/comment.png');
+  var acertosImage = loadImage('assets/treinarOuvido/resultado/acertos.png');
+  var errosImage = loadImage('assets/treinarOuvido/resultado/erros.png');
+  //var total = loadImage('assets/treinarOuvido/resultado/total.png');
 
   var novamenteButton = new Button(327, 586, btnTransparent, 'NOVAMENTE');
   var menuButton = new Button(667, 586, btnGradient, 'MENU');
@@ -12,19 +12,36 @@ function TreinarOuvidoResultado(){
   this.draw = function(){
     clear();
     background(bgNoise);
-    image(resultado, 512, 143);
-    image(comment, 252, 233);
-    image(acertos, 494, 347);
-    image(erros, 494, 412);
-    image(total, 494, 477);
 
-    //textFont('assets/fonts/watchwordDot-Regular.otf');
+    var l = usuarios[idUsuario].pontos.treinarOuvido.length;
+    var acertos = usuarios[idUsuario].pontos.treinarOuvido[l-1].acertos;
+    var erros = usuarios[idUsuario].pontos.treinarOuvido[l-1].erros;
+
+    fill(255);
+    textFont(boldFont);
+    textSize(42);
+    textAlign(CENTER);
+    text('RESULTADO', 512, 143);
+
+    textFont(regularFont);
+    textSize(32);
+
+    if (acertos >= 3) {
+      text('Parace que você se saiu muito bem. Parabéns!', 304, 233);
+    } else {
+      text('Parece que você não foi muito bem. Tente novamente.', 252, 233);
+    }
+
+    text('Acertos', 494, 347);
+    text('Erros', 494, 412);
+
     textSize(32);
     fill(111, 193, 62);
-    text('2', 768, 347);
-    text('2', 768, 477);
+    text(acertos, 768, 375);
     fill(255, 92, 92);
-    text('3', 768, 412);
+    text(erros, 768, 435);
+    //fill(255, 92, 92);
+    //text('3', 768, 412);
 
     novamenteButton.draw();
     menuButton.draw();
