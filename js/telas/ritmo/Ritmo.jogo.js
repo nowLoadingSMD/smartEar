@@ -1,5 +1,6 @@
 function RitmoJogo(){
 
+  var firstDraw = true;
   var isPlaying = false;
   var timesPlayed = 0;
   var isCounting = false;
@@ -11,36 +12,23 @@ function RitmoJogo(){
   var startupTime = 0;
 
   var clicks = [];
+  var notas = [
+  ];
+
+  var exercise = new RitmoExercise();
+  var exerciseList = [];
+  var currentExercise = 0;
 
   var pause = false;
   var posPause = 0;
   var estadoPause = false;
+
   var continuar = new Button(23, 125, pauseContinuar);
   var reiniciar = new Button(23, 294, pauseReiniciar);
   var sair = new Button(23, 463, pauseSair);
   var imgContinuar = loadImage('assets/pause/continuar.png');
   var imgReiniciar = loadImage('assets/pause/reiniciar.png');
   var imgSair = loadImage('assets/pause/sair.png');
-
-
-  var notas = [
-    {
-      nome: 'seminima',
-      imagem: loadImage('assets/ritmo/jogo/seminima.png')
-    },
-    {
-      nome: 'seminima',
-      imagem: loadImage('assets/ritmo/jogo/seminima.png')
-    },
-    {
-      nome: 'seminima',
-      imagem: loadImage('assets/ritmo/jogo/seminima.png')
-    },
-    {
-      nome: 'seminima',
-      imagem: loadImage('assets/ritmo/jogo/seminima.png')
-    }
-  ];
 
   var backButton = new Button(40, 40, btnBack);
   var playButton = new Button(610, 597, btnPlay);
@@ -61,34 +49,55 @@ function RitmoJogo(){
   var barraProgresso = new BarraProgresso(340, 500, 600, 15);
 
   this.draw = function(){
+
+    if (firstDraw){
+      for(var i = 0; i < 5; i++){
+         exerciseList.push(exercise.getExercicio());
+       }
+       setNewExercise();
+       firstDraw = false;
+    }
+
+    if (isPlaying){
+      frameCounter++;
+    }
+
+    barraProgresso.progresso = (frameCounter/179);
+
     clear();
     background(bgNoise);
 
     backButton.draw();
     image(line, 0, 348);
 
+    timeLine.draw();
+    barraProgresso.draw();
+    playButton.draw();
+
     if(pause)
       showPause();
 
     if (isCounting == true){
-      // image(contagemImagem, 476, 108);
       textSize(42);
       textFont(boldFont);
       text("COMEÇAR EM ", width/7, height/5);
       text(counter, width/7+300, height/5);
     } else {
-      // image(comment, 161, 141);
       textSize(32);
       textFont(regularFont);
       textAlign(LEFT);
       text("Aperte o play para tocar o metrônomo.", width/7, height/5);
     }
 
-    checkMouseReleased();
+    if (showFeedback){
+      fill(0, 0, 0, 100);
+      rect(0,0,1280, 720);
+      image(voceAcertou, 462, 62);
+      image(feedbackComentarioPositivo, 387, 514);
+      continuarButton.draw();
+    }
 
-    var c = checkMouseReleased();
-
-    if (isPlaying && c) {
+    if (isPlaying && checkMouseReleased()) {
       var d = new Date();
       var click;
 
@@ -103,7 +112,6 @@ function RitmoJogo(){
           imagem: loadImage('assets/ritmo/jogo/feedbackErro.png')
         };
       }
-
       clicks.push(click);
     }
 
@@ -113,39 +121,9 @@ function RitmoJogo(){
       image(item.imagem, posX, posY);
     });
 
-    if (isPlaying){
-      frameCounter++;
-    }
-
-    barraProgresso.progresso = (frameCounter/179);
-
-    timeLine.draw();
-    barraProgresso.draw();
-    playButton.draw();
-
-    if (showFeedback){
-      fill(0, 0, 0, 100);
-      rect(0,0,1280, 720);
-      image(voceAcertou, 462, 62);
-      image(feedbackComentarioPositivo, 387, 514);
-      continuarButton.draw();
-    }
-
     checkPress();
 
-  };
-
-  var resetVariables = function(){
-    isPlaying = false;
-    timesPlayed = 0;
-    isCounting = false;
-    counter = 3;
-    frameCounter = 0;
-    isTime = false;
-    showFeedback = false;
-
-    clicks = [];
-  };
+  }; // End of this.draw()
 
   var checkPress = function(){
 
@@ -174,16 +152,22 @@ function RitmoJogo(){
     }
 
     if (buttonPressed(playButton)) {
-      resetVariables();
       startCounter();
     }
 
     if (buttonPressed(continuarButton)) {
-      state.currentScreen = 'ritmoResultado';
-      resetVariables();
+      currentExercise++;
+
+      if (currentExercise > 4) {
+        state.currentScreen = 'ritmoResultado';
+        resetVariables();
+      } else {
+        setNewExercise();
+      }
+
     }
 
-  };
+}; // End of checkPress()
 
   var showPause = function(){
       background(35, 38, 37, 70);
@@ -221,6 +205,40 @@ function RitmoJogo(){
 
       checkPress();
   };
+
+  var resetVariables = function(){
+    isPlaying = false;
+    timesPlayed = 0;
+    isCounting = false;
+    counter = 0;
+    frameCounter = 0;
+    isTime = false;
+    showFeedback = false;
+    startupTime = 0;
+    notas = [
+    ];
+    firstDraw = true;
+    currentExercise = 0;
+    pause = false;
+    posPause = 0;
+    estadoPause = false;
+  }; // End of resetVariables()
+
+  var setNewExercise = function(){
+    isPlaying = false;
+    timesPlayed = 0;
+    isCounting = false;
+    counter = 0;
+    frameCounter = 0;
+    isTime = false;
+    showFeedback = false;
+    startupTime = 0;
+    clicks = [];
+    notas = exerciseList[currentExercise];
+    timeLine = new TimeLine(340, 283, 600, 116, notas);
+  }; // End of setNewExercise()
+
+  // Game Related functions
 
   var startCounter = function(){
     isCounting = true;
@@ -271,7 +289,8 @@ function RitmoJogo(){
     isTime = false;
   };
 
-}
+
+} // End of Ritmo class
 
 function TimeLine(x, y, w, h, notas){
   this.x = x;
@@ -313,6 +332,4 @@ function BarraProgresso(x, y, w, h){
     fill(0, 255, 0);
     rect(this.x, this.y, this.progresso * this.w, this.h);
   };
-
-
 }
