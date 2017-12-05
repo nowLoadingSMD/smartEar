@@ -1,4 +1,4 @@
-function Note(x, y, imagem, box, note){
+function Note(x, y, imagem, correctBox, boxes, note){
   this.x = x;
   this.y = y;
   this.imagem = loadImage(imagem.url);
@@ -7,9 +7,11 @@ function Note(x, y, imagem, box, note){
   this.centerX = this.x + this.imagemW/2;
   this.centerY = this.y + this.imagemH/2;
   this.note = note;
-  this.corretPosX = box.centerX;
-  this.corretPosY = box.centerY;
-  this.inCorretPos = false;
+  this.corretPosX = correctBox.centerX;
+  this.corretPosY = correctBox.centerY;
+  this.boxes = boxes;
+  this.insideCorrectBox = false;
+  this.insideBox = false;
   this.draggable = false;
 
   this.draw = function(){
@@ -24,15 +26,27 @@ function Note(x, y, imagem, box, note){
     image(this.imagem, this.x, this.y);
 
     if ((this.centerX == this.corretPosX) && (this.centerY == this.corretPosY)){
-      this.inCorretPos = true;
+      this.insideCorrectBox = true;
     } else {
-      this.inCorretPos = false;
+      this.insideCorrectBox = false;
     }
+
+    this.insideBox = checkInside(this.boxes, this.centerX, this.centerY);
 
   };
 
   this.playNota = function(){
     this.note.play();
+  }
+
+  var checkInside = function(boxes, centerX, centerY){
+    var result = false;
+    boxes.forEach(function(item){
+      if ((centerX == item.centerX) && (centerY == item.centerY)){
+        result = true;
+      }
+    });
+    return result;
   }
 
   this.adjustPosition = function(arr){
