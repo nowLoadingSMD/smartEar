@@ -107,6 +107,12 @@ function windowResized() {
   centerCanvas();
 }
 
+function keyPressed(){
+	if (keyCode === LEFT_ARROW){
+		console.log(usuarios[idUsuario].badges);
+	}
+}
+
 function mousePressed(){
 	var date = new Date();
 	state.lastMousePressed = date.getTime();

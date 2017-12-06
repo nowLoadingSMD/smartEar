@@ -57,6 +57,19 @@ function Cadastrar(){
                             treinarOuvido: [],
                             ritmo: [],
                             cantar: []
+                          },
+                          badges: {
+                            newbie: false,
+                            explorer: false,
+                            expert: false,
+                            persistent: false,
+                            enthusiastic: false,
+                            first: false
+                          },
+                          badgesProgress: {
+                            explorer: [false, false, false],
+                            expert: [false, false, false],
+                            enthusiastic : [0, 0, 0]
                           }
             };
     				usuarios.push(pessoa);

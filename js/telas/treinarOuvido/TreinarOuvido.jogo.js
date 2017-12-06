@@ -7,8 +7,8 @@ function TreinarOuvidoJogo(){
   var noteChoosen;
 
   var pontos = {
-    acertos: 0,
-    erros: 0
+    right: 0,
+    wrong: 0
   };
 
   var check = false;
@@ -82,8 +82,8 @@ function TreinarOuvidoJogo(){
       state.currentScreen = 'treinarOuvidoResultado';
       exercicioAtual = 0;
       pontos = {
-        acertos: 0,
-        erros: 0
+        right: 0,
+        wrong: 0
       };
     }
 
@@ -136,9 +136,9 @@ function TreinarOuvidoJogo(){
     if (buttonPressed(continuarButton)){
 
       if (exerciciosList[exercicioAtual].right === noteChoosen) {
-        pontos.acertos++;
+        pontos.right++;
       } else {
-        pontos.erros++;
+        pontos.wrong++;
       }
 
       check = false;
