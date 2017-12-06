@@ -7,8 +7,8 @@ function Login(){
   var backButton = new Button(38, 38, btnBack);
   var continuarButton = new Button(856, 328, btnGradient, 'CONTINUAR');
 
-  var loginEmail = new Input(138, 267, 'Email');
-  var loginSenha = new Input(138, 388, 'Senha');
+  var loginEmail = new Input((windowWidth - width) /2 + 138, ((windowHeight - height) / 2) + 267, 'Email');
+  var loginSenha = new Input((windowWidth - width) /2 + 138, ((windowHeight - height) / 2) + 388, 'Senha');
 
   var inputNome, inputSenha, inputEmail;
 

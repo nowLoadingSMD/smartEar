@@ -8,9 +8,9 @@ function EditarPerfil(){
 	var perfilButton = new Button(921, 19, btnPerfilPress);
 	var sobreButton = new Button(1072, 19, btnSobre);
 
-	var cadastrarNome = new Input(480, 186, 'Nome');
-	var cadastrarEmail = new Input(480, 297, 'Email');
-	var cadastrarSenha = new Input(480, 408, 'Senha');
+	var cadastrarNome = new Input(((windowWidth - width) / 2) + 480, ((windowHeight - height) / 2) + 186, 'Nome');
+	var cadastrarEmail = new Input(((windowWidth - width) / 2) + 480, ((windowHeight - height) / 2) + 297, 'Email');
+	var cadastrarSenha = new Input(((windowWidth - width) / 2) + 480, ((windowHeight - height) / 2) + 408, 'Senha');
 
 	var inputNome, inputSenha, inputEmail;
 
@@ -43,7 +43,7 @@ function EditarPerfil(){
 
 	    image(logo, 82, 14);
 	    image(foto, 149, 206);
-	    
+
 	    checkPress();
 
   	};
@@ -90,7 +90,7 @@ function EditarPerfil(){
 			alert("Preencha todos os campos!");
     	}
 
-    
+
 
   };
   var inputs = function(){

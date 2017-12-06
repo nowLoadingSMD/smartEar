@@ -5,9 +5,9 @@ function Cadastrar(){
   var backButton = new Button(38, 38, btnBack);
   var continuarButton = new Button(856, 325, btnGradient, 'CONTINUAR');
 
-  var cadastrarNome = new Input(137, 205, 'Nome');
-  var cadastrarEmail = new Input(137, 325, 'Email');
-  var cadastrarSenha = new Input(137, 445, 'Senha');
+  var cadastrarNome = new Input(((windowWidth - width) / 2) + 137, ((windowHeight - height) / 2) + 205, 'Nome');
+  var cadastrarEmail = new Input(((windowWidth - width) / 2) + 137, ((windowHeight - height) / 2) + 325, 'Email');
+  var cadastrarSenha = new Input(((windowWidth - width) / 2) + 137, ((windowHeight - height) / 2) + 445, 'Senha');
 
   var inputNome, inputSenha, inputEmail;
 
