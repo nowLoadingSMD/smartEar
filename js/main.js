@@ -91,11 +91,6 @@ function draw(){
 
 }
 
-function keyPressed(){
-	if (keyCode === ENTER) {
-		state.currentScreen = 'ritmo';
-	}
-}
 
 function mousePressed(){
 	var date = new Date();

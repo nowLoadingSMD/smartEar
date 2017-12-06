@@ -225,11 +225,67 @@ function IntervalosJogo(){
 };
 
   var setNewExercise = function(){
-    note[0] = new Note(width/2-100, height-height/4, btnSong, box[0], box, exerciseList[currentExercise].nota[0]);
-    note[1] = new Note(width/2, height-height/4, btnSong, box[1], box, exerciseList[currentExercise].nota[1]);
-    note[2] = new Note(width/2+100, height-height/4, btnSong, box[2], box, exerciseList[currentExercise].nota[2]);
+    var posX = [];
+
+    posX[0] = getRandomIntInclusive(1, 3);
+    posX[1] = 0;
+    posX[2] = 0;
+
+    switch (posX[0]) {
+      case 1:
+        posX[0] = width/2-65-250;
+
+        posX[1] = getRandomIntInclusive(2, 3);
+
+        if (posX[1] == 2) {
+          posX[1] = width/2-65;
+          posX[2] = width/2-65+250;
+        } else {
+          posX[1] = width/2-65+250;
+          posX[2] = width/2-65;
+        }
+        break;
+
+      case 2:
+        posX[0] = width/2-65;
+
+        posX[1] = getRandomIntInclusive(1, 2);
+        if (posX[1] <= 1.5) {
+          posX[1] = width/2-65-250;
+          posX[2] = width/2-65+250;
+        } else {
+          posX[1] = width/2-65+250;
+          posX[2] = width/2-65-250;
+        }
+        break;
+
+      case 3:
+        posX[0] = width/2-65+250;
+
+        posX[1] = getRandomIntInclusive(1, 2);
+
+        if (posX[1] == 1) {
+          posX[1] = width/2-65-250;
+          posX[2] = width/2-65;
+        } else {
+          posX[1] = width/2-65;
+          posX[2] = width/2-65-250;
+        }
+        break;
+      default: console.log('Erro');
+    }
+
+    note[0] = new Note(posX[0], height-height/4, intervaloNoteIcon, box[0], box, exerciseList[currentExercise].nota[0]);
+    note[1] = new Note(posX[1], height-height/4, intervaloNoteIcon, box[1], box, exerciseList[currentExercise].nota[1]);
+    note[2] = new Note(posX[2], height-height/4, intervaloNoteIcon, box[2], box, exerciseList[currentExercise].nota[2]);
     notesGap = exerciseList[currentExercise].notesGap[0] + ' - ' + exerciseList[currentExercise].notesGap[2];
   };
+
+  var getRandomIntInclusive = function(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+};
 
   var showPause = function(){
       background(35, 38, 37, 70);

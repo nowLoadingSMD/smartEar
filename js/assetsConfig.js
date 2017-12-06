@@ -116,6 +116,12 @@ var timbreIcon = {
       height: 171
   };
 
+var intervaloNoteIcon = {
+		url: 'assets/intervalos/seminima.png',
+		width: 130,
+		height: 130
+}
+
 var pauseContinuar = {
 	url: 'assets/pause/continuar.png',
     width: 83,
