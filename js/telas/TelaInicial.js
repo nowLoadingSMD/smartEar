@@ -3,8 +3,8 @@ function TelaInicial(){
   var textd = loadImage('assets/telaInicial/telaInicialText.png');
   var comment = loadImage('assets/telaInicial/telaInicialComment.png');
 
-  var loginButton = new Button(833, 347, btnTransparent, 'Entrar');
-  var cadastrarButton = new Button(833, 465, btnGradient, 'Cadastrar');
+  var loginButton = new Button(833, 347, btnTransparent, 'ENTRAR');
+  var cadastrarButton = new Button(833, 465, btnGradient, 'CADASTRAR');
 
   this.draw = function(){
     clear();

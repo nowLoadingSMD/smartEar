@@ -33,7 +33,7 @@ function Menu(){
     textSize(42);
     textFont(boldFont);
     textAlign(CENTER);
-    text("Escolha um dos jogos", width/2, height/4.5);
+      text("Escolha um dos jogos", width/2, height/4.5);
     textFont(regularFont);
     textSize(32);
     text("Quanto mais você jogar, melhor compreenderá a teoria musical", width/2, height/3);
