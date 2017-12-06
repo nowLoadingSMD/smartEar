@@ -9,7 +9,7 @@ function Perfil(){
 	var editarButton = new Button(111, 458, btnGradient, 'EDITAR');
 	var sairButton = new Button(111, 559, btnTransparent, 'SAIR');
 
-	var completed = false;
+	var completed = true;
 
 	var badges = [];
 	badges['newbie'] = loadImage('assets/badges/newbie.png');
@@ -154,6 +154,8 @@ function Perfil(){
 			fill(82, 255, 122);
 			ellipse(859+55, 534+55, 110, 110); //badge First
 			image(badges['first'], 876, 555);
+			strokeWeight(0);
+			noStroke();
 		} else {
 			fill(193, 193, 193);
 			ellipse(438+55, 222+55, 110, 110); //badge Newbie

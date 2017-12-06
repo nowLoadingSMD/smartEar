@@ -1,7 +1,7 @@
 function Sobre(){
 
 	var logo = loadImage('assets/menu/logo_menu.png');
-
+	var blur = loadImage('assets/blur.png');
 	var jogosButton = new Button(770, 19, btnJogos);
 	var perfilButton = new Button(921, 19, btnPerfil);
 	var sobreButton = new Button(1072, 19, btnSobrePress);
@@ -30,6 +30,9 @@ function Sobre(){
 		text("José Aires, Raquel Freire, Glaudiney Mendonça, Georgia Cruz, Ricardo Brauner, Paula Marques", 156, 470, 915, 150);
 
     checkPress();
+
+		// image(blur, 0, 0);
+		// filter(BLUR, 4)
 
   };
   var checkPress = function(){
