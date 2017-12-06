@@ -1,6 +1,14 @@
 //Componente de botao que podera ser reusado em diversas telas
 
 function Button(x, y, img, texto = ''){
+  var gameButtonW = 171;
+  var gameButtonH = gameButtonW;
+  var buttonType = ["menu", "option", "startGame"];
+  var gradIntervalo = loadImage('assets/menu/gradIntervalo.png');
+  var gradOuvido = loadImage('assets/menu/gradOuvido.png');
+  var gradRitmo = loadImage('assets/menu/gradRitmo.png');
+  var gradTimbre = loadImage('assets/menu/gradTimbre.png');
+
   //Atributos que serao usados para desenhar o botao
   this.x = x;
   this.y = y;
@@ -15,10 +23,9 @@ function Button(x, y, img, texto = ''){
   this.gradOuvido = loadImage('assets/menu/gradOuvido.png');
   this.gradRitmo = loadImage('assets/menu/gradRitmo.png');
   this.gradTimbre = loadImage('assets/menu/gradTimbre.png');
-  //var font = loadFont('assets/fonts/watchwordDot-Bold.otf');
 
   this.draw = function(){
-    if(this.width == 171 && this.height == 171){
+    if(this.width == 171 && this.height == 171) {
       if ((mouseX >= this.x) && (mouseX <= this.x + this.width) && (mouseY >= this.y) && (mouseY <= this.y + this.height)){
         switch(this.x){
           case 166:
@@ -54,7 +61,7 @@ function Button(x, y, img, texto = ''){
             this.tamanho2 = 171;
           }
         }
-    }else{
+    } else {
       this.tamanho = 171;
       this.tamanho2 = 171;
       this.opcd = 150;
@@ -128,3 +135,59 @@ function Button(x, y, img, texto = ''){
   }
 
 }
+
+// function GameButton(gameNumber) {
+//   switch(gameNumber) {
+//     case 1:
+//     this.image = loadImage('assets/menu/intervalosIcon.png');
+//     this.x = (width - 4*gameButtonW)/5 + gameButtonW/2;
+//     break;
+//     case 2:
+//     this.image = loadImage('assets/menu/treinarOuvidoIcon.png');
+//     this.x = 2*(width - 4*gameButtonW)/5 + gameButtonW + gameButtonW/2;
+//     break;
+//     case 3:
+//     this.image = loadImage('assets/menu/ritmoIcon.png');
+//     this.x = 3*(width - 4*gameButtonW)/5 + 2*gameButtonW + gameButtonW/2;
+//     break;
+//     case 4:
+//     this.image = loadImage('assets/menu/timbreIcon.png');
+//     this.x = 4*(width - 4*gameButtonW)/5 + 3*gameButtonW + gameButtonW/2;
+//     break;
+//   }
+//
+//   this.y = 351;
+//   this.width = this.image.width;
+//   this.height = this.image.height;
+// }
+//
+// function isHovering() {
+//   if ((mouseX >= this.x) && (mouseX <= this.x + this.width) && (mouseY >= this.y) && (mouseY <= this.y + this.height)){
+//     return true;
+//   }
+//   return false;
+// }
+//
+// function pulsate(btnType) {
+//   if (isHovering() && btnType == "menu") {
+//     switch(gameNumber) {
+//       case 1:
+//       fill(82,255,255, this.opcd);
+//       image(gradIntervalo, this.x+9, this.y+9);
+//     break;
+//     case 2:
+//       fill(255,82,200, this.opcd);
+//       image(gradOuvido, this.x+9, this.y+9);
+//     break;
+//     case 3:
+//       fill(255,206,82, this.opcd);
+//       image(gradRitmo, this.x+9, this.y+9);
+//     break;
+//     case 4:
+//       fill(177,255,82, this.opcd);
+//       image(gradTimbre, this.x+9, this.y+9);
+//     break;
+//     }
+//   }
+// }
+//

@@ -21,8 +21,8 @@ function Login(){
       //loginNome.draw();
       //loginSenha.draw();
       inputs();
-      inputSenha.show();
       inputEmail.show();
+      inputSenha.show();
       firstTime = false;
     }
 
@@ -64,17 +64,17 @@ function Login(){
   }
 
   var inputs = function(){
-    inputSenha = createInput();
-    inputSenha.position(loginSenha.x, loginSenha.y);
-    inputSenha.attribute("type", "text");
-    inputSenha.attribute("placeholder", loginSenha.texto);
-    inputSenha.hide();
-
     inputEmail = createInput();
     inputEmail.position(loginEmail.x, loginEmail.y);
     inputEmail.attribute("type", "text");
     inputEmail.attribute("placeholder", loginEmail.texto);
     inputEmail.hide();
+    
+    inputSenha = createInput();
+    inputSenha.position(loginSenha.x, loginSenha.y);
+    inputSenha.attribute("type", "text");
+    inputSenha.attribute("placeholder", loginSenha.texto);
+    inputSenha.hide();
   }
 
 

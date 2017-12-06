@@ -19,8 +19,8 @@ function Cadastrar(){
     if (firstTime){ //Gambiarra pra evitar que varios elementos HTML sejam desenhados
     	inputs();
     	inputNome.show();
-    	inputSenha.show();
     	inputEmail.show();
+      inputSenha.show();
       /*cadastrarNome.draw();
       cadastrarSenha.draw();
       cadastrarEmail.draw();*/
@@ -81,16 +81,17 @@ function Cadastrar(){
   	inputNome.attribute("placeholder", cadastrarNome.texto);
   	inputNome.hide();
 
+    inputEmail = createInput();
+  	inputEmail.position(cadastrarEmail.x, cadastrarEmail.y);
+  	inputEmail.attribute("type", "text");
+  	inputEmail.attribute("placeholder", cadastrarEmail.texto);
+  	inputEmail.hide();
+
   	inputSenha = createInput();
   	inputSenha.position(cadastrarSenha.x, cadastrarSenha.y);
   	inputSenha.attribute("type", "text");
   	inputSenha.attribute("placeholder", cadastrarSenha.texto);
   	inputSenha.hide();
 
-  	inputEmail = createInput();
-  	inputEmail.position(cadastrarEmail.x, cadastrarEmail.y);
-  	inputEmail.attribute("type", "text");
-  	inputEmail.attribute("placeholder", cadastrarEmail.texto);
-  	inputEmail.hide();
   }
 };
