@@ -10,3 +10,7 @@ input[type=text]{
 	color:#FFF;
 	padding-left:50px;
 }
+
+body {
+	background-color: #222;
+}
