@@ -1,7 +1,6 @@
 function Sobre(){
 
 	var logo = loadImage('assets/menu/logo_menu.png');
-	var texto = loadImage('assets/sobre/sobre.png');
 
 	var jogosButton = new Button(770, 19, btnJogos);
 	var perfilButton = new Button(921, 19, btnPerfil);
@@ -21,8 +20,15 @@ function Sobre(){
     sobreButton.draw();
 
     image(logo, 82, 14);
-    image(texto, 156, 176);
-    
+		textFont(boldFont);
+		textSize(42);
+		text("EQUIPE", 156, 200);
+		text("ORIENTADORES", 156, 440);
+		textSize(30);
+		textFont(regularFont);
+		text("Douglas Silva, Mateus Pereira, Paulo José, Rebecca Dantas, Thays Lunes", 156, 230, 915, 150);
+		text("José Aires, Raquel Freire, Glaudiney Mendonça, Georgia Cruz, Ricardo Brauner, Paula Marques", 156, 470, 915, 150);
+
     checkPress();
 
   };
