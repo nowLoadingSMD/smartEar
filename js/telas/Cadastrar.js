@@ -53,7 +53,7 @@ function Cadastrar(){
                           senha: inputSenha.value(),
                           email: inputEmail.value(),
                           pontos: {
-                            intervalo: [],
+                            intervalos: [],
                             treinarOuvido: [],
                             ritmo: [],
                             cantar: []

@@ -17,14 +17,15 @@ function RitmoResultado(){
     textAlign(CENTER);
     text('RESULTADO', width/2, 143);
 
+    textFont(regularFont);
+    textSize(32);
+
     if (w >= 3) {
       text('Parece que você não foi muito bem. Tente novamente.', width/2, 233);
     } else {
       text('Parece que você se saiu muito bem. Parabéns!', width/2, 233);
     }
 
-    textFont(regularFont);
-    textSize(32);
     text('Acertos', 548, 347);
     text('Erros', 548, 412);
 
