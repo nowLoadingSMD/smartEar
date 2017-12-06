@@ -9,6 +9,8 @@ function Perfil(){
 	var editarButton = new Button(111, 458, btnGradient, 'EDITAR');
 	var sairButton = new Button(111, 559, btnTransparent, 'SAIR');
 
+	var completed = false;
+
 	var badges = [];
 	badges['newbie'] = loadImage('assets/badges/newbie.png');
 	badges['explorer'] = loadImage('assets/badges/explorer.png');
@@ -120,30 +122,69 @@ function Perfil(){
 	}
 
 	function drawBadges() {
-		noFill();
-		strokeWeight(3);
-		stroke(255);
-		// OBS.: Deixar sempre o segundo parametro de ângulo como 270. O arco inicia no ângulo 270, no centro e acima, e
-		// termina no ângulo -90. 
-		arc(438+55, 222+55, 124, 124, radians(-70), radians(270)); //Newbie progress
-		arc(438+55, 378+55, 124, 124, radians(-70), radians(270)); //Explorer progress
-		arc(438+55, 534+55, 124, 124, radians(-70), radians(270)); //Expert progress
-		arc(859+55, 222+55, 124, 124, radians(-70), radians(270)); //Persistent progress
-		arc(859+55, 378+55, 124, 124, radians(-70), radians(270)); //Enthusiastic progress
-		arc(859+55, 534+55, 124, 124, radians(-70), radians(270)); //First progress
-
 		noStroke();
-		fill(82, 255, 255);
-		ellipse(438+55, 222+55, 110, 110); //badge Newbie
-		fill(255, 206, 82);
-		ellipse(438+55, 378+55, 110, 110); //badge Explorer
-		fill(255, 82, 200);
-		ellipse(438+55, 534+55, 110, 110); //badge Expert
-		fill(72, 114, 255);
-		ellipse(859+55, 222+55, 110, 110); //badge Persistent
-		fill(194, 96, 255);
-		ellipse(859+55, 378+55, 110, 110); //badge Enthusiastic
-		fill(82, 255, 122);
-		ellipse(859+55, 534+55, 110, 110); //badge First
+		if(completed) {
+			noFill();
+			strokeWeight(3);
+			stroke(255);
+			// OBS.: Deixar sempre o segundo parametro de ângulo como 270. O arco inicia no ângulo 270, no centro e acima, e
+			// termina no ângulo -90.
+			arc(438+55, 222+55, 124, 124, radians(-70), radians(270)); //Newbie progress
+			arc(438+55, 378+55, 124, 124, radians(-70), radians(270)); //Explorer progress
+			arc(438+55, 534+55, 124, 124, radians(-70), radians(270)); //Expert progress
+			arc(859+55, 222+55, 124, 124, radians(-70), radians(270)); //Persistent progress
+			arc(859+55, 378+55, 124, 124, radians(-70), radians(270)); //Enthusiastic progress
+			arc(859+55, 534+55, 124, 124, radians(-70), radians(270)); //First progress
+
+			fill(82, 255, 255);
+			ellipse(438+55, 222+55, 110, 110); //badge Newbie
+			image(badges['newbie'], 457, 240);
+			fill(255, 206, 82);
+			ellipse(438+55, 378+55, 110, 110); //badge Explorer
+			image(badges['explorer'], 463, 403);
+			fill(255, 82, 200);
+			ellipse(438+55, 534+55, 110, 110); //badge Expert
+			image(badges['expert'], 454, 558);
+			fill(72, 114, 255);
+			ellipse(859+55, 222+55, 110, 110); //badge Persistent
+			image(badges['persistent'], 877, 245);
+			fill(194, 96, 255);
+			ellipse(859+55, 378+55, 110, 110); //badge Enthusiastic
+			image(badges['enthusiastic'], 872, 395);
+			fill(82, 255, 122);
+			ellipse(859+55, 534+55, 110, 110); //badge First
+			image(badges['first'], 876, 555);
+		} else {
+			fill(193, 193, 193);
+			ellipse(438+55, 222+55, 110, 110); //badge Newbie
+			ellipse(438+55, 378+55, 110, 110); //badge Explorer
+			ellipse(438+55, 534+55, 110, 110); //badge Expert
+			ellipse(859+55, 222+55, 110, 110); //badge Persistent
+			ellipse(859+55, 378+55, 110, 110); //badge Enthusiastic
+			ellipse(859+55, 534+55, 110, 110); //badge First
+			fill(82, 255, 255);
+			ellipse(438+55, 222-7, 5, 5); //Newbie progress indicator
+			fill(255, 206, 82);
+			ellipse(438+55, 378-7, 5, 5); //Explorer progress indicator
+			fill(255, 82, 200);
+			ellipse(438+55, 534-7, 5, 5); //Expert progress indicator
+			fill(72, 114, 255);
+			ellipse(859+55, 222-7, 5, 5); //Persistent progress indicator
+			fill(194, 96, 255);
+			ellipse(859+55, 378-7, 5, 5); //Enthusiastic progress indicator
+			fill(82, 255, 122);
+			ellipse(859+55, 534-7, 5, 5); //First progress indicator
+			fill(255, 255, 255);
+			textSize(35);
+			textFont(regularFont);
+			textAlign(CENTER);
+			text("30%", 438+58, 222+65); //Newbie progress
+			text("0%", 438+58, 378+65); //Explorer progress
+			text("0%", 438+58, 534+65); //Expert progress
+			text("10%", 859+58, 222+65); //Persistent progress
+			text("0%", 859+58, 378+65); //Enthusiastic progress
+			text("0%", 859+58, 534+65); //First progress
+			textAlign(LEFT);
+		}
 	}
 }
