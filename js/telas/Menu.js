@@ -52,6 +52,13 @@ function Menu(){
 
     checkPress();
 
+    usuarios[idUsuario].badges.explorer = usuarios[idUsuario].badgesProgress.explorer.reduce(function(res, item){
+      return item && res;
+    }, true);;
+    usuarios[idUsuario].badges.expert = usuarios[idUsuario].badgesProgress.expert.reduce(function(res, item){
+      return item && res;
+    }, true);
+
   };
 
   var checkPress = function(){

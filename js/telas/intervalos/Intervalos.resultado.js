@@ -9,13 +9,15 @@ function IntervalosResultado(){
   var novamenteButton = new Button(327, 586, btnTransparent, 'NOVAMENTE');
   var menuButton = new Button(667, 586, btnGradient, 'MENU');
 
+  var l, r, w;
+
   this.draw = function(){
     clear();
     background(bgNoise);
 
-    var l = usuarios[idUsuario].pontos.intervalos.length;
-    var r = usuarios[idUsuario].pontos.intervalos[l-1].right;
-    var w = usuarios[idUsuario].pontos.intervalos[l-1].wrong;
+    l = usuarios[idUsuario].pontos.intervalos.length;
+    r = usuarios[idUsuario].pontos.intervalos[l-1].right;
+    w = usuarios[idUsuario].pontos.intervalos[l-1].wrong;
 
     fill(255);
     textFont(boldFont);
@@ -33,7 +35,7 @@ function IntervalosResultado(){
 
     text('Acertos', 548, 347);
     text('Erros', 548, 412);
-    
+
     fill(111, 193, 62);
     text(r, 777, 347);
     fill(255, 92, 92);
@@ -51,11 +53,47 @@ function IntervalosResultado(){
 
     if (buttonPressed(novamenteButton)){
       state.currentScreen = 'intervalos';
+      checkBadges();
     }
 
     if (buttonPressed(menuButton)){
       state.currentScreen = 'menu';
+      checkBadges();
     }
 
   };
+
+  var checkBadges = function(){
+
+    if (!usuarios[idUsuario].badgesProgress.explorer[0]) {
+      usuarios[idUsuario].badgesProgress.explorer[0] = true;
+
+    }
+
+    if (!usuarios[idUsuario].badgesProgress.expert[0] && (w == 0)) {
+      usuarios[idUsuario].badgesProgress.expert[0] = true;
+    }
+
+    if (!usuarios[idUsuario].badges.persistent) {
+      if(l > 1){
+        if (usuarios[idUsuario].pontos.intervalos[l-2].right < usuarios[idUsuario].pontos.intervalos[l-1].right){
+          usuarios[idUsuario].badges.persistent = true;
+        }
+      }
+    }
+
+    usuarios[idUsuario].badgesProgress.enthusiastic[0]++;
+
+    if(!usuarios[idUsuario].badges.enthusiastic && (usuarios[idUsuario].badgesProgress.enthusiastic[0] > 5)) {
+      usuarios[idUsuario].badges.enthusiastic = true;
+    }
+
+    if (!usuarios[idUsuario].badges.first && (w == 0)) {
+      usuarios[idUsuario].badges.first = true;
+    }
+
+    localStorage.vec = JSON.stringify(usuarios);
+
+  };
+
 }
