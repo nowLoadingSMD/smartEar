@@ -27,6 +27,11 @@ function IntervalosJogo(){
 
   var currentExercise = 0;
 
+  var points = {
+    right: 0,
+    wrong: 0
+  };
+
   var check = false;
 
   var pause = false;
@@ -160,10 +165,15 @@ function IntervalosJogo(){
 
     if (buttonPressed(continueButton)){
       check = false;
+
+      correct ? points.right++ : points.wrong++;
+
       currentExercise++;
       console.log(currentExercise);
 
-      if (currentExercise > 4) {
+      if (currentExercise > 2) {
+        usuarios[idUsuario].pontos.intervalos.push(points);
+        localStorage.vec = JSON.stringify(usuarios);
         state.currentScreen = 'intervalosResultado';
         firstDraw = true;
         currentExercise = 0;

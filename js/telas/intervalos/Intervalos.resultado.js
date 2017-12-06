@@ -12,18 +12,33 @@ function IntervalosResultado(){
   this.draw = function(){
     clear();
     background(bgNoise);
-    image(resultado, 512, 143);
-    image(comment, 252, 233);
-    image(acertos, 494, 347);
-    image(erros, 494, 412);
-    image(total, 494, 477);
 
+    var l = usuarios[idUsuario].pontos.intervalos.length;
+    var r = usuarios[idUsuario].pontos.intervalos[l-1].right;
+    var w = usuarios[idUsuario].pontos.intervalos[l-1].wrong;
+
+    fill(255);
+    textFont(boldFont);
+    textSize(42);
+    textAlign(CENTER);
+    text('RESULTADO', width/2, 143);
+
+    textFont(regularFont);
     textSize(32);
+    if (w >= 3) {
+      text('Parece que você não foi muito bem. Tente novamente.', width/2, 233);
+    } else {
+      text('Parece que você se saiu muito bem. Parabéns!', width/2, 233);
+    }
+
+    text('Acertos', 548, 347);
+    text('Erros', 548, 412);
+    
     fill(111, 193, 62);
-    text('2', 768, 347);
-    text('2', 768, 477);
+    text(r, 777, 347);
     fill(255, 92, 92);
-    text('3', 768, 412);
+    text(w, 777, 412);
+
 
     novamenteButton.draw();
     menuButton.draw();
