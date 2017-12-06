@@ -6,8 +6,8 @@ function Ritmo(){
   var iconNota = loadImage("assets/icons/icon_nota.png");
 
   var continuarButton = new Button(498, 587, btnGradient, 'CONTINUAR');
-
-  var myText = "Clique no botão      no momento exato em que o metrônomo estiver no tempo correspondente.";
+  var explicacao = loadImage('assets/ritmo/explicacao.png');
+  var myText = "Você deve começar apertando o play para iniciar o metrônomo. Depois clique no botão das notas no momento exato em que a barra verde do som do metrônomo estiver passando por elas.";
 
   this.draw = function(){
     clear();
@@ -16,13 +16,14 @@ function Ritmo(){
     backButton.draw();
     // image(ritmo, 161, 143);
     // image(comment, 161, 233);
-    image(iconNota, 415, 233);
+    //image(iconNota, 415, 233);
     textSize(40);
     textFont(boldFont);
-    text("RITMO", width/7, height/4);
+    text("RITMO", width/7, 150);
     textFont(regularFont);
     textSize(30);
-    drawText(myText);
+    drawText(myText, width/7, 180);
+    image(explicacao, 334, 340);
 
     continuarButton.draw();
 
@@ -42,8 +43,8 @@ function Ritmo(){
 
   };
 
-  var drawText = function(myText) {
-    text(myText, width/7, height/3, 915, 150);
+  var drawText = function(myText, x, y) {
+    text(myText, x, y, 915, 150);
   };
 
 }

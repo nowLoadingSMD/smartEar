@@ -19,6 +19,7 @@ function Button(x, y, img, texto = ''){
   this.tamanho = 171;
   this.tamanho2 = 171;
   this.opcd = 150;
+  this.opcd2 = 150;
   this.gradIntervalo = loadImage('assets/menu/gradIntervalo.png');
   this.gradOuvido = loadImage('assets/menu/gradOuvido.png');
   this.gradRitmo = loadImage('assets/menu/gradRitmo.png');
@@ -30,42 +31,61 @@ function Button(x, y, img, texto = ''){
         switch(this.x){
           case 166:
             fill(82,255,255, this.opcd);
+            ellipse(this.x+85.5, this.y+85.5, this.tamanho, this.tamanho);
+            fill(82,255,255, this.opcd2);
+            ellipse(this.x+85.5, this.y+85.5, this.tamanho2, this.tamanho2);
             image(this.gradIntervalo, this.x+9, this.y+9);
           break;
           case 425:
             fill(255,82,200, this.opcd);
+            ellipse(this.x+85.5, this.y+85.5, this.tamanho, this.tamanho);
+            fill(255,82,200, this.opcd2);
+            ellipse(this.x+85.5, this.y+85.5, this.tamanho2, this.tamanho2);
             image(this.gradOuvido, this.x+9, this.y+9);
           break;
           case 684:
             fill(255,206,82, this.opcd);
+            ellipse(this.x+85.5, this.y+85.5, this.tamanho, this.tamanho);
+            fill(255,206,82, this.opcd2);
+            ellipse(this.x+85.5, this.y+85.5, this.tamanho2, this.tamanho2);
             image(this.gradRitmo, this.x+9, this.y+9);
           break;
           case 943:
             fill(177,255,82, this.opcd);
+            ellipse(this.x+85.5, this.y+85.5, this.tamanho, this.tamanho);
+            fill(177,255,82, this.opcd2);
+            ellipse(this.x+85.5, this.y+85.5, this.tamanho2, this.tamanho2);
             image(this.gradTimbre, this.x+9, this.y+9);
           break;
         }
-        ellipse(this.x+85.5, this.y+85.5, this.tamanho, this.tamanho);
-        ellipse(this.x+85.5, this.y+85.5, this.tamanho2, this.tamanho2);
-        if(this.tamanho<220){
-          this.tamanho++;
+        if(this.opcd == 150 && this.opcd2 == 150)
+          this.tamanho+=1;
+        if(this.opcd<150){
+          this.tamanho2+=1;
         }
-        if(this.tamanho == 220 && this.tamanho2<190){
-          this.tamanho2+=0.8;
-        }
-        if(this.tamanho2 > 190){
-          this.opcd-=4;
-          if(this.opcd<0){
-            this.opcd = 150;
+        if(this.opcd2<150)
+          this.tamanho+=1;
+        if(this.tamanho > 220){
+          if(this.opcd>=0)
+            this.opcd-=2;
+          if(this.opcd<0 && this.tamanho2>220){
             this.tamanho = 171;
+            this.opcd = 150;
+          }
+        }
+        if(this.tamanho2 >220){
+          if(this.opcd2>=0)
+            this.opcd2-=2;
+          if(this.opcd2<0 && this.tamanho>220){
             this.tamanho2 = 171;
+            this.opcd2 = 150;
           }
         }
     } else {
       this.tamanho = 171;
       this.tamanho2 = 171;
       this.opcd = 150;
-
+      this.opcd2 = 150;
     }
   }
   if(this.width == 59 && this.height == 58){
