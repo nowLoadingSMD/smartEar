@@ -1,5 +1,7 @@
 /* Arquivo principal que será responsável por toda
 renderização do app */
+
+var cnv;
 var telas = [];
 var x;
 var opacity;
@@ -39,7 +41,11 @@ function preload() {
 
 function setup(){
 
-  createCanvas(1280, 720);
+  cnv = createCanvas(1280, 720);
+
+	var x = (windowWidth - width) / 2;
+  var y = (windowHeight - height) / 2;
+  cnv.position(x, y);
 
 	//Criar um array com as telas que serao usadas no app
 	telas['treinarOuvido'] = new TreinarOuvido();
@@ -91,6 +97,15 @@ function draw(){
 
 }
 
+function centerCanvas() {
+  var x = (windowWidth - width) / 2;
+  var y = (windowHeight - height) / 2;
+  cnv.position(x, y);
+}
+
+function windowResized() {
+  centerCanvas();
+}
 
 function mousePressed(){
 	var date = new Date();
