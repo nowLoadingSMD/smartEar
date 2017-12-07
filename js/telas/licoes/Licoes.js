@@ -11,6 +11,7 @@ function Licoes(){
   var ritmoButton = new Button(665, 357, btnGradient, 'RITMO');
   var intervalosButton = new Button(329, 495, btnGradient, 'INTERVALOS');
   var cantarButton = new Button(665, 499, btnGradient, 'TIMBRE');
+  var tutorialButton = new Button(1155, 574, btnTutorial);
 
   this.draw = function(){
     clear();
@@ -36,14 +37,17 @@ function Licoes(){
     textSize(40);
     textFont(boldFont);
     text("LIÇÕES BÁSICAS", width/7, 170);
-    textFont(regularFont);
-    textSize(32);
-    text("Para melhor entendimento da teoria musical, leis as aulas abaixo e em seguida se divirta com os jogos.", width/7, 210, 950, 150);
-
     notasButton.draw();
     ritmoButton.draw();
     intervalosButton.draw();
     cantarButton.draw();
+    tutorialButton.draw();
+    textSize(18);
+    text("TUTORIAL", 1149, 668);
+
+    textFont(regularFont);
+    textSize(32);
+    text("Para melhor entendimento da teoria musical, leis as aulas abaixo e em seguida se divirta com os jogos.", width/7, 210, 950, 150);
 
     checkPress();
 
@@ -77,6 +81,10 @@ function Licoes(){
 
     if (buttonPressed(perfilButton)){
       state.currentScreen = 'perfil';
+    }
+
+    if (buttonPressed(tutorialButton)){
+      state.currentScreen = 'tutorial';
     }
 
   };
