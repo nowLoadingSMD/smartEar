@@ -91,6 +91,17 @@ var btnSobrePress = {
 	height: 36
 };
 
+var btnLicoesMenu = {
+	url: 'assets/menu/licoesButton.png',
+	width: 125,
+	height: 36
+};
+
+var btnLicoesPress = {
+	url: 'assets/licoes/licoes_press.png',
+	width: 125,
+	height: 36
+};
 
 var treinarOuvidIcon = {
       url: 'assets/menu/treinarOuvidoIcon.png',

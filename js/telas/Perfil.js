@@ -2,9 +2,10 @@ function Perfil(){
 	var logo = loadImage('assets/menu/logo_menu.png');
 	var foto = loadImage('assets/perfil/perfil.png');
 
-	var jogosButton = new Button(770, 19, btnJogos);
-	var perfilButton = new Button(921, 19, btnPerfilPress);
-	var sobreButton = new Button(1072, 19, btnSobre);
+	var jogosButton = new Button(613, 19, btnJogos);
+  var licoesButton = new Button(764, 19, btnLicoesMenu);
+  var perfilButton = new Button(921, 19, btnPerfilPress);
+  var sobreButton = new Button(1072, 19, btnSobre);
 
 	var editarButton = new Button(111, 458, btnGradient, 'EDITAR');
 	var sairButton = new Button(111, 559, btnTransparent, 'SAIR');
@@ -30,6 +31,7 @@ function Perfil(){
 
 	    fill(255);
 	    jogosButton.draw();
+			licoesButton.draw();
 	    perfilButton.draw();
 	    sobreButton.draw();
 
@@ -63,6 +65,10 @@ function Perfil(){
     if (buttonPressed(jogosButton)){
       state.currentScreen = 'menu';
     }
+
+		if (buttonPressed(licoesButton)){
+			state.currentScreen = 'licoes';
+		}
 
     if (buttonPressed(sobreButton)){
       state.currentScreen = 'sobre';
