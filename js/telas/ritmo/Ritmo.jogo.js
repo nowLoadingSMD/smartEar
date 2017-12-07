@@ -23,6 +23,7 @@ function RitmoJogo(){
   };
 
   var mistakes = 0;
+  var right = 0;
 
   var exercise = new RitmoExercise();
   var exerciseList = [];
@@ -72,6 +73,7 @@ function RitmoJogo(){
           tempo: d.getTime(),
           imagem: loadImage('assets/ritmo/jogo/feedbackAcerto.png')
         };
+        right++;
       } else {
         click = {
           tempo: d.getTime(),
@@ -201,7 +203,7 @@ function RitmoJogo(){
     fill(0, 0, 0, 100);
     rect(0,0,1280, 720);
 
-    if (mistakes >=1 ) {
+    if (mistakes >=1 || right == 0 ) {
       fill(255, 92, 92);
       textFont(boldFont);
       textAlign(CENTER);
@@ -232,7 +234,7 @@ function RitmoJogo(){
     if (buttonPressed(continuarButton)) {
       currentExercise++;
 
-      if (mistakes >= 1) {
+      if (mistakes >= 1 || right == 0) {
         points.wrong++;
       } else {
         points.right++;
