@@ -58,7 +58,12 @@ function TreinarOuvidoJogo(){
     textSize(32);
     textFont(regularFont);
     text("Que nota é esta?", width/7, 300);
-    text("Som de referência: Lá", width/7, 430);
+    text("Som de referência:", width/7, 430);
+    textSize(22);
+    text("Nota", width/7, 460);
+    fill(111, 193, 62);
+    text("Lá", width/7+60, 460);
+    fill(255, 255, 255);
 
     soundButton.draw();
     songButton.draw();

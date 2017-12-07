@@ -2,7 +2,7 @@ function Login(){
 
   var firstTime = true;
 
-  var esqueceuSenha = loadImage('assets/login/loginEsqueceuSenha.png');
+  // var esqueceuSenha = loadImage('assets/login/loginEsqueceuSenha.png');
 
   var backButton = new Button(38, 38, btnBack);
   var continuarButton = new Button(856, 328, btnGradient, 'CONTINUAR');
@@ -27,7 +27,7 @@ function Login(){
     }
 
     continuarButton.draw();
-    image(esqueceuSenha, 892, 427, 208, 21);
+    // image(esqueceuSenha, 892, 427, 208, 21);
 
     checkPress();
   };
@@ -69,7 +69,7 @@ function Login(){
     inputEmail.attribute("type", "text");
     inputEmail.attribute("placeholder", loginEmail.texto);
     inputEmail.hide();
-    
+
     inputSenha = createInput();
     inputSenha.position(loginSenha.x, loginSenha.y);
     inputSenha.attribute("type", "text");

@@ -36,12 +36,14 @@ function Sobre(){
 
 		textFont(boldFont);
 		textSize(32);
-		text("Smart Ear é um projeto desenvolvido pela equipe", 156, 200);
-		image(nowloading, 156, 244);
-		text("sob a orientação dos professores", 156, 445);
+		text("Smart Ear é um projeto desenvolvido pela equipe", 156, 180);
+		image(nowloading, 156, 224);
+		text("sob a orientação dos professores", 156, 490);
 		textFont(regularFont);
 		// text("Douglas Silva, Mateus Pereira, Paulo José, Rebecca Dantas, Thays Lunes", 156, 230, 915, 150);
-		text("José Aires, Raquel Freire, Glaudiney Mendonça, Georgia Cruz, Ricardo Brauner e Paula Marques.", 156, 475, 915, 150);
+		textSize(25);
+		text("José Aires, Raquel Freire, Glaudiney Mendonça, Georgia Cruz, Ricardo Brauner e Paula Marques.", 156, 520, 915, 150);
+		text("composta pelos membros Douglas Silva, Mateus Pereira, Paulo José, Rebecca Dantas e Thays Lunes", 156, 370, 915, 150);
 		image(ufc, 1019, 573);
 		image(smd, 1103, 576);
 

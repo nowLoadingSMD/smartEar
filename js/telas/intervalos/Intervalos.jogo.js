@@ -46,7 +46,6 @@ function IntervalosJogo(){
 
   var backButton = new Button(50, 50, btnBack);
   var continueButton = new Button(width/2-286/2, height-height/6, btnGradient, 'CONTINUAR');
-  var voceAcertou = loadImage('assets/intervalos/voceAcertou.png');
 
   this.draw = function(){
 
@@ -70,7 +69,6 @@ function IntervalosJogo(){
     fill(255);
     textAlign(CENTER);
     text("Ordene as notas em ordem crescente", width/2, height-height/3);
-    stroke(240);
     drawBoard(2, 35, 175);
 
     if(pause)
@@ -103,8 +101,10 @@ function IntervalosJogo(){
   }; // End of this.draw();
 
   var drawBoard = function(lineWeight, spacing, ellipseSize) {
+    stroke(240);
     drawStrings(lineWeight, spacing);
     drawEllipses(ellipseSize, spacing*2);
+    noStroke();
   }
 
   var drawStrings = function(weight, spacing) {
@@ -147,7 +147,7 @@ function IntervalosJogo(){
       textFont(regularFont);
       textSize(32);
       textAlign(CENTER);
-      text('Parabéns! As notas estão ordenadas corretamente.', width/2, 514);
+      text('Parabéns! As notas estão ordenadas corretamente.', width/2, height/4);
     } else {
       noStroke();
       fill(255, 92, 92);
@@ -160,7 +160,10 @@ function IntervalosJogo(){
       textFont(regularFont);
       textAlign(CENTER);
       textSize(32);
-      text('Parece que você ordenou as notas de forma errada.', width/2, 514);
+      text('Parece que você ordenou as notas de forma errada.', width/2, height/4);
+      text('O intervalo correto era', width/2, height/2-35);
+      textSize(36);
+      text(exerciseList[currentExercise].notesGap[0]+'  -  '+exerciseList[currentExercise].notesGap[1]+'  -  '+exerciseList[currentExercise].notesGap[2], width/2, height/2+20);
     }
 
     continueButton.draw();
