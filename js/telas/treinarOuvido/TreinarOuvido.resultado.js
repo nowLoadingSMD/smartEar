@@ -38,8 +38,10 @@ function TreinarOuvidoResultado(){
     fill(255, 92, 92);
     text(w, 777, 412);
 
+    textFont(boldFont);
     novamenteButton.draw();
     menuButton.draw();
+    textFont(regularFont);
 
     checkPress();
 

@@ -30,7 +30,9 @@ function TreinarOuvido(){
     // text("Em seguida clique em uma das notas ao lado que pareça ser", width/7, height/3+80);
     // text("a opção correta.", width/7, height/3+120);
 
+    textFont(boldFont);
     continuarButton.draw();
+    textFont(regularFont);
 
     checkPress();
 

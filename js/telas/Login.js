@@ -26,7 +26,9 @@ function Login(){
       firstTime = false;
     }
 
+    textFont(boldFont);
     continuarButton.draw();
+    textFont(regularFont);
     // image(esqueceuSenha, 892, 427, 208, 21);
 
     checkPress();

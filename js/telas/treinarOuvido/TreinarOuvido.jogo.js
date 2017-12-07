@@ -68,9 +68,11 @@ function TreinarOuvidoJogo(){
     soundButton.draw();
     songButton.draw();
 
+    textFont(boldFont);
     opButton1.draw();
     opButton2.draw();
     opButton3.draw();
+    textFont(regularFont);
 
     checkPress();
 
@@ -172,8 +174,6 @@ function TreinarOuvidoJogo(){
       fill(111, 193, 62);
       text(right, width/2+215, 155);
 
-      continuarButton.draw();
-
     } else {
       background(0, 0, 0, 230);
       fill(255, 92, 92);
@@ -188,9 +188,11 @@ function TreinarOuvidoJogo(){
       text("A nota correta era ", width/2-20, 154);
       fill(255, 92, 92);
       text(right, width/2+155, 155);
-
-      continuarButton.draw();
     }
+
+    textFont(boldFont);
+    continuarButton.draw();
+    textFont(regularFont);
 
     textAlign(LEFT);
 

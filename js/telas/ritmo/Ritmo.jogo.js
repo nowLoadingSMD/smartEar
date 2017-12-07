@@ -214,7 +214,7 @@ function RitmoJogo(){
       textFont(regularFont);
       textAlign(CENTER);
       textSize(32);
-      text('Parece que você está fora do ritmo', width/2, 514);
+      text('Parece que você está fora do ritmo.', width/2, height/4);
     } else {
       fill(111, 193, 62);
       textFont(boldFont);
@@ -226,10 +226,12 @@ function RitmoJogo(){
       textFont(regularFont);
       textSize(32);
       textAlign(CENTER);
-      text('Parabéns! O seu ritmo está correto.', width/2, 514);
+      text('Parabéns! O seu ritmo está correto.', width/2, height/5);
     }
 
+    textFont(boldFont);
     continuarButton.draw();
+    textFont(regularFont);
 
     if (buttonPressed(continuarButton)) {
       currentExercise++;

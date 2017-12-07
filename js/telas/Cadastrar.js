@@ -26,7 +26,9 @@ function Cadastrar(){
       cadastrarEmail.draw();*/
       firstTime = false;
     }
+    textFont(boldFont);
     continuarButton.draw();
+    textFont(regularFont);
 
     checkPress();
 

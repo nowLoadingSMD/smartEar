@@ -168,7 +168,9 @@ function IntervalosJogo(){
       textFont(regularFont);
     }
 
+    textFont(boldFont);
     continueButton.draw();
+    textFont(regularFont);
 
     if (buttonPressed(continueButton)){
       check = false;
