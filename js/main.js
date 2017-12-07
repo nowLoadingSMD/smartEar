@@ -87,6 +87,8 @@ function setup(){
 	telas['tutorial'] = new Tutorial();
 	telas['licaoIntervalos'] = new LicaoIntervalos();
 	telas['licaoTimbre'] = new LicaoTimbre();
+	telas['licaoNotas'] = new LicaoNotas();
+	telas['licaoRitmo'] = new LicaoRitmo();
 
 	x = 0;
 	opacity = 300;

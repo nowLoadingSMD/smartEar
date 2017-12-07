@@ -128,7 +128,7 @@ function Tutorial(){
     }
     if(buttonPressed(licoesButton)){
       telaAtual=0;
-      //state.currentScreen = '';     Aqui a tela de lições
+      state.currentScreen = 'licoes';
 			usuarios[idUsuario].badges.newbie = true;
     }
 

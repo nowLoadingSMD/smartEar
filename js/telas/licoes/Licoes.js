@@ -52,11 +52,11 @@ function Licoes(){
   var checkPress = function(){
 
     if (buttonPressed(notasButton)){
-      state.currentScreen = 'treinarOuvido';
+      state.currentScreen = 'licaoNotas';
     }
 
     if (buttonPressed(ritmoButton)){
-      state.currentScreen = 'intervalos';
+      state.currentScreen = 'licaoRitmo';
     }
 
     if (buttonPressed(intervalosButton)){
