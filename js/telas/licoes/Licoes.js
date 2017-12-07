@@ -57,11 +57,11 @@ function Licoes(){
     }
 
     if (buttonPressed(intervalosButton)){
-      state.currentScreen = 'cantar';
+      state.currentScreen = 'licaoIntervalos';
     }
 
     if (buttonPressed(cantarButton)){
-      state.currentScreen = 'ritmo';
+      state.currentScreen = 'licaoTimbre';
     }
 
     if (buttonPressed(jogosButton)){
