@@ -59,7 +59,7 @@ function CantarJogo(){
     textSize(32);
     text("Reproduza o som da nota ", width/7, height/5);
     fill(111, 193, 62);
-    text("Si", width/7+380, height/5);
+    text("Si", width/7+390, height/5);
     image(onda, 0, 260);
 
     textSize(32);

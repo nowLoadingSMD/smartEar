@@ -162,15 +162,15 @@ function TreinarOuvidoJogo(){
       textAlign(CENTER);
       textFont(boldFont);
       textSize(42);
-      text("VOCÊ ACERTOU!", width/2, 90);
+      text("VOCÊ ACERTOU!", width/2-20, 90);
 
       textSize(32);
       textFont(regularFont);
       textAlign(CENTER);
       fill(255);
-      text("Parabéns! A nota correta era ", width/2, 154);
+      text("Parabéns! A nota correta era ", width/2-40, 154);
       fill(111, 193, 62);
-      text(right, width/2+240, 155);
+      text(right, width/2+215, 155);
 
       continuarButton.draw();
 
@@ -185,9 +185,9 @@ function TreinarOuvidoJogo(){
       fill(255);
       textSize(32);
       textFont(regularFont);
-      text("A nota correta era ", width/2, 154);
+      text("A nota correta era ", width/2-20, 154);
       fill(255, 92, 92);
-      text(right, width/2+165, 155);
+      text(right, width/2+155, 155);
 
       continuarButton.draw();
     }

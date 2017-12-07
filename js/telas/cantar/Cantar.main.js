@@ -22,7 +22,10 @@ function Cantar(){
     textSize(30);
     drawText(myText, width/7, 180);
     image(explicacao, 600, 290);
-    drawText(myText2, width/7, 410);
+    drawText(myText2, width/7, 400);
+    textSize(20);
+    fill(255, 92, 92);
+    text("Este exercício ainda está em desenvolvimento. Mas, por enquanto, você pode testá-lo com um oscilador de frequência para P5.js.", width/7, 500, 920, 80);
     continuarButton.draw();
 
     checkPress();

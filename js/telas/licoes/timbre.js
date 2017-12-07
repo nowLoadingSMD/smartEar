@@ -5,8 +5,8 @@ function LicaoTimbre(){
   var backButton = new Button(40, 40, btnBack);
 
   var myText = "O timbre é o formato característico de uma onda sonora de acordo com o material que a produziu. É o timbre que faz com que uma nota Ré tocada em uma flauta seja diferente da mesma nota tocada em um violão.";
-  var myText2 = "Cada som que você escuta é uma onda sonora. Pelo fato dos sons terem suas ondas com formato diferente, se torna possível diferenciar uns dos outros. É isso que permite que você ouça dois sons na mesma nota musical e ainda assim consiga diferencia-los.";
-	
+  var myText2 = "Cada som que você escuta é uma onda sonora. Pelo fato dos sons terem suas ondas com formato diferente, se torna possível diferenciar uns dos outros. É isso que permite que você ouça dois sons na mesma nota musical e ainda assim consiga diferenciá-los.";
+
   this.draw = function(){
     clear();
     background(bgNoise);
@@ -34,7 +34,7 @@ function LicaoTimbre(){
     }
   };
   var drawText = function(myText, x, y) {
-    text(myText, x, y, 915, 150);
+    text(myText, x, y, 940, 150);
   };
 
 }

@@ -2,8 +2,8 @@ function LicaoRitmo(){
 
   var backButton = new Button(40, 40, btnBack);
 
-  var myText = "Ritmo pode ser descrito como um movimento coordenado, uma repetição de intervalos musicais regulares ou irregulares, fortes ou fracos, longos ou breves, presentes na composição musical.\n \n Pode ser ainda definido como a marcação do tempo de uma música. E para ajudar nessa marcação, existe o parelho chamado Metrônomo. Um metrônomo marca o tempo dentro de um compasso, e um compasso nada mais é do que a forma de dividir grupos de sons dentro de uma composição.\n \n Ou seja, o metrônomo é responsável por marcar a duração de cada som dentro de uma música.";
-	
+  var myText = "Ritmo pode ser descrito como um movimento coordenado, uma repetição de intervalos musicais regulares ou irregulares, fortes ou fracos, longos ou breves, presentes na composição musical.\n \nPode ser ainda definido como a marcação do tempo de uma música. E para ajudar nessa marcação, existe o aparelho chamado Metrônomo. Um metrônomo marca o tempo dentro de um compasso, e um compasso nada mais é do que a forma de dividir grupos de sons dentro de uma composição.\n \nOu seja, o metrônomo é responsável por marcar a duração de cada som dentro de uma música.";
+
   this.draw = function(){
     clear();
     background(bgNoise);

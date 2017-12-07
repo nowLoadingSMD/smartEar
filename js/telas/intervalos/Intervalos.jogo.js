@@ -147,7 +147,7 @@ function IntervalosJogo(){
       textFont(regularFont);
       textSize(32);
       textAlign(CENTER);
-      text('Parabéns! As notas estão ordenadas corretamente.', width/2, height/4);
+      text('Parabéns! As notas foram ordenadas corretamente.', width/2, height/4);
     } else {
       noStroke();
       fill(255, 92, 92);
@@ -163,7 +163,9 @@ function IntervalosJogo(){
       text('Parece que você ordenou as notas de forma errada.', width/2, height/4);
       text('O intervalo correto era', width/2, height/2-35);
       textSize(36);
+      textFont(boldFont);
       text(exerciseList[currentExercise].notesGap[0]+'  -  '+exerciseList[currentExercise].notesGap[1]+'  -  '+exerciseList[currentExercise].notesGap[2], width/2, height/2+20);
+      textFont(regularFont);
     }
 
     continueButton.draw();
