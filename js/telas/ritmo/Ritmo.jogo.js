@@ -46,7 +46,7 @@ function RitmoJogo(){
 
   var line = loadImage('assets/ritmo/jogo/line.png');
   var timeLine = new TimeLine(265, 283, 750, 116, notes);
-  var progessBar = new ProgessBar(265, 450, 750, 15);
+  var progessBar = new ProgessBar(265, 450, 750, 5);
 
   this.draw = function(){
 
@@ -409,11 +409,18 @@ function ProgessBar(x, y, w, h){
   this.w = w;
   this.h = h;
   this.progress = 0;
+  this.line = loadImage('assets/ritmo/jogo/progressBarLine.png');
 
   this.draw = function(){
     fill(240);
     rect(this.x, this.y, this.w, this.h);
     fill(0, 255, 0);
     rect(this.x, this.y, this.progress * this.w, this.h);
+
+
+    for(var i = 0; i <= 3; i++){
+      image(this.line, this.x + (this.w/3 * i), this.y - 15);
+    }
+
   };
 }
