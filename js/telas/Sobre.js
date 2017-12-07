@@ -1,6 +1,6 @@
 function Sobre(){
 
-	var logo = loadImage('assets/menu/logo_menu.png');
+	var logo = loadImage('assets/telaInicial/logo.png');
 	var nowloading = loadImage('assets/sobre/nowloadinglogo.png');
 	var ufc = loadImage('assets/sobre/ufclogo.png');
 	var smd = loadImage('assets/sobre/smdlogo.png');
@@ -28,7 +28,12 @@ function Sobre(){
 		smd.resize(117, 90);
 		nowloading.resize(492, 127);
 
+		logo.resize(46, 0);
     image(logo, 82, 14);
+		textFont(logoFont);
+		textSize(30);
+		text("Smart Ear", 145, 50);
+
 		textFont(boldFont);
 		textSize(32);
 		text("Smart Ear é um projeto desenvolvido pela equipe", 156, 200);

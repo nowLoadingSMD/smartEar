@@ -46,7 +46,7 @@ function Tutorial(){
 				if (buttonPressed(tourButton)){
 						telaAtual = 1;
 				}
-				
+
       break;
       case 1:
         continuarButton.draw();
@@ -121,6 +121,7 @@ function Tutorial(){
     if (buttonPressed(contButton)){
       telaAtual=0;
       state.currentScreen = 'menu';
+			usuarios[idUsuario].badges.newbie = true;
     }
     if (buttonPressed(refazerButton)){
       telaAtual = 1;
@@ -128,6 +129,7 @@ function Tutorial(){
     if(buttonPressed(licoesButton)){
       telaAtual=0;
       //state.currentScreen = '';     Aqui a tela de lições
+			usuarios[idUsuario].badges.newbie = true;
     }
 
   };

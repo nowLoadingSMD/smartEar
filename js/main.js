@@ -10,6 +10,12 @@ var notification = [];
 var notificationOpacity = 0;
 var notificationFadeOut = true;
 var framesShowingNotification = 0;
+var newbieImg;
+var expertImg;
+var explorerImg;
+var enthusiasticImg;
+var persistentImg;
+var firstImg;
 
 var state;
 var sound;
@@ -40,7 +46,12 @@ function preload() {
 	boldFont = loadFont('assets/fonts/Watchword-Bold.otf');
 	logoFont = loadFont('assets/fonts/Rounded_Elegance.ttf');
 
-	//exercicios = new Exercicios();
+	newbieImg = loadImage('assets/badges/newbie.png');
+	expertImg = loadImage('assets/badges/expert.png');
+	explorerImg = loadImage('assets/badges/explorer.png');
+	enthusiasticImg = loadImage('assets/badges/enthusiastic.png');
+	persistentImg = loadImage('assets/badges/persistent.png');
+	firstImg = loadImage('assets/badges/first.png');
 
 }
 
@@ -110,7 +121,7 @@ function draw(){
 				framesShowingNotification = 0;
 				notification.pop();
 			}
-			
+
 		}
 
 		fill(0, 0, 0, opacity);
@@ -185,69 +196,63 @@ var checkMouseReleased = function(){
 
 var drawBadgeNotification = function(type, posX, posY){
 
-	fill(57, 57, 57);
-	rect(968, 33, 300, 128, 20);
+	var currentBadge = "";
 
-	fill(255);
-	textFont(regularFont);
-	textSize(16);
-	textAlign(LEFT);
-	text('Parabéns!', posX + 120, posY + 26);
-	text('Você desbloqueaou', posX + 120, posY + 42);
-	text('a conquista', posX + 120, posY + 58);
+		fill(57, 57, 57);
+		rect(968, 33, 300, 128, 58);
 
-	switch (type) {
-		case 'newbie':
-			var img = loadImage('assets/badges/newbie.png');
-			image(img, posX + 20, posY + 19);
-			textFont(regularFont);
-			textSize(16);
-			textAlign(LEFT);
-			text('NOVATO(A)', posX + 120, posY + 74);
-			break;
-		case 'explorer':
-			var img = loadImage('assets/badges/explorer.png');
-			image(img, posX + 20, posY + 19);
-			textFont(regularFont);
-			textSize(16);
-			textAlign(LEFT);
-			text('EXPLORADOR(A)', posX + 120, posY + 74);
-			break;
-		case 'expert':
-			var img = loadImage('assets/badges/expert.png');
-			image(img, posX + 20, posY + 19);
-			textFont(regularFont);
-			textSize(16);
-			textAlign(LEFT);
-			text('CRAQUE', posX + 120, posY + 74);
-			break;
-		case 'persistent':
-			var i = loadImage('assets/badges/persistent.png');
-			image(i, posX + 20, posY + 19);
-			textFont(regularFont);
-			textSize(16);
-			textAlign(LEFT);
-			text('PERSISTENTE', posX + 120, posY + 74);
-			break;
-		case 'enthusiastic':
-			var img = loadImage('assets/badges/enthusiastic.png');
-			image(img, posX + 20, posY + 19);
-			textFont(regularFont);
-			textSize(16);
-			textAlign(LEFT);
-			text('EMPOLGADO(A)', posX + 120, posY + 74);
-			break;
-		case 'first':
-			var img = loadImage('assets/badges/first.png');
-			image(img, posX + 20, posY + 19);
-			textFont(regularFont);
-			textSize(16);
-			textAlign(LEFT);
-			text('DE PRIMEIRA', posX + 120, posY + 74);
-			break;
-		default:
-			console.log('AAAAAA');
-			break;
-	}
+		switch (type) {
+			case 'newbie':
+				currentBadge = "NOVATO(A)";
+				fill(82, 255, 255);
+				ellipse(posX + 20+45, posY + 20+45, 90, 90);
+				newbieImg.resize(70, 0);
+				image(newbieImg, posX + 31, posY + 28);
+				break;
+			case 'explorer':
+				currentBadge = "EXPLORADOR(A)";
+				fill(255, 206, 82);
+				ellipse(posX + 20+45, posY + 20+45, 90, 90);
+				explorerImg.resize(70, 0);
+				image(explorerImg, posX + 31, posY + 28);
+				break;
+			case 'expert':
+				currentBadge = "CRAQUE";
+				fill(255, 82, 200);
+				ellipse(posX + 20+45, posY + 20+45, 90, 90);
+				expertImg.resize(70, 0);
+				image(expertImg, posX + 31, posY + 28);
+				break;
+			case 'persistent':
+				currentBadge = "PERSISTENTE";
+				fill(72, 114, 255);
+				ellipse(posX + 20+45, posY + 20+45, 90, 90);
+				persistentImg.resize(70, 0);
+				image(persistentImg, posX + 31, posY + 28);
+				break;
+			case 'enthusiastic':
+				currentBadge = "EMPOLGADO(A)";
+				fill(194, 96, 255);
+				ellipse(posX + 20+45, posY + 20+45, 90, 90);
+				enthusiasticImg.resize(70, 0);
+				image(enthusiasticImg, posX + 31, posY + 28);
+				break;
+			case 'first':
+				currentBadge = "DE PRIMEIRA";
+				fill(82, 255, 122);
+				ellipse(posX + 20+45, posY + 20+45, 90, 90);
+				firstImg.resize(70, 0);
+				image(firstImg, posX + 31, posY + 28);
+				break;
+			default:
+				console.log('AAAAAA');
+				break;
+		}
+
+		fill(214, 214, 214);
+		textFont(boldFont);
+		textSize(17);
+		textAlign(LEFT);
+		text("Parabéns!\nVocê desbloqueou a conquista\n"+currentBadge, posX + 120, posY + 22, 165, 100);
 
 };

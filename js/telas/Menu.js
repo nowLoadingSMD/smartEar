@@ -2,7 +2,7 @@ function Menu(){
 
   var header = loadImage('assets/menu/header.png');
   var header2 = loadImage('assets/menu/header2.png');
-  var logo = loadImage('assets/menu/logo_menu.png');
+  var logo = loadImage('assets/telaInicial/logo.png');
 
   var jogosButton = new Button(613, 19, btnJogosPress);
   var licoesButton = new Button(767, 19, btnLicoesMenu);
@@ -28,7 +28,11 @@ function Menu(){
     perfilButton.draw();
     sobreButton.draw();
 
+    logo.resize(46, 0);
     image(logo, 82, 14);
+    textFont(logoFont);
+    textSize(30);
+		text("Smart Ear", 145, 50);
     // image(header, 420, 141);
     // image(header2, 189, 206);
 

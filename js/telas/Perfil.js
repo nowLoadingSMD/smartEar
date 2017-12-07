@@ -1,5 +1,5 @@
 function Perfil(){
-	var logo = loadImage('assets/menu/logo_menu.png');
+	var logo = loadImage('assets/telaInicial/logo.png');
 	var foto = loadImage('assets/perfil/perfil.png');
 
 	var jogosButton = new Button(613, 19, btnJogos);
@@ -54,7 +54,11 @@ function Perfil(){
 			drawBadges();
 			drawDescription(570, 991, 245, 402, 560);
 
+			logo.resize(46, 0);
 	    image(logo, 82, 14);
+			textFont(logoFont);
+			textSize(30);
+			text("Smart Ear", 145, 50);
 	    image(foto, 154, 130);
 
 	    checkPress();

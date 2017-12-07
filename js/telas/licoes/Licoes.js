@@ -1,6 +1,6 @@
 function Licoes(){
 
-  var logo = loadImage('assets/menu/logo_menu.png');
+  var logo = loadImage('assets/telaInicial/logo.png');
 
   var jogosButton = new Button(613, 19, btnJogos);
   var licoesButton = new Button(767, 19, btnLicoesPress);
@@ -26,16 +26,19 @@ function Licoes(){
     perfilButton.draw();
     sobreButton.draw();
 
+    logo.resize(46, 0);
     image(logo, 82, 14);
+    textFont(logoFont);
+    textSize(30);
+		text("Smart Ear", 145, 50);
 
     fill(255);
-    textSize(42);
+    textSize(40);
     textFont(boldFont);
-    textAlign(CENTER);
-    text("LIÇÕES BÁSICAS", 312, 188);
+    text("LIÇÕES BÁSICAS", width/7, 170);
     textFont(regularFont);
     textSize(32);
-    text("Para melhor entendimento da teoria musical, leis as aulas abaixo e em seguida se divirta com os jogos.", 608, 237, 902, 71);
+    text("Para melhor entendimento da teoria musical, leis as aulas abaixo e em seguida se divirta com os jogos.", width/7, 210, 950, 150);
 
     notasButton.draw();
     ritmoButton.draw();
