@@ -98,6 +98,8 @@ function IntervalosJogo(){
       drawFeedback(checkInsideCorretBox);
     }
 
+    console.log(points);
+
   }; // End of this.draw();
 
   var drawBoard = function(lineWeight, spacing, ellipseSize) {
@@ -178,6 +180,10 @@ function IntervalosJogo(){
         firstDraw = true;
         currentExercise = 0;
         note = [];
+        points = {
+          right: 0,
+          wrong: 0
+        };
       } else {
         setNewExercise();
       }
@@ -198,6 +204,10 @@ function IntervalosJogo(){
       firstDraw = true;
       currentExercise = 0;
       note = [];
+      points = {
+        right: 0,
+        wrong: 0
+      };
     }
 
     if (buttonPressed(reiniciar)){
@@ -209,6 +219,10 @@ function IntervalosJogo(){
       firstDraw = true;
       currentExercise = 0;
       note = [];
+      points = {
+        right: 0,
+        wrong: 0
+      };
     }
     if (buttonPressed(continuar)){
       estadoPause = true;
