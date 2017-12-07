@@ -64,6 +64,7 @@ function setup(){
 	telas['login'] = new Login();
 	telas['cadastrar'] = new Cadastrar();
 	telas['menu'] = new Menu();
+	telas['licoes'] = new Licoes();
 	telas['sobre'] = new Sobre();
 	telas['perfil'] = new Perfil();
 	telas['editarPerfil'] = new EditarPerfil();

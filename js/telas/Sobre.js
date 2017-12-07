@@ -1,9 +1,18 @@
 function Sobre(){
 
 	var logo = loadImage('assets/menu/logo_menu.png');
+<<<<<<< HEAD
 	var jogosButton = new Button(770, 19, btnJogos);
 	var perfilButton = new Button(921, 19, btnPerfil);
 	var sobreButton = new Button(1072, 19, btnSobrePress);
+=======
+	var blur = loadImage('assets/blur.png');
+
+	var jogosButton = new Button(613, 19, btnJogos);
+  var licoesButton = new Button(764, 19, btnLicoesMenu);
+  var perfilButton = new Button(921, 19, btnPerfil);
+  var sobreButton = new Button(1072, 19, btnSobrePress);
+>>>>>>> 803372602c3f700ad82acf9190de905f396c0aa4
 
 	this.draw = function(){
     clear();
@@ -15,6 +24,7 @@ function Sobre(){
 
     fill(255);
     jogosButton.draw();
+		licoesButton.draw();
     perfilButton.draw();
     sobreButton.draw();
 
@@ -36,6 +46,10 @@ function Sobre(){
     if (buttonPressed(jogosButton)){
       state.currentScreen = 'menu';
     }
+
+		if (buttonPressed(licoesButton)){
+			state.currentScreen = 'licoes';
+		}
 
     if (buttonPressed(perfilButton)){
       state.currentScreen = 'perfil';

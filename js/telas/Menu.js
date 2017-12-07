@@ -4,7 +4,8 @@ function Menu(){
   var header2 = loadImage('assets/menu/header2.png');
   var logo = loadImage('assets/menu/logo_menu.png');
 
-  var jogosButton = new Button(770, 19, btnJogosPress);
+  var jogosButton = new Button(613, 19, btnJogosPress);
+  var licoesButton = new Button(764, 19, btnLicoesMenu);
   var perfilButton = new Button(921, 19, btnPerfil);
   var sobreButton = new Button(1072, 19, btnSobre);
 
@@ -23,6 +24,7 @@ function Menu(){
 
     fill(255);
     jogosButton.draw();
+    licoesButton.draw();
     perfilButton.draw();
     sobreButton.draw();
 
@@ -33,7 +35,7 @@ function Menu(){
     textSize(42);
     textFont(boldFont);
     textAlign(CENTER);
-      text("Escolha um dos jogos", width/2, height/4.5);
+    text("Escolha um dos jogos", width/2, height/4.5);
     textFont(regularFont);
     textSize(32);
     text("Quanto mais você jogar, melhor compreenderá a teoria musical", width/2, height/3);
@@ -51,13 +53,6 @@ function Menu(){
     text("TIMBRE", 943+171/2, 351+230);
 
     checkPress();
-
-    usuarios[idUsuario].badges.explorer = usuarios[idUsuario].badgesProgress.explorer.reduce(function(res, item){
-      return item && res;
-    }, true);;
-    usuarios[idUsuario].badges.expert = usuarios[idUsuario].badgesProgress.expert.reduce(function(res, item){
-      return item && res;
-    }, true);
 
   };
 
@@ -77,6 +72,10 @@ function Menu(){
 
     if (buttonPressed(ritmoButton)){
       state.currentScreen = 'ritmo';
+    }
+
+    if (buttonPressed(licoesButton)){
+      state.currentScreen = 'licoes';
     }
 
     if (buttonPressed(sobreButton)){
