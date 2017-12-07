@@ -122,6 +122,7 @@ function Tutorial(){
       telaAtual=0;
       state.currentScreen = 'menu';
 			usuarios[idUsuario].badges.newbie = true;
+			notification.push('newbie');
     }
     if (buttonPressed(refazerButton)){
       telaAtual = 1;
@@ -130,6 +131,7 @@ function Tutorial(){
       telaAtual=0;
       state.currentScreen = 'licoes';
 			usuarios[idUsuario].badges.newbie = true;
+			notification.push('newbie');
     }
 
   };

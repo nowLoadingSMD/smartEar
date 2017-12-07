@@ -171,12 +171,17 @@ function Perfil(){
 			ellipse(438+55, 378+55, 124, 124); //white circle
 
 		} else {
+
+			var progress = usuarios[idUsuario].badgesProgress.explorer.reduce(function(prev, item){
+				return item ? prev + 1 : prev;
+			}, 0);
+
 			fill(193, 193, 193);
 			ellipse(438+55, 378+55, 110, 110); //badge Explorer
 			noFill();
 			strokeWeight(3);
 			stroke(255, 206, 82);
-			arc(438+55, 378+55, 124, 124, radians(-70), radians(270));
+			arc(438+55, 378+55, 124, 124, radians(269 - ((360/3) * progress)), radians(270));
 			ellipse(438+55, 378-7, 5, 5); //Explorer progress indicator
 			noStroke();
 
@@ -184,7 +189,9 @@ function Perfil(){
 			textSize(35);
 			textFont(regularFont);
 			textAlign(CENTER);
-			text("0%", 438+58, 378+65); //Explorer progress percentage
+
+
+			text((progress/3 * 100).toFixed(0)  + "%", 438+58, 378+65); //Explorer progress percentage
 			textAlign(LEFT);
 		}
 
@@ -203,12 +210,17 @@ function Perfil(){
 			image(badges['expert'], 454, 558);
 
 		} else {
+
+			var progress = usuarios[idUsuario].badgesProgress.expert.reduce(function(prev, item){
+				return item ? prev + 1 : prev;
+			}, 0);
+
 			fill(193, 193, 193);
 			ellipse(438+55, 534+55, 110, 110); //badge Expert
 			noFill();
 			strokeWeight(3);
 			stroke(255, 82, 200);
-			arc(438+55, 534+55, 124, 124, radians(-70), radians(270));
+			arc(438+55, 534+55, 124, 124, radians(269 - ((360/3) * progress)), radians(270));
 			ellipse(438+55, 534-7, 5, 5); //Expert progress indicator
 			noStroke();
 
@@ -216,7 +228,8 @@ function Perfil(){
 			textSize(35);
 			textFont(regularFont);
 			textAlign(CENTER);
-			text("0%", 438+58, 534+65); //Expert progress percentage
+
+			text((progress/3 * 100).toFixed(0) + "%", 438+58, 534+65); //Expert progress percentage
 			textAlign(LEFT);
 		}
 
@@ -235,12 +248,13 @@ function Perfil(){
 			image(badges['persistent'], 877, 245);
 
 		} else {
+
 			fill(193, 193, 193);
 			ellipse(859+55, 222+55, 110, 110); //badge Persistent
 			noFill();
 			strokeWeight(3);
 			stroke(72, 114, 255);
-			arc(859+55, 222+55, 124, 124, radians(-70), radians(270));
+			arc(859+55, 222+55, 124, 124, radians(269), radians(270));
 			ellipse(859+55, 222-7, 5, 5); //Persistent progress indicator
 			noStroke();
 
@@ -248,7 +262,8 @@ function Perfil(){
 			textSize(35);
 			textFont(regularFont);
 			textAlign(CENTER);
-			text("10%", 859+58, 222+65); //Persistent progress percentage
+
+			text("0%", 859+58, 222+65); //Persistent progress percentage
 			textAlign(LEFT);
 		}
 
@@ -267,12 +282,17 @@ function Perfil(){
 			image(badges['enthusiastic'], 872, 395);
 
 		} else {
+
+			var biggerProgress = usuarios[idUsuario].badgesProgress.enthusiastic.reduce(function(prev, item){
+				return prev > item ? prev : item;
+			}, 0);
+
 			fill(193, 193, 193);
 			ellipse(859+55, 378+55, 110, 110); //badge Enthusiastic
 			noFill();
 			strokeWeight(3);
 			stroke(194, 96, 255);
-			arc(859+55, 378+55, 124, 124, radians(-70), radians(270));
+			arc(859+55, 378+55, 124, 124, radians(269 - ((360/5) * biggerProgress) ), radians(270));
 			ellipse(859+55, 378-7, 5, 5); //Enthusiastic progress indicator
 			noStroke();
 
@@ -280,7 +300,8 @@ function Perfil(){
 			textSize(35);
 			textFont(regularFont);
 			textAlign(CENTER);
-			text("0%", 859+58, 378+65); //Enthusiastic progress percentage
+
+			text((biggerProgress/5 * 100) + "%", 859+58, 378+65); //Enthusiastic progress percentage
 			textAlign(LEFT);
 		}
 
@@ -304,7 +325,7 @@ function Perfil(){
 			noFill();
 			strokeWeight(3);
 			stroke(82, 255, 122);
-			arc(859+55, 534+55, 124, 124, radians(-70), radians(270));
+			arc(859+55, 534+55, 124, 124, radians(269), radians(270));
 			ellipse(859+55, 534-7, 5, 5); //First progress indicator
 			noStroke();
 
@@ -326,6 +347,5 @@ function Perfil(){
       return item ? prev+1 : prev;
     }, 0);
 
-		console.log(progressEnthusiastic);
 	}
 }
