@@ -115,15 +115,16 @@ function RitmoJogo(){
       text("Aperte o play para tocar o metrônomo.", width/7, height/5);
     }
 
-    if (showFeedback){
-      drawFeedback(mistakes);
-    }
 
     clicks.forEach(function(item){
       posX = timeLine.x + ((timeLine.w)  * ((item.tempo - startupTime) / 3000));
       posY = 229;
       image(item.imagem, posX, posY);
     });
+
+    if (showFeedback){
+      drawFeedback(mistakes);
+    }
 
     checkPress();
 
