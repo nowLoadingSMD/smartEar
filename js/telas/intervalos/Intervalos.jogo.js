@@ -171,7 +171,7 @@ function IntervalosJogo(){
       currentExercise++;
       console.log(currentExercise);
 
-      if (currentExercise > 2) {
+      if (currentExercise > 4) {
         usuarios[idUsuario].pontos.intervalos.push(points);
         localStorage.vec = JSON.stringify(usuarios);
         state.currentScreen = 'intervalosResultado';
