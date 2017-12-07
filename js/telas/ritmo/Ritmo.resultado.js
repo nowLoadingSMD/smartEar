@@ -59,21 +59,45 @@ function RitmoResultado(){
 
   };
 
+  ;
+
   var checkBadges = function(){
 
     if (!usuarios[idUsuario].badgesProgress.explorer[2]) {
       usuarios[idUsuario].badgesProgress.explorer[2] = true;
 
+      var current = usuarios[idUsuario].badgesProgress.explorer.reduce(function(prev, item){
+        return item && prev;
+      }, true);
+
+      if (current) {
+        usuarios[idUsuario].badges.explorer = true;
+        notification.push('explorer');
+      }
+
     }
 
     if (!usuarios[idUsuario].badgesProgress.expert[2] && (w == 0)) {
       usuarios[idUsuario].badgesProgress.expert[2] = true;
+
+      var current = usuarios[idUsuario].badgesProgress.expert.reduce(function(prev, item){
+        return item && prev;
+      }, true);
+
+      if (current) {
+        usuarios[idUsuario].badges.expert = true;
+        notification.push('expert');
+      }
+
     }
 
     if (!usuarios[idUsuario].badges.persistent) {
-      if (l > 1){
+      if (l > 1) {
         if (usuarios[idUsuario].pontos.ritmo[l-2].right < usuarios[idUsuario].pontos.ritmo[l-1].right){
           usuarios[idUsuario].badges.persistent = true;
+
+          notification.push('persistent');
+
         }
       }
     }
@@ -82,10 +106,15 @@ function RitmoResultado(){
 
     if(!usuarios[idUsuario].badges.enthusiastic && (usuarios[idUsuario].badgesProgress.enthusiastic[2] > 5)) {
       usuarios[idUsuario].badges.enthusiastic = true;
+
+      notification.push('enthusiastic');
     }
 
     if (!usuarios[idUsuario].badges.first && (w == 0)) {
       usuarios[idUsuario].badges.first = true;
+
+      notification.push('first');
+
     }
 
     localStorage.vec = JSON.stringify(usuarios);
