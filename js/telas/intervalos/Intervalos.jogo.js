@@ -55,6 +55,7 @@ function IntervalosJogo(){
          exerciseList.push(exercise.getExercicio());
        }
        setNewExercise();
+       console.log('hue');
        firstDraw = false;
     }
 
@@ -88,8 +89,6 @@ function IntervalosJogo(){
     var checkInsideBox = note.reduce(function(res, item){
       return item.insideBox && res;
     }, true);
-
-    console.log(checkInsideBox);
 
     if (checkInsideBox) {
       var checkInsideCorretBox = note.reduce(function(res, item){
@@ -194,6 +193,10 @@ function IntervalosJogo(){
       pause = false;
       estadoPause = false;
       posPause = 0;
+      check = false;
+      firstDraw = true;
+      currentExercise = 0;
+      note = [];
     }
 
     if (buttonPressed(reiniciar)){
@@ -217,7 +220,11 @@ function IntervalosJogo(){
       note = [];
     }
 
-    if(mouseIsPressed){
+    var dragging = note.reduce(function(res, item){
+      return item.draggable || res;
+    }, false);
+
+    if(mouseIsPressed && !pause && !dragging){
       note.forEach(function(item){
         var d = dist(mouseX, mouseY, item.x + item.imagemW/2, item.y + item.imagemH/2);
         if (d < 50) {
@@ -227,7 +234,7 @@ function IntervalosJogo(){
           item.draggable = true;
         }
     });
-    } else {
+    } else if (!mouseIsPressed || pause) {
       note.forEach(function(item){
         item.draggable = false;
       });

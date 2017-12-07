@@ -67,6 +67,7 @@ function setup(){
 	telas['sobre'] = new Sobre();
 	telas['perfil'] = new Perfil();
 	telas['editarPerfil'] = new EditarPerfil();
+	telas['tutorial'] = new Tutorial();
 
 	x = 0;
 	opacity = 300;

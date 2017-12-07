@@ -139,3 +139,9 @@ var pauseReiniciar = {
     width: 83,
     height: 83
 };
+
+var btnLicoes = {
+	url: 'assets/tutorial/licoes.png',
+    width: 103,
+    height: 103
+};

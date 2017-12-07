@@ -9,6 +9,8 @@ function RitmoJogo(){
   var isTime = false;
   var showFeedback = false;
 
+  var gapBetweenNotes = 0;
+
   var startupTime = 0;
 
   var clicks = [];
@@ -21,6 +23,7 @@ function RitmoJogo(){
   };
 
   var mistakes = 0;
+  var right = 0;
 
   var exercise = new RitmoExercise();
   var exerciseList = [];
@@ -42,8 +45,8 @@ function RitmoJogo(){
   var continuarButton = new Button(width/2-286/2, height-height/6, btnGradient, 'CONTINUAR');
 
   var line = loadImage('assets/ritmo/jogo/line.png');
-  var timeLine = new TimeLine(340, 283, 600, 116, notes);
-  var progessBar = new ProgessBar(340, 450, 600, 15);
+  var timeLine = new TimeLine(265, 283, 750, 116, notes);
+  var progessBar = new ProgessBar(265, 450, 750, 15);
 
   this.draw = function(){
 
@@ -70,6 +73,7 @@ function RitmoJogo(){
           tempo: d.getTime(),
           imagem: loadImage('assets/ritmo/jogo/feedbackAcerto.png')
         };
+        right++;
       } else {
         click = {
           tempo: d.getTime(),
@@ -199,7 +203,7 @@ function RitmoJogo(){
     fill(0, 0, 0, 100);
     rect(0,0,1280, 720);
 
-    if (mistakes >=1 ) {
+    if (mistakes >=1 || right == 0 ) {
       fill(255, 92, 92);
       textFont(boldFont);
       textAlign(CENTER);
@@ -230,7 +234,7 @@ function RitmoJogo(){
     if (buttonPressed(continuarButton)) {
       currentExercise++;
 
-      if (mistakes >= 1) {
+      if (mistakes >= 1 || right == 0) {
         points.wrong++;
       } else {
         points.right++;
@@ -283,7 +287,28 @@ function RitmoJogo(){
     clicks = [];
     mistakes = 0;
     notes = exerciseList[currentExercise];
-    timeLine = new TimeLine(340, 283, 600, 116, notes);
+    timeLine = new TimeLine(265, 283, 750, 116, notes);
+
+
+    switch (notes[0].nome) {
+      case 'semibreve':
+        gapBetweenNotes = 3000;
+        break;
+      case 'minima':
+        gapBetweenNotes = 3000/1.5;
+        break;
+      case 'seminima':
+        gapBetweenNotes = 3000/3;
+        break;
+      case 'colcheia':
+        gapBetweenNotes = 3000/6;
+        break;
+      default:
+        console.log('Erro');
+    }
+
+    console.log(gapBetweenNotes);
+
   }; // End of setNewExercise()
 
   // Game Related functions
@@ -308,6 +333,7 @@ function RitmoJogo(){
       var d = new Date();
       startupTime = d.getTime();
       playMetronomo();
+      setTimeout(setIsTimeToFalse, 100);
     }
   };
 
@@ -317,8 +343,6 @@ function RitmoJogo(){
 
     if (timesPlayed < 4) {
       setTimeout(playMetronomo, 1000);
-      setTimeout(setIsTimeToFalse, 100);
-      setTimeout(setIsTimeToTrue, 950);
     } else {
       setTimeout(function(){
         showFeedback = true;
@@ -330,10 +354,14 @@ function RitmoJogo(){
 
   var setIsTimeToTrue = function(){
     isTime = true;
+    setTimeout(setIsTimeToFalse, 200);
   };
 
   var setIsTimeToFalse = function(){
     isTime = false;
+    if (timesPlayed < 4){
+      setTimeout(setIsTimeToTrue, gapBetweenNotes - 200);
+    }
   };
 
 
@@ -354,8 +382,17 @@ function TimeLine(x, y, w, h, notes){
       image(notes[i].imagem, nextPos, this.y);
 
       switch (notes[i].nome) {
+        case 'semibreve':
+          nextPos += this.w;
+          break;
+        case 'minima':
+          nextPos += this.w/1.5;
+          break;
         case 'seminima':
           nextPos += this.w/3;
+          break;
+        case 'colcheia':
+          nextPos += this.w/6;
           break;
         default:
           console.log('Deu ruim aqui');

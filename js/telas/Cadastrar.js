@@ -76,7 +76,7 @@ function Cadastrar(){
     				localStorage.vec = JSON.stringify(usuarios);
     				firstTime = true;
             idUsuario = usuarios.length-1;
-  			    state.currentScreen = 'menu';
+  			    state.currentScreen = 'tutorial';
   			    removeElements();
 			}else
 				alert("Email já existente!");
