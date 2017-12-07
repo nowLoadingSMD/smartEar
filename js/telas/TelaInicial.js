@@ -1,5 +1,5 @@
 function TelaInicial(){
-  var logo = loadImage('assets/telaInicial/telaInicialLogo.png');
+  var logo = loadImage('assets/telaInicial/logo.png');
   var textd = loadImage('assets/telaInicial/telaInicialText.png');
   var comment = loadImage('assets/telaInicial/telaInicialComment.png');
 
@@ -10,16 +10,15 @@ function TelaInicial(){
     clear();
     background(bg);
     fill(255);
+    logo.resize(155, 155);
     image(logo, 85, 133);
     textFont(logoFont);
-    textSize(60);
-    text("Smart Ear", 250, 260);
-    // image(text, 86, 345, 496, 117);
+    textSize(65);
+    text("Smart Ear", 260, 240);
     textSize(58);
     textFont(boldFont);
     text("APRENDA MÚSICA DE", 85, height/2+30);
     text("UM JEITO FÁCIL", 85, height/2+100);
-    // image(comment, 86, 490, 487, 30);
     textSize(32);
     textFont(regularFont);
     text("Comece os exercícios agora mesmo", 85, height/2+150);
@@ -44,10 +43,5 @@ function TelaInicial(){
     }
 
   }
-
-
-    // var drawText = function(myText) {
-    //   text(myText, width/7, height/2, width/2-100, 150);
-    // };
 
 };

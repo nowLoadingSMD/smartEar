@@ -129,7 +129,8 @@ function IntervalosJogo(){
 
   var drawFeedback = function(correct){
 
-    fill(0, 0, 0, 100);
+    // filter(BLUR, 3);
+    fill(0, 0, 0, 230);
     rect(0,0,1280, 720);
 
     if (correct) {
