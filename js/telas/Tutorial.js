@@ -35,7 +35,18 @@ function Tutorial(){
         myText = "Antes de começar, nós recomendamos que você faça um pequeno tour pela interface do Smart Ear.\n Não vai demorar.";
         drawText(myText, 185, 230);
         naoButton.draw();
+
+				if (buttonPressed(naoButton)){ // Teste movido para ca para nao ser possivel pressionar o botao quando ele nao aparecer
+						telaAtual=0;
+						state.currentScreen = 'menu';
+				}
+
         tourButton.draw();
+
+				if (buttonPressed(tourButton)){
+						telaAtual = 1;
+				}
+				
       break;
       case 1:
         continuarButton.draw();
@@ -93,20 +104,16 @@ function Tutorial(){
       break;
     }
     checkPress();
+		console.log(telaAtual);
 
   };
   var checkPress = function(){
-    if (buttonPressed(tourButton)){
-        telaAtual = 1;
-    }
-    if (buttonPressed(naoButton)){
-        telaAtual=0;
-        state.currentScreen = 'menu';
-    }
+
     if (buttonPressed(continuarButton)){
       if(telaAtual!=6)
         telaAtual++;
     }
+
     if (buttonPressed(voltarButton)){
       if(telaAtual != 6)
         telaAtual--;
