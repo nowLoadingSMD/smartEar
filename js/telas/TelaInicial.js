@@ -11,10 +11,9 @@ function TelaInicial(){
     background(bg);
     fill(255);
     image(logo, 85, 133);
-    /*textFont(logoFont);
+    textFont(logoFont);
     textSize(60);
     text("Smart Ear", 250, 260);
-    ellipse(width/7-20, 230, 150, 150);*/
     // image(text, 86, 345, 496, 117);
     textSize(58);
     textFont(boldFont);
