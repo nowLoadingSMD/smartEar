@@ -113,13 +113,13 @@ function draw(){
 			if (framesShowingNotification <= 300){
 				drawBadgeNotification(notification[notification.length-1], 968, 33, notificationOpacity);
 				framesShowingNotification++;
-			} else if (framesShowingNotification > 300){
-				notificationOpacity--;
+			} else if (framesShowingNotification > 120){
+				notificationOpacity = notificationOpacity - 3;
 				drawBadgeNotification(notification[notification.length-1], 968, 33, notificationOpacity);
 				framesShowingNotification++;
 			}
 
-			if (notificationOpacity == 0) {
+			if (notificationOpacity <= 0) {
 				framesShowingNotification = 0;
 				notification.pop();
 			}
@@ -196,62 +196,74 @@ var checkMouseReleased = function(){
 	return mouseIsPressed && state.canPress;
 };
 
-var drawBadgeNotification = function(type, posX, posY){
+var drawBadgeNotification = function(type, posX, posY, opacity){
 
 	var currentBadge = "";
 
-		fill(57, 57, 57);
+		fill(57, 57, 57, opacity);
 		rect(968, 33, 300, 128, 58);
 
 		switch (type) {
 			case 'newbie':
 				currentBadge = "NOVATO(A)";
-				fill(82, 255, 255);
+				fill(82, 255, 255, opacity);
 				ellipse(posX + 20+45, posY + 20+45, 90, 90);
 				newbieImg.resize(70, 0);
+				//tint(255, opacity - 45);
 				image(newbieImg, posX + 31, posY + 28);
+				//tint(255, 255);
 				break;
 			case 'explorer':
 				currentBadge = "EXPLORADOR(A)";
-				fill(255, 206, 82);
+				fill(255, 206, 82, opacity);
 				ellipse(posX + 20+45, posY + 20+45, 90, 90);
 				explorerImg.resize(70, 0);
+				tint(255, opacity - 45);
 				image(explorerImg, posX + 31, posY + 28);
+				tint(255, 255);
 				break;
 			case 'expert':
 				currentBadge = "CRAQUE";
-				fill(255, 82, 200);
+				fill(255, 82, 200, opacity);
 				ellipse(posX + 20+45, posY + 20+45, 90, 90);
 				expertImg.resize(70, 0);
+				tint(255, opacity - 45);
 				image(expertImg, posX + 31, posY + 28);
+				tint(255, 255);
 				break;
 			case 'persistent':
 				currentBadge = "PERSISTENTE";
-				fill(72, 114, 255);
+				fill(72, 114, 255, opacity);
 				ellipse(posX + 20+45, posY + 20+45, 90, 90);
 				persistentImg.resize(70, 0);
+				tint(255, opacity - 45);
 				image(persistentImg, posX + 31, posY + 28);
+				tint(255, 255);
 				break;
 			case 'enthusiastic':
 				currentBadge = "EMPOLGADO(A)";
-				fill(194, 96, 255);
+				fill(194, 96, 255, opacity);
 				ellipse(posX + 20+45, posY + 20+45, 90, 90);
 				enthusiasticImg.resize(70, 0);
+				tint(255, opacity - 45);
 				image(enthusiasticImg, posX + 31, posY + 28);
+				tint(255, 255);
 				break;
 			case 'first':
 				currentBadge = "DE PRIMEIRA";
-				fill(82, 255, 122);
+				fill(82, 255, 122, opacity);
 				ellipse(posX + 20+45, posY + 20+45, 90, 90);
 				firstImg.resize(70, 0);
+				tint(255, opacity - 45);
 				image(firstImg, posX + 31, posY + 28);
+				tint(255, 255);
 				break;
 			default:
 				console.log('AAAAAA');
 				break;
 		}
 
-		fill(214, 214, 214);
+		fill(214, 214, 214, opacity);
 		textFont(boldFont);
 		textSize(17);
 		textAlign(LEFT);
