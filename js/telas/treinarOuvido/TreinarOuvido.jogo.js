@@ -150,7 +150,7 @@ function TreinarOuvidoJogo(){
   var showFeedback = function(right, chose){
 
     if (right == chose){
-      background(35, 38, 37, 80);
+      background(0, 0, 0, 230);
       textSize(40);
 
       fill(111, 193, 62);
@@ -170,7 +170,7 @@ function TreinarOuvidoJogo(){
       continuarButton.draw();
 
     } else {
-      background(35, 38, 37, 80);
+      background(0, 0, 0, 230);
       fill(255, 92, 92);
       textSize(42);
       textFont(boldFont);

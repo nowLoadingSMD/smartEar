@@ -15,7 +15,7 @@ function Tutorial(){
   telas[3] = loadImage('assets/tutorial/tela3.png');
   telas[4] = loadImage('assets/tutorial/tela4.png');
   telas[5] = loadImage('assets/tutorial/tela5.png');
-  telas[6] = loadImage('assets/tutorial/tela6.png');
+  telas[6] = loadImage('assets/tutorial/tela0.png');
 
   var telaAtual = 0;
 

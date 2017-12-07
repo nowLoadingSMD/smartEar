@@ -74,6 +74,8 @@ function setup(){
 	telas['perfil'] = new Perfil();
 	telas['editarPerfil'] = new EditarPerfil();
 	telas['tutorial'] = new Tutorial();
+	telas['licaoIntervalos'] = new LicaoIntervalos();
+	telas['licaoTimbre'] = new LicaoTimbre();
 
 	x = 0;
 	opacity = 300;

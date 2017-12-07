@@ -118,6 +118,8 @@ function Perfil(){
 
 		strokeWeight(0);
 		noStroke();
+
+		checkBadgeProgress();
 	}
 
 	function drawNewbie(){
@@ -309,7 +311,17 @@ function Perfil(){
 			text("0%", 859+58, 534+65); //First progress percentage
 			textAlign(LEFT);
 		}
-
 	}
 
+	function checkBadgeProgress() {
+		var progressExplorer = usuarios[idUsuario].badgesProgress.explorer.reduce(function(prev, item) {
+      return item ? prev+1 : prev;
+    }, 0);
+
+		var progressEnthusiastic = usuarios[idUsuario].badgesProgress.explorer.reduce(function(prev, item) {
+      return item ? prev+1 : prev;
+    }, 0);
+
+		console.log(progressEnthusiastic);
+	}
 }
