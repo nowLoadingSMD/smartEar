@@ -51,11 +51,12 @@ function Menu(){
 
     textSize(20);
     textAlign(CENTER);
+    textFont(boldFont);
     text("INTERVALOS", 166+171/2, 351+230);
     text("TREINAR OUVIDO", 425+171/2, 351+230);
     text("RITMO", 684+171/2, 351+230);
     text("TIMBRE", 943+171/2, 351+230);
-
+    textFont(regularFont);
     checkPress();
 
       usuarios[idUsuario].badges.explorer = usuarios[idUsuario].badgesProgress.explorer.reduce(function(res, item){

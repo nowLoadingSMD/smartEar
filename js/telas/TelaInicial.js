@@ -23,8 +23,10 @@ function TelaInicial(){
     textFont(regularFont);
     text("Comece os exercícios agora mesmo", 85, height/2+150);
 
+    textFont(boldFont);
     loginButton.draw();
     cadastrarButton.draw();
+    textFont(regularFont);
 
     checkPress();
 

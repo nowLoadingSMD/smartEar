@@ -25,7 +25,9 @@ function Ritmo(){
     drawText(myText, width/7, 180);
     image(explicacao, 334, 340);
 
+    textFont(boldFont);
     continuarButton.draw();
+    textFont(regularFont);
 
     checkPress();
 

@@ -22,7 +22,9 @@ function Intervalos(){
     drawText(myText, width/7, 180);
     image(explicacao, 283, 312);
 
+    textFont(boldFont);
     continuarButton.draw();
+    textFont(regularFont);
 
     checkPress();
 

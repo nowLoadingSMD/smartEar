@@ -144,7 +144,7 @@ function Perfil(){
 			noFill();
 			strokeWeight(3);
 			stroke(82, 255, 255);
-			arc(438+55, 222+55, 124, 124, radians(90), radians(270));
+			arc(438+55, 222+55, 124, 124, radians(269), radians(270));
 			ellipse(438+55, 222-7, 5, 5); //Newbie progress indicator
 			noStroke();
 

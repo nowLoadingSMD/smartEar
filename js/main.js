@@ -209,54 +209,54 @@ var drawBadgeNotification = function(type, posX, posY, opacity){
 				fill(82, 255, 255, opacity);
 				ellipse(posX + 20+45, posY + 20+45, 90, 90);
 				newbieImg.resize(70, 0);
-				//tint(255, opacity - 45);
+				// tint(255, opacity-20);
 				image(newbieImg, posX + 31, posY + 28);
-				//tint(255, 255);
+				// tint(255, 255);
 				break;
 			case 'explorer':
 				currentBadge = "EXPLORADOR(A)";
 				fill(255, 206, 82, opacity);
 				ellipse(posX + 20+45, posY + 20+45, 90, 90);
 				explorerImg.resize(70, 0);
-				tint(255, opacity - 45);
+				// tint(255, opacity-20);
 				image(explorerImg, posX + 31, posY + 28);
-				tint(255, 255);
+				// tint(255, 255);
 				break;
 			case 'expert':
 				currentBadge = "CRAQUE";
 				fill(255, 82, 200, opacity);
 				ellipse(posX + 20+45, posY + 20+45, 90, 90);
 				expertImg.resize(70, 0);
-				tint(255, opacity - 45);
+				// tint(255, opacity-20);
 				image(expertImg, posX + 31, posY + 28);
-				tint(255, 255);
+				// tint(255, 255);
 				break;
 			case 'persistent':
 				currentBadge = "PERSISTENTE";
 				fill(72, 114, 255, opacity);
 				ellipse(posX + 20+45, posY + 20+45, 90, 90);
 				persistentImg.resize(70, 0);
-				tint(255, opacity - 45);
+				// tint(255, opacity-20);
 				image(persistentImg, posX + 31, posY + 28);
-				tint(255, 255);
+				// tint(255, 255);
 				break;
 			case 'enthusiastic':
 				currentBadge = "EMPOLGADO(A)";
 				fill(194, 96, 255, opacity);
 				ellipse(posX + 20+45, posY + 20+45, 90, 90);
 				enthusiasticImg.resize(70, 0);
-				tint(255, opacity - 45);
+				// tint(255, opacity-20);
 				image(enthusiasticImg, posX + 31, posY + 28);
-				tint(255, 255);
+				// tint(255, 255);
 				break;
 			case 'first':
 				currentBadge = "DE PRIMEIRA";
 				fill(82, 255, 122, opacity);
 				ellipse(posX + 20+45, posY + 20+45, 90, 90);
 				firstImg.resize(70, 0);
-				tint(255, opacity - 45);
+				// tint(255, opacity-20);
 				image(firstImg, posX + 31, posY + 28);
-				tint(255, 255);
+				// tint(255, 255);
 				break;
 			default:
 				console.log('AAAAAA');

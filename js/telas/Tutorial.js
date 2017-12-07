@@ -34,7 +34,8 @@ function Tutorial(){
         textFont(regularFont);
         myText = "Antes de começar, nós recomendamos que você faça um pequeno tour pela interface do Smart Ear.\n Não vai demorar.";
         drawText(myText, 185, 230);
-        naoButton.draw();
+				textFont(boldFont);
+				naoButton.draw();
 
 				if (buttonPressed(naoButton)){ // Teste movido para ca para nao ser possivel pressionar o botao quando ele nao aparecer
 						telaAtual=0;
@@ -46,7 +47,7 @@ function Tutorial(){
 				if (buttonPressed(tourButton)){
 						telaAtual = 1;
 				}
-
+				textFont(regularFont);
       break;
       case 1:
         continuarButton.draw();

@@ -156,3 +156,9 @@ var btnLicoes = {
     width: 103,
     height: 103
 };
+
+var btnTutorial = {
+	url: 'assets/licoes/tutorialButton.png',
+    width: 71,
+    height: 71
+};
