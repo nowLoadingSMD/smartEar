@@ -6,6 +6,11 @@ var telas = [];
 var x;
 var opacity;
 
+var notification = [];
+var notificationOpacity = 0;
+var notificationFadeOut = true;
+var framesShowingNotification = 0;
+
 var state;
 var sound;
 
@@ -83,6 +88,29 @@ function setup(){
 function draw(){
 
 		telas[state.currentScreen].draw();
+
+		if (notification.length > 0 ) {
+
+			if (framesShowingNotification == 0) {
+				notificationOpacity = 300;
+			}
+
+			if (framesShowingNotification <= 300){
+				drawBadgeNotification(notification[notification.length-1], 968, 33, notificationOpacity);
+				framesShowingNotification++;
+			} else if (framesShowingNotification > 300){
+				notificationOpacity--;
+				drawBadgeNotification(notification[notification.length-1], 968, 33, notificationOpacity);
+				framesShowingNotification++;
+			}
+
+			if (notificationOpacity == 0) {
+				framesShowingNotification = 0;
+				notification.pop();
+			}
+			
+		}
+
 		fill(0, 0, 0, opacity);
 		rect(0, 0, 1280, 720);
 		if (opacity > 0){
@@ -151,4 +179,73 @@ var buttonPressed = function(botao){
 
 var checkMouseReleased = function(){
 	return mouseIsPressed && state.canPress;
+};
+
+var drawBadgeNotification = function(type, posX, posY){
+
+	fill(57, 57, 57);
+	rect(968, 33, 300, 128, 20);
+
+	fill(255);
+	textFont(regularFont);
+	textSize(16);
+	textAlign(LEFT);
+	text('Parabéns!', posX + 120, posY + 26);
+	text('Você desbloqueaou', posX + 120, posY + 42);
+	text('a conquista', posX + 120, posY + 58);
+
+	switch (type) {
+		case 'newbie':
+			var img = loadImage('assets/badges/newbie.png');
+			image(img, posX + 20, posY + 19);
+			textFont(regularFont);
+			textSize(16);
+			textAlign(LEFT);
+			text('NOVATO(A)', posX + 120, posY + 74);
+			break;
+		case 'explorer':
+			var img = loadImage('assets/badges/explorer.png');
+			image(img, posX + 20, posY + 19);
+			textFont(regularFont);
+			textSize(16);
+			textAlign(LEFT);
+			text('EXPLORADOR(A)', posX + 120, posY + 74);
+			break;
+		case 'expert':
+			var img = loadImage('assets/badges/expert.png');
+			image(img, posX + 20, posY + 19);
+			textFont(regularFont);
+			textSize(16);
+			textAlign(LEFT);
+			text('CRAQUE', posX + 120, posY + 74);
+			break;
+		case 'persistent':
+			var i = loadImage('assets/badges/persistent.png');
+			image(i, posX + 20, posY + 19);
+			textFont(regularFont);
+			textSize(16);
+			textAlign(LEFT);
+			text('PERSISTENTE', posX + 120, posY + 74);
+			break;
+		case 'enthusiastic':
+			var img = loadImage('assets/badges/enthusiastic.png');
+			image(img, posX + 20, posY + 19);
+			textFont(regularFont);
+			textSize(16);
+			textAlign(LEFT);
+			text('EMPOLGADO(A)', posX + 120, posY + 74);
+			break;
+		case 'first':
+			var img = loadImage('assets/badges/first.png');
+			image(img, posX + 20, posY + 19);
+			textFont(regularFont);
+			textSize(16);
+			textAlign(LEFT);
+			text('DE PRIMEIRA', posX + 120, posY + 74);
+			break;
+		default:
+			console.log('AAAAAA');
+			break;
+	}
+
 };
