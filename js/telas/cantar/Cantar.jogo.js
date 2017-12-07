@@ -78,7 +78,7 @@ function CantarJogo(){
       showPause();
 
     if (showFeedback){
-      fill(0, 0, 0, 100);
+      fill(0, 0, 0, 230);
       rect(0, 0, 1280, 720);
       image(voceAcertou, 462, 62);
       continuarButton.draw();
@@ -137,7 +137,7 @@ function CantarJogo(){
       rect(0, 0, posPause, 720);
       textFont(regularFont);
       fill(255);
-      
+
       if(posPause<128){
         image(imgContinuar, posPause-105, 125);
         image(imgReiniciar, posPause-105, 294);
@@ -163,7 +163,7 @@ function CantarJogo(){
         estadoPause = false;
         pause = false;
       }
-      
+
       checkPress();
   };
 }

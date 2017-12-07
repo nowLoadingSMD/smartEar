@@ -6,7 +6,7 @@ function Sobre(){
 	var smd = loadImage('assets/sobre/smdlogo.png');
 
 	var jogosButton = new Button(613, 19, btnJogos);
-  var licoesButton = new Button(764, 19, btnLicoesMenu);
+  var licoesButton = new Button(767, 19, btnLicoesMenu);
   var perfilButton = new Button(921, 19, btnPerfil);
   var sobreButton = new Button(1072, 19, btnSobrePress);
 

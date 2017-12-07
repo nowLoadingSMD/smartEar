@@ -3,7 +3,7 @@ function Licoes(){
   var logo = loadImage('assets/menu/logo_menu.png');
 
   var jogosButton = new Button(613, 19, btnJogos);
-  var licoesButton = new Button(764, 19, btnLicoesPress);
+  var licoesButton = new Button(767, 19, btnLicoesPress);
   var perfilButton = new Button(921, 19, btnPerfil);
   var sobreButton = new Button(1072, 19, btnSobre);
 

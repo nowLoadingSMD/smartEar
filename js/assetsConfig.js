@@ -92,13 +92,13 @@ var btnSobrePress = {
 };
 
 var btnLicoesMenu = {
-	url: 'assets/menu/licoesButton.png',
+	url: 'assets/menu/licoes.png',
 	width: 125,
 	height: 36
 };
 
 var btnLicoesPress = {
-	url: 'assets/licoes/licoes_press.png',
+	url: 'assets/menu/licoes_press.png',
 	width: 125,
 	height: 36
 };
