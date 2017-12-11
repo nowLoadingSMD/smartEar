@@ -1,29 +1,33 @@
 function RitmoJogo(){
 
   var firstDraw = true;
-  var isPlaying = false;
-  var timesPlayed = 0;
-  var isCounting = false;
-  var counter = 0;
+
+
+  var isCounting = false; //Controla a contagem regressiva
+  var counter = 0; //Contador da contagem regressiva
+
+  var isPlaying = false; //Controla se o jogo esta sendo tocado
+  var timesPlayed = 0; //Controla quantas vezes o metronomo tocou
+  var isTime = false; //Quando for o tempo certo da nota, essa variavel sera verdadeira
+
   var frameCounter = 0;
-  var isTime = false;
+
   var showFeedback = false;
 
   var gapBetweenNotes = 0;
 
   var startupTime = 0;
 
-  var clicks = [];
-  var notes = [
-  ];
+  var clicks = []; //Vetor com os clicks que o usuario fez
+  var notes = []; //Notas que serao mostradas no exercicio atual
 
   var points = {
     right: 0,
     wrong: 0
-  };
+  }; //Objeto para controlar a pontuacao da sessao atual
 
-  var mistakes = 0;
-  var right = 0;
+  var mistakes = 0; //Controla quantos vezes o usuario clicou fora do tempo no exercicio atual
+  var right = 0; //Controla quantos vezes o usuario clicou dentro do tempo no exercicio atual
 
   var exercise = new RitmoExercise();
   var exerciseList = [];
@@ -50,7 +54,7 @@ function RitmoJogo(){
 
   this.draw = function(){
 
-    if (firstDraw){
+    if (firstDraw){ //Se for o primeiro frame da tela, ira pegar novos exercicios
       for(var i = 0; i < 5; i++){
          exerciseList.push(exercise.getExercicio());
        }
@@ -62,19 +66,23 @@ function RitmoJogo(){
       frameCounter++;
     }
 
+    //Ira desenhar a barra de progresso de acordo com a quantidade de frames que o exercicio
+    //esta sendo tocado.
     progessBar.progress = (frameCounter/179);
 
+    //Se o jogo estiver sendo tocado e o usuario clicar, o jogo ira adicionar um click
+    // ao vetor clicks[]
     if (isPlaying && checkMouseReleased()) {
       var d = new Date();
       var click;
 
-      if (isTime) {
+      if (isTime) { //Se tiver dentro do tempo, ira adicionar um click com feedback positivo
         click = {
           tempo: d.getTime(),
           imagem: loadImage('assets/ritmo/jogo/feedbackAcerto.png')
         };
         right++;
-      } else {
+      } else { //Se tiver fora do tempo, ira adicionar um click com feedback negativo
         click = {
           tempo: d.getTime(),
           imagem: loadImage('assets/ritmo/jogo/feedbackErro.png')
@@ -115,7 +123,7 @@ function RitmoJogo(){
       text("Aperte o play para tocar o metrônomo.", width/7, height/5);
     }
 
-
+    //Ira desenhar todas as imagens de feedback que estao dentro do vetor clicks
     clicks.forEach(function(item){
       posX = timeLine.x + ((timeLine.w)  * ((item.tempo - startupTime) / 3000));
       posY = 229;
@@ -315,28 +323,40 @@ function RitmoJogo(){
   }; // End of setNewExercise()
 
   // Game Related functions
+
+  //Ira iniciar a contagem regressiva
   var startCounter = function(){
     isCounting = true;
     counter = 3;
     sound.metronomo.play();
-    setTimeout(setCounter, 1000);
+    setTimeout(setCounter, 1000); //Depois de 1000ms ira invocar a funcao setCounter
   };
 
   var setCounter = function(){
     counter--;
     sound.metronomo.play();
-    if (counter > 0){
+    if (counter > 0){ //Se o contador estiver maior que 0, ira invocar a si mesma depois de 1000ms
       setTimeout(setCounter, 1000);
-    } else {
+    } else { //Se o contador estiver menor ou igual a 0, ira iniciar o jogo
+
       isCounting = false;
       counter = 0;
+
       isPlaying = true;
       isTime = true;
       frameCounter = 0;
+
       var d = new Date();
       startupTime = d.getTime();
+
       playMetronomo();
-      setTimeout(setIsTimeToFalse, 100);
+
+      /* Para dar margem de erro pro usuario clicar, a variavel isTime ficara como true por 200
+      ms. 100ms depois que o metronomo tocar, a funcao setIsTimeToFalse sera chamada. 900ms Depois
+      que o metronomo tocar, a funcao setIsTimeToTrue sera chamada para colocar true na variavel isTime.
+      Isso dara um tempo de 200ms em true para a variavel isTime que sera usada para verificar se o usuario
+      clicou no tempo certo. */
+      setTimeout(setIsTimeToFalse, 100); //
     }
   };
 
