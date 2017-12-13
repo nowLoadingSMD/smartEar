@@ -2,6 +2,7 @@ function IntervalosJogo(){
 
   var box = [];
 
+  //Posicoes que as notas deverao ser encaixadas
   box[0] = {
     centerX: width/5,
     centerY: height/2.9 + 70
@@ -19,7 +20,10 @@ function IntervalosJogo(){
 
   var firstDraw = true;
 
+  //Notas
   var note = [];
+
+  //Label dos intervalos que sera mostrado na tela
   var notesGap = '';
 
   var exercise = new IntervalosExercicios();
@@ -49,6 +53,7 @@ function IntervalosJogo(){
 
   this.draw = function(){
 
+    //Se for o primeiro draw de uma sessao, novos exercicios sera carregados
     if (firstDraw){
       for(var i = 0; i < 5; i++){
          exerciseList.push(exercise.getExercicio());
@@ -74,29 +79,32 @@ function IntervalosJogo(){
     if(pause)
       showPause();
 
+    //Desenha todas as notas na tela
     note.forEach(function(item){
       item.draw();
     });
 
+    //Ajusta a posicao das notas se elas estiverem dentro de algum box
     note.forEach(function(item){
       item.adjustPosition(box);
     });
 
     checkPress();
 
+    //Verifica se todas as notas estao dentro de alguma caixa
     var checkInsideBox = note.reduce(function(res, item){
       return item.insideBox && res;
     }, true);
 
     if (checkInsideBox) {
+      //Verifica se todas as notas estao dentro da caixa correta
       var checkInsideCorretBox = note.reduce(function(res, item){
         return item.insideCorrectBox && res;
       }, true);
 
+      //Desenha o feedback de acordo com o valor de checkInsideCorretBox
       drawFeedback(checkInsideCorretBox);
     }
-
-    console.log(points);
 
   }; // End of this.draw();
 
@@ -175,11 +183,12 @@ function IntervalosJogo(){
     if (buttonPressed(continueButton)){
       check = false;
 
+      //Operador ternario de condicao
       correct ? points.right++ : points.wrong++;
 
       currentExercise++;
-      console.log(currentExercise);
 
+      //Se 5 exercicios estiverem sido feitos, passara para a proxima tela e resetara o estado da tela
       if (currentExercise > 4) {
         usuarios[idUsuario].pontos.intervalos.push(points);
         localStorage.vec = JSON.stringify(usuarios);
@@ -242,12 +251,19 @@ function IntervalosJogo(){
       note = [];
     }
 
+    //Verifica se alguma nota esta sendo arrastada
     var dragging = note.reduce(function(res, item){
       return item.draggable || res;
     }, false);
 
     if(mouseIsPressed && !pause && !dragging){
+
+      /*Se nenhuma nota esta sendo arrastada e o jogo nao esta pausado
+      uma nota podera ser arrastada pelo mouse*/
+
       note.forEach(function(item){
+        /*Se a ditancia entre o mouse e a nota atual for menor que 50 pixels
+        enquanto o usuario estiver clicando no mouse, essa nota sera arrastada pelo mouse*/
         var d = dist(mouseX, mouseY, item.x + item.imagemW/2, item.y + item.imagemH/2);
         if (d < 50) {
           if (!item.draggable){
@@ -255,14 +271,17 @@ function IntervalosJogo(){
           }
           item.draggable = true;
         }
-    });
+      });
+
     } else if (!mouseIsPressed || pause) {
+      //Se o mouse nao estiver sendo pressionado, nenhuma nota sera arrastada
       note.forEach(function(item){
         item.draggable = false;
       });
     }
 };
 
+//Seta um novo exercicio e coloca as notas em ordem aleatoria na tela
   var setNewExercise = function(){
     var posX = [];
 

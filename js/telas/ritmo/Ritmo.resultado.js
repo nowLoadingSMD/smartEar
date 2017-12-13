@@ -61,6 +61,7 @@ function RitmoResultado(){
 
   ;
 
+  //Verifica o estado atual das conquistas de acordo com o resultado da sessao de exercicios
   var checkBadges = function(){
 
     if (!usuarios[idUsuario].badgesProgress.explorer[2]) {

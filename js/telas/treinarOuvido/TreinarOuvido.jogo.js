@@ -16,6 +16,7 @@ function TreinarOuvidoJogo(){
   var posPause = 0;
   var estadoPause = false;
 
+  //Instanciando os elementos da interface
   var soundButton = new Button(523, 385, btnSound);
   var songButton = new Button(523, 255, btnSong);
   var backButton = new Button(50, 50, btnBack);
@@ -29,6 +30,7 @@ function TreinarOuvidoJogo(){
   var reiniciar = new Button(23, 294, pauseReiniciar);
   var sair = new Button(23, 463, pauseSair);
 
+  //Imagens que sao usadas na tela
   var txtSom = loadImage('assets/treinarOuvido/som.png');
   var imgContinuar = loadImage('assets/pause/continuar.png');
   var imgReiniciar = loadImage('assets/pause/reiniciar.png');
@@ -47,6 +49,7 @@ function TreinarOuvidoJogo(){
       clear();
     }
 
+    //Coloca o nome das notas dentro do botoes de opcoes
     opButton1.texto = exerciciosList[exercicioAtual].op1;
     opButton2.texto= exerciciosList[exercicioAtual].op2;
     opButton3.texto = exerciciosList[exercicioAtual].op3;
@@ -74,8 +77,11 @@ function TreinarOuvidoJogo(){
     opButton3.draw();
     textFont(regularFont);
 
+    //Verifica quais elementos estao sendo pressionados nesse frame
     checkPress();
 
+    /*Se o usuario estiver escolhido alguma opcao, o feedback sera mostrado de acordo
+    com o comparativo entre a nota certa e a nota escolhida*/
     if (check == true){
       showFeedback(exerciciosList[exercicioAtual].right, noteChoosen);
     }
@@ -127,7 +133,6 @@ function TreinarOuvidoJogo(){
     if (buttonPressed(opButton1)){
       check = true;
       noteChoosen = exerciciosList[exercicioAtual].op1;
-
     }
 
     if (buttonPressed(opButton2)){

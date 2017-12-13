@@ -30,11 +30,13 @@ function CantarJogo(){
   var onda = loadImage('assets/cantar/jogo/onda.png');
   var voceAcertou = loadImage('assets/cantar/jogo/voceAcertou.png');
 
+  //Metodo para pegar audio do microfone
   navigator.mediaDevices.getUserMedia({ audio: true, video: false })
         .then(handleSuccess);
 
+  //Callback para guardar o audio dentro de um objeto de pitchDetect, que e responsavel por
+  //detectar a nota cantada
   function handleSuccess(stream){
-    console.log('hue');
     pitchDetect = new PitchDetect(stream);
   }
 
@@ -44,6 +46,8 @@ function CantarJogo(){
     clear();
     background(bgNoise);
 
+    //Se pitchDetect estiver sido instanciado, o script ira chamar o metodo getPitch e detectara
+    //se a nota SI esta sendo cantada
     if((pitchDetect !== undefined) && (pitchDetect !== null)){
       var p = pitchDetect.getPitch();
       if (p.note == 'B'){
@@ -55,7 +59,6 @@ function CantarJogo(){
 
     backButton.draw();
 
-    // image(comment, 160, 141);
     textSize(32);
     text("Reproduza o som da nota ", width/7, height/5);
     fill(111, 193, 62);
@@ -70,6 +73,7 @@ function CantarJogo(){
 
     console.log(frameHold);
 
+    //Se a nota SI for mantida por 120 frames, o feedback sera mostrado
     if (frameHold >= 120){
       showFeedback = true;
     }
@@ -123,10 +127,6 @@ function CantarJogo(){
       showFeedback = false;
       state.currentScreen = 'cantarResultado';
     }
-
-  };
-
-  var checkPitch = function(){
 
   };
 

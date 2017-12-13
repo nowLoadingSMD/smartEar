@@ -45,7 +45,7 @@ function IntervalosResultado(){
     novamenteButton.draw();
     menuButton.draw();
     textFont(regularFont);
-    
+
     checkPress();
 
   };
@@ -66,6 +66,7 @@ function IntervalosResultado(){
 
   ;
 
+  //Verifica o estado atual das conquistas de acordo com o resultado da sessao de exercicios
   var checkBadges = function(){
 
     if (!usuarios[idUsuario].badgesProgress.explorer[0]) {
