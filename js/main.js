@@ -1,11 +1,11 @@
 /* Arquivo principal que será responsável por toda
 renderização do app */
 
-var cnv;
+var cnv; //canvas
 var telas = [];
 var x;
 var opacity;
-
+//imagens dos badges
 var notification = [];
 var notificationOpacity = 0;
 var notificationFadeOut = true;
@@ -17,7 +17,7 @@ var enthusiasticImg;
 var persistentImg;
 var firstImg;
 
-var state;
+var state; //tela atual
 var sound;
 
 var exercicios;
@@ -26,7 +26,7 @@ var iconSong, iconSound;
 var bg;
 var regularFont, boldFont, logoFont;
 
-var framesAfterMousePressed = 0;
+var framesAfterMousePressed = 0; //controlador de cliques do mouse
 
 var usuarios = [];
 var idUsuario = "";

@@ -14,7 +14,7 @@ function RitmoJogo(){
 
   var showFeedback = false;
 
-  var gapBetweenNotes = 0;
+  var gapBetweenNotes = 0; //tempo da nota
 
   var startupTime = 0;
 
@@ -78,13 +78,13 @@ function RitmoJogo(){
 
       if (isTime) { //Se tiver dentro do tempo, ira adicionar um click com feedback positivo
         click = {
-          tempo: d.getTime(),
+          tempo: d.getTime(), //posiçaõ do feedback de acerto
           imagem: loadImage('assets/ritmo/jogo/feedbackAcerto.png')
         };
         right++;
       } else { //Se tiver fora do tempo, ira adicionar um click com feedback negativo
         click = {
-          tempo: d.getTime(),
+          tempo: d.getTime(), //posiçaõ do feedback de erro
           imagem: loadImage('assets/ritmo/jogo/feedbackErro.png')
         };
         mistakes++;
@@ -374,12 +374,12 @@ function RitmoJogo(){
       isPlaying = false
     }
   };
-
+  //cliques validos
   var setIsTimeToTrue = function(){
     isTime = true;
     setTimeout(setIsTimeToFalse, 200);
   };
-
+  //cliques invalidos
   var setIsTimeToFalse = function(){
     isTime = false;
     if (timesPlayed < 4){

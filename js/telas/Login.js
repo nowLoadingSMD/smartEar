@@ -74,7 +74,7 @@ function Login(){
 
     inputSenha = createInput();
     inputSenha.position(loginSenha.x, loginSenha.y);
-    inputSenha.attribute("type", "text");
+    inputSenha.attribute("type", "password");
     inputSenha.attribute("placeholder", loginSenha.texto);
     inputSenha.hide();
   }

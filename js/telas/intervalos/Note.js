@@ -15,7 +15,7 @@ function Note(x, y, imagem, correctBox, boxes, note){
   this.draggable = false;
 
   this.draw = function(){
-
+    //verifica se a nota está sendo arrastada ou não
     if (this.draggable) {
       this.centerX = mouseX;
       this.centerY = mouseY;
@@ -25,6 +25,7 @@ function Note(x, y, imagem, correctBox, boxes, note){
 
     image(this.imagem, this.x, this.y);
 
+    //verifica se a nota está no box certo
     if ((this.centerX == this.corretPosX) && (this.centerY == this.corretPosY)){
       this.insideCorrectBox = true;
     } else {
@@ -49,6 +50,7 @@ function Note(x, y, imagem, correctBox, boxes, note){
     return result;
   }
 
+  //ajusta a nota para o centro do box quando estiver próxima
   this.adjustPosition = function(arr){
 
     var centerX = this.centerX;

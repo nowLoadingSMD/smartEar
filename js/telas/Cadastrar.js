@@ -104,7 +104,7 @@ function Cadastrar(){
 
   	inputSenha = createInput();
   	inputSenha.position(cadastrarSenha.x, cadastrarSenha.y);
-  	inputSenha.attribute("type", "text");
+  	inputSenha.attribute("type", "password");
   	inputSenha.attribute("placeholder", cadastrarSenha.texto);
   	inputSenha.hide();
 
