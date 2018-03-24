@@ -59,7 +59,7 @@ function Perfil(){
 			textFont(logoFont);
 			textSize(30);
 			text("Smart Ear", 145, 50);
-	    image(foto, 154, 130);
+	    image(foto, 154, 130, 194, 194);
 
 	    checkPress();
 
